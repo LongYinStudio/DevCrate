@@ -17,26 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 设置 Node.js 版本
-      - name: Setup Node.js v20.18.1
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.18.1
-
       # 安装 pnpm
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v4
 
-      # 缓存 pnpm 依赖（可选）
-      - name: Cache pnpm dependencies
-        uses: actions/cache@v4
-        id: pnpm-cache
+      # 设置 Node.js 22 LTS 并自动缓存 pnpm store
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
         with:
-          path: |
-            ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          node-version: 22
+          cache: 'pnpm'
 
       # 安装依赖
       - name: Install dependencies

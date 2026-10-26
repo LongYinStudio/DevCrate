@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "homepage": "https://github.com/LongYinStudio/DevCrate",
+  "packageManager": "pnpm@10.25.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/LongYinStudio/DevCrate.git"
