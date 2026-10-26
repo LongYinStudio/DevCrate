@@ -1,0 +1,182 @@
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { Binary, ArrowRightLeft, Sparkles } from 'lucide-vue-next';
+import ToolContainer from '../../components/common/ToolContainer.vue';
+import TextEditorBox from '../../components/common/TextEditorBox.vue';
+
+const { t } = useI18n();
+
+const mode = ref<'encode' | 'decode'>('encode');
+const urlSafe = ref(false);
+const inputText = ref('');
+const outputText = ref('');
+const error = ref('');
+
+// UTF-8 安全 Base64 编码
+function utf8ToBase64(str: string, isUrlSafe: boolean): string {
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(str);
+  let binary = '';
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  let base64 = btoa(binary);
+  if (isUrlSafe) {
+    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  return base64;
+}
+
+// UTF-8 安全 Base64 解码
+function base64ToUtf8(base64: string, isUrlSafe: boolean): string {
+  let normalized = base64.trim();
+  if (isUrlSafe) {
+    normalized = normalized.replace(/-/g, '+').replace(/_/g, '/');
+    while (normalized.length % 4) {
+      normalized += '=';
+    }
+  }
+  const binary = atob(normalized);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  const decoder = new TextDecoder();
+  return decoder.decode(bytes);
+}
+
+function process() {
+  if (!inputText.value) {
+    outputText.value = '';
+    error.value = '';
+    return;
+  }
+
+  try {
+    if (mode.value === 'encode') {
+      outputText.value = utf8ToBase64(inputText.value, urlSafe.value);
+      error.value = '';
+    } else {
+      outputText.value = base64ToUtf8(inputText.value, urlSafe.value);
+      error.value = '';
+    }
+  } catch (err: any) {
+    outputText.value = '';
+    error.value = err.message || 'Invalid Base64 sequence';
+  }
+}
+
+function switchMode() {
+  mode.value = mode.value === 'encode' ? 'decode' : 'encode';
+  const temp = inputText.value;
+  inputText.value = outputText.value;
+  outputText.value = temp;
+  process();
+}
+
+function loadSample() {
+  if (mode.value === 'encode') {
+    inputText.value = 'Hello DevCrate! 你好，开发者工具箱 🚀 123456';
+  } else {
+    inputText.value = 'SGVsbG8gRGV2Q3JhdGUhIOS9oOWlvSzkvKDlj5HogIXlt6XlhbfnrrEg8J+agCAxMjM0NTY=';
+  }
+  process();
+}
+
+watch([inputText, mode, urlSafe], () => {
+  process();
+});
+</script>
+
+<template>
+  <ToolContainer
+    toolId="base64-text"
+    nameKey="tools.base64Text.name"
+    descKey="tools.base64Text.desc"
+    :icon="Binary"
+  >
+    <!-- 控制栏 -->
+    <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <!-- 模式切换 Segmented Control -->
+        <div class="inline-flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-0.5 border border-zinc-200 dark:border-zinc-700">
+          <button
+            type="button"
+            @click="mode = 'encode'"
+            class="px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer"
+            :class="mode === 'encode' ? 'bg-white dark:bg-zinc-700 text-blue-600 dark:text-blue-400 shadow-xs' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
+          >
+            {{ t('tools.base64Text.encode') }}
+          </button>
+          <button
+            type="button"
+            @click="mode = 'decode'"
+            class="px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer"
+            :class="mode === 'decode' ? 'bg-white dark:bg-zinc-700 text-blue-600 dark:text-blue-400 shadow-xs' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
+          >
+            {{ t('tools.base64Text.decode') }}
+          </button>
+        </div>
+
+        <button
+          type="button"
+          @click="switchMode"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 transition-colors cursor-pointer"
+          title="切换输入输出"
+        >
+          <ArrowRightLeft class="w-3.5 h-3.5" />
+        </button>
+
+        <!-- URL-Safe 选项 -->
+        <label class="inline-flex items-center gap-2 text-xs text-zinc-700 dark:text-zinc-300 ml-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            v-model="urlSafe"
+            class="rounded border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+          />
+          <span>{{ t('tools.base64Text.urlSafe') }}</span>
+        </label>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          @click="loadSample"
+          class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+        >
+          <Sparkles class="w-3.5 h-3.5" />
+          <span>{{ t('common.loadSample') }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 错误提示 -->
+    <div
+      v-if="error"
+      class="p-3 rounded-lg text-xs font-medium bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60"
+    >
+      {{ error }}
+    </div>
+
+    <!-- 左右分栏 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
+      <TextEditorBox
+        v-model="inputText"
+        :label="t('common.input')"
+        :placeholder="mode === 'encode' ? 'Type or paste raw text here...' : 'Paste Base64 string here...'"
+        @clear="outputText = ''; error = ''"
+      />
+
+      <TextEditorBox
+        v-model="outputText"
+        :label="t('common.output')"
+        :readonly="true"
+        :placeholder="mode === 'encode' ? 'Encoded Base64 result...' : 'Decoded text result...'"
+        :showPaste="false"
+        :showClear="false"
+      />
+    </div>
+  </ToolContainer>
+</template>
