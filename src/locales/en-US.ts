@@ -150,6 +150,25 @@ export default {
       randomString: 'Random Secure String',
       length: 'Length'
     },
+    cronParser: {
+      name: 'Cron Expression Parser / Generator',
+      desc: 'Parse and build Cron schedule expressions with human-readable explanations and next run predictions',
+      expression: 'Cron Expression',
+      humanReadable: 'Schedule Explanation',
+      nextRuns: 'Upcoming Run Times',
+      presets: 'Common Presets',
+      customBuilder: 'Visual Builder',
+      syntaxCheatSheet: 'Syntax Reference',
+      minute: 'Minute',
+      hour: 'Hour',
+      dayOfMonth: 'Day',
+      month: 'Month',
+      dayOfWeek: 'Weekday',
+      second: 'Second',
+      includeSeconds: '6-field Mode (Seconds)',
+      invalidExpression: 'Invalid Cron expression format or out-of-range values',
+      nextRunTitle: 'Next Scheduled Runs'
+    },
     textInspector: {
       name: 'Text Inspector & Case Converter',
       desc: 'Inspect character count, words, lines and convert to popular casing conventions',

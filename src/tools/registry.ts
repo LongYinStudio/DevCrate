@@ -12,7 +12,8 @@ import {
   Clock,
   Hash,
   Fingerprint,
-  KeyRound
+  KeyRound,
+  CalendarClock
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -23,6 +24,7 @@ import JwtParser from './encoders/JwtParser.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
+import CronParser from './generators/CronParser.vue';
 import TextInspector from './text/TextInspector.vue';
 
 // 分类清单
@@ -100,6 +102,15 @@ export const tools: ToolItem[] = [
     icon: markRaw(Fingerprint),
     keywords: ['uuid', 'guid', 'v4', 'random', 'string', 'password', '生成器', '随机数', '密码'],
     component: markRaw(UuidGenerator),
+  },
+  {
+    id: 'cron-parser',
+    categoryId: 'generators',
+    nameKey: 'tools.cronParser.name',
+    descKey: 'tools.cronParser.desc',
+    icon: markRaw(CalendarClock),
+    keywords: ['cron', 'crontab', 'schedule', 'task', '定时任务', '调度', '计划任务', '表达式', '时间'],
+    component: markRaw(CronParser),
   },
   {
     id: 'text-inspector',

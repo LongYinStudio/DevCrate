@@ -150,6 +150,25 @@ export default {
       randomString: '随机安全字符串',
       length: '长度'
     },
+    cronParser: {
+      name: 'Cron 表达式生成 / 解析',
+      desc: '生成与解析 Cron 定时表达式，支持自然语言转换与未来运行时间预测',
+      expression: 'Cron 表达式',
+      humanReadable: '执行计划解读',
+      nextRuns: '未来执行计划',
+      presets: '常用预设',
+      customBuilder: '可视化配置',
+      syntaxCheatSheet: 'Cron 语法速查',
+      minute: '分',
+      hour: '时',
+      dayOfMonth: '日',
+      month: '月',
+      dayOfWeek: '周',
+      second: '秒',
+      includeSeconds: '6位秒级精度',
+      invalidExpression: '无效的 Cron 表达式，请检查字段取值范围与语法格式',
+      nextRunTitle: '未来执行时刻预测'
+    },
     textInspector: {
       name: '文本分析与大小写转换',
       desc: '字数、词数、行数、字节统计及常见大小写/编程命名法转换',
