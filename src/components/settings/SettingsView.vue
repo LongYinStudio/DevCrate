@@ -181,7 +181,7 @@ function handleLocaleChange(loc: LocaleType) {
               DevCrate
             </h2>
             <p class="text-xs text-zinc-400">
-              Version 0.1.0 • Built on Tauri 2
+              Version 0.2.0 • Built on Tauri 2
             </p>
           </div>
         </div>

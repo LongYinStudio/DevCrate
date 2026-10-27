@@ -1,6 +1,6 @@
 [package]
 name = "devcrate"
-version = "0.1.0"
+version = "0.2.0"
 description = "Modern Developer Toolbox built with Tauri 2 and Vue 3"
 authors = ["LongYinStudio"]
 edition = "2024"
