@@ -128,6 +128,20 @@ export default {
       utcTime: 'UTC 时间',
       isoTime: 'ISO 8601 标准'
     },
+    mimeTypes: {
+      name: 'MIME 类型查询与转换',
+      desc: '文件扩展名与 MIME 媒体类型双向速查，支持分类过滤、文件探查及 HTTP 标头复制',
+      searchPlaceholder: '搜索扩展名 (如 .json, png)、MIME (如 image/webp)、文件名或说明...',
+      detectiveTitle: '文件类型智能探查器',
+      detectiveDesc: '输入文件名或拖拽文件即可自动推断 MIME 响应头',
+      selectFile: '选择本地文件',
+      samples: '快速测试',
+      totalItems: '共收录 {count} 个条目',
+      matchedItems: '匹配 {count} 项',
+      copyMime: '复制 MIME',
+      copyHeader: '复制 HTTP Header',
+      copied: '已复制'
+    },
     hashGenerator: {
       name: 'Hash 哈希散列计算器',
       desc: '利用 Web Crypto 原生加速实时计算 MD5, SHA-1, SHA-256, SHA-512',

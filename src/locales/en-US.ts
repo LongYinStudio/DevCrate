@@ -128,6 +128,20 @@ export default {
       utcTime: 'UTC Time',
       isoTime: 'ISO 8601'
     },
+    mimeTypes: {
+      name: 'MIME Types Lookup',
+      desc: 'Bi-directional lookup between file extensions and MIME media types with category filters and header generation',
+      searchPlaceholder: 'Search extension (e.g. .json, png), MIME (e.g. image/webp), filename or description...',
+      detectiveTitle: 'Instant File Detective',
+      detectiveDesc: 'Type filename or drag file here to inspect MIME & HTTP headers',
+      selectFile: 'Select File',
+      samples: 'Quick Samples',
+      totalItems: '{count} MIME items in total',
+      matchedItems: '{count} matched',
+      copyMime: 'Copy MIME',
+      copyHeader: 'Copy HTTP Header',
+      copied: 'Copied'
+    },
     hashGenerator: {
       name: 'Hash Generator',
       desc: 'Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes using Web Crypto',

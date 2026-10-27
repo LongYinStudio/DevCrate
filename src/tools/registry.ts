@@ -13,7 +13,8 @@ import {
   Hash,
   Fingerprint,
   KeyRound,
-  CalendarClock
+  CalendarClock,
+  FileType
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -22,6 +23,7 @@ import Base64Text from './encoders/Base64Text.vue';
 import UrlEncoder from './encoders/UrlEncoder.vue';
 import JwtParser from './encoders/JwtParser.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
+import MimeTypes from './converters/MimeTypes.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -84,6 +86,31 @@ export const tools: ToolItem[] = [
     icon: markRaw(Clock),
     keywords: ['time', 'timestamp', 'date', 'unix', 'epoch', '时间戳', '日期', '时间', '转换'],
     component: markRaw(TimestampConverter),
+  },
+  {
+    id: 'mime-types',
+    categoryId: 'converters',
+    nameKey: 'tools.mimeTypes.name',
+    descKey: 'tools.mimeTypes.desc',
+    icon: markRaw(FileType),
+    keywords: [
+      'mime',
+      'mimetype',
+      'content-type',
+      'extension',
+      'media',
+      'file',
+      'type',
+      'header',
+      'http',
+      '媒体类型',
+      '扩展名',
+      '后缀',
+      '标头',
+      '查询',
+      '文件类型'
+    ],
+    component: markRaw(MimeTypes),
   },
   {
     id: 'hash-generator',
