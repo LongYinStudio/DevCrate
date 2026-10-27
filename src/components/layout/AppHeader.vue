@@ -121,14 +121,33 @@ onUnmounted(() => {
       <!-- 主题切换 -->
       <button
         type="button"
-        @click="toggleTheme"
-        class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/60 transition-colors cursor-pointer"
+        @click="toggleTheme($event)"
+        class="relative inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/60 transition-colors cursor-pointer overflow-hidden"
         :title="`${t('settings.theme')}: ${themeMode}`"
       >
-        <Sun v-if="themeMode === 'light'" class="w-4 h-4 text-amber-500" />
-        <Moon v-else-if="themeMode === 'dark'" class="w-4 h-4 text-indigo-400" />
-        <Laptop v-else class="w-4 h-4 text-zinc-500" />
+        <Transition name="theme-icon" mode="out-in">
+          <Sun v-if="themeMode === 'light'" key="light" class="w-4 h-4 text-amber-500" />
+          <Moon v-else-if="themeMode === 'dark'" key="dark" class="w-4 h-4 text-indigo-400" />
+          <Laptop v-else key="system" class="w-4 h-4 text-zinc-500" />
+        </Transition>
       </button>
     </div>
   </header>
 </template>
+
+<style scoped>
+.theme-icon-enter-active,
+.theme-icon-leave-active {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+}
+
+.theme-icon-enter-from {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.5);
+}
+
+.theme-icon-leave-to {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.5);
+}
+</style>

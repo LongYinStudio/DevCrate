@@ -2,6 +2,17 @@
 
 @custom-variant dark (&:is(.dark, .dark *));
 
+/* 根元素基础色彩，保证主题切换无瞬时透明白底/黑底 */
+html {
+  background-color: #ffffff;
+  color: #18181b;
+}
+
+html.dark {
+  background-color: #09090b;
+  color: #f4f4f5;
+}
+
 html, body, #app {
   height: 100%;
   margin: 0;
@@ -36,4 +47,46 @@ input, textarea, pre, code, [contenteditable="true"], .selectable-text {
 }
 .dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(107, 114, 128, 0.7);
+}
+
+/* View Transition 主题切换动画配置 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* 主题平滑过渡降级（当不支持 View Transitions API 时生效） */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-delay: 0s !important;
+}
+
+/* 尊重用户的减弱动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  html.theme-transitioning,
+  html.theme-transitioning * {
+    transition: none !important;
+  }
 }

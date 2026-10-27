@@ -8,8 +8,8 @@ import { openExternalLink, GITHUB_REPO_URL } from '../../utils/openUrl';
 
 const { t, locale } = useI18n();
 
-function handleThemeChange(mode: ThemeMode) {
-  setTheme(mode);
+function handleThemeChange(mode: ThemeMode, event?: MouseEvent) {
+  setTheme(mode, event);
 }
 
 function handleLocaleChange(loc: LocaleType) {
@@ -45,15 +45,15 @@ function handleLocaleChange(loc: LocaleType) {
           <!-- 浅色 -->
           <button
             type="button"
-            @click="handleThemeChange('light')"
-            class="flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer text-left"
+            @click="handleThemeChange('light', $event)"
+            class="group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200 cursor-pointer text-left"
             :class="[
               themeMode === 'light'
                 ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-600'
                 : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300'
             ]"
           >
-            <Sun class="w-5 h-5 shrink-0" />
+            <Sun class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:rotate-12" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeLight') }}</span>
               <span class="text-[11px] text-zinc-400">明亮清爽</span>
@@ -63,15 +63,15 @@ function handleLocaleChange(loc: LocaleType) {
           <!-- 深色 -->
           <button
             type="button"
-            @click="handleThemeChange('dark')"
-            class="flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer text-left"
+            @click="handleThemeChange('dark', $event)"
+            class="group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200 cursor-pointer text-left"
             :class="[
               themeMode === 'dark'
                 ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-600'
                 : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300'
             ]"
           >
-            <Moon class="w-5 h-5 shrink-0" />
+            <Moon class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:-rotate-12" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeDark') }}</span>
               <span class="text-[11px] text-zinc-400">深沉护眼</span>
@@ -81,15 +81,15 @@ function handleLocaleChange(loc: LocaleType) {
           <!-- 跟随系统 -->
           <button
             type="button"
-            @click="handleThemeChange('system')"
-            class="flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer text-left"
+            @click="handleThemeChange('system', $event)"
+            class="group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200 cursor-pointer text-left"
             :class="[
               themeMode === 'system'
                 ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-600'
                 : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300'
             ]"
           >
-            <Laptop class="w-5 h-5 shrink-0" />
+            <Laptop class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeSystem') }}</span>
               <span class="text-[11px] text-zinc-400">自适应 OS</span>
