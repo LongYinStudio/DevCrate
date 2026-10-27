@@ -11,13 +11,15 @@ import {
   Link,
   Clock,
   Hash,
-  Fingerprint
+  Fingerprint,
+  KeyRound
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
 import JsonFormatter from './formatters/JsonFormatter.vue';
 import Base64Text from './encoders/Base64Text.vue';
 import UrlEncoder from './encoders/UrlEncoder.vue';
+import JwtParser from './encoders/JwtParser.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
@@ -62,6 +64,15 @@ export const tools: ToolItem[] = [
     icon: markRaw(Link),
     keywords: ['url', 'uri', 'encode', 'decode', '编码', '解码', 'query', 'urlencode'],
     component: markRaw(UrlEncoder),
+  },
+  {
+    id: 'jwt-parser',
+    categoryId: 'encoders',
+    nameKey: 'tools.jwtParser.name',
+    descKey: 'tools.jwtParser.desc',
+    icon: markRaw(KeyRound),
+    keywords: ['jwt', 'token', 'decode', 'bearer', 'auth', 'claim', 'json web token', '解析', '令牌', '鉴权'],
+    component: markRaw(JwtParser),
   },
   {
     id: 'timestamp',
