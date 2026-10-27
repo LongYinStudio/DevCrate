@@ -4,12 +4,20 @@ import { useI18n } from 'vue-i18n';
 import { Star, ChevronLeft } from 'lucide-vue-next';
 import { isFavorite, toggleFavorite, selectCategory } from '../../stores/app';
 
-const props = defineProps<{
-  toolId: string;
-  nameKey: string;
-  descKey: string;
-  icon?: any;
-}>();
+const props = withDefaults(
+  defineProps<{
+    toolId: string;
+    nameKey: string;
+    descKey: string;
+    icon?: any;
+    wide?: boolean;
+    fullHeight?: boolean;
+  }>(),
+  {
+    wide: false,
+    fullHeight: true
+  }
+);
 
 const { t } = useI18n();
 
@@ -27,8 +35,8 @@ function backToAll() {
 <template>
   <div class="flex-1 flex flex-col h-full overflow-hidden bg-zinc-50/50 dark:bg-zinc-950">
     <!-- 工具标题栏与操作 -->
-    <header class="px-6 pt-5 pb-4 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/70 backdrop-blur-md">
-      <div class="flex items-center justify-between mb-1.5">
+    <header class="px-6 pt-4 pb-3.5 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/70 backdrop-blur-md shrink-0">
+      <div class="flex items-center justify-between mb-1">
         <div class="flex items-center gap-3">
           <button
             type="button"
@@ -82,8 +90,14 @@ function backToAll() {
     </header>
 
     <!-- 工具主内容滚动区 -->
-    <main class="flex-1 overflow-y-auto p-6">
-      <div class="max-w-6xl mx-auto flex flex-col gap-5">
+    <main class="flex-1 overflow-y-auto p-4 sm:p-5 flex flex-col min-h-0">
+      <div
+        class="mx-auto flex flex-col gap-3.5 w-full"
+        :class="[
+          wide ? 'max-w-[1750px]' : 'max-w-6xl',
+          fullHeight ? 'flex-1 min-h-0' : ''
+        ]"
+      >
         <slot />
       </div>
     </main>
