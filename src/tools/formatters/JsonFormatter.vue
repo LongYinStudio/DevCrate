@@ -20,6 +20,7 @@ import {
 } from 'lucide-vue-next';
 import ToolContainer from '../../components/common/ToolContainer.vue';
 import TextEditorBox from '../../components/common/TextEditorBox.vue';
+import CustomSelect from '../../components/common/CustomSelect.vue';
 import JsonTreeView from './components/JsonTreeView.vue';
 
 const { t } = useI18n();
@@ -402,14 +403,14 @@ const outputStats = computed(() => {
         <!-- 缩进选项 -->
         <div class="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-300">
           <span>{{ t('tools.jsonFormatter.indentation') }}:</span>
-          <select
+          <CustomSelect
             v-model="indentType"
-            class="px-2 py-1 rounded-md text-xs bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-          >
-            <option value="2">{{ t('tools.jsonFormatter.indent2') }}</option>
-            <option value="4">{{ t('tools.jsonFormatter.indent4') }}</option>
-            <option value="tab">{{ t('tools.jsonFormatter.indentTab') }}</option>
-          </select>
+            :options="[
+              { label: t('tools.jsonFormatter.indent2'), value: '2' },
+              { label: t('tools.jsonFormatter.indent4'), value: '4' },
+              { label: t('tools.jsonFormatter.indentTab'), value: 'tab' }
+            ]"
+          />
         </div>
 
         <button

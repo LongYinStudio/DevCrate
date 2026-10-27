@@ -23,8 +23,19 @@ html, body, #app {
 }
 
 /* 允许输入区域与内容区域可选中 */
-input, textarea, pre, code, [contenteditable="true"], .selectable-text {
+input, textarea, pre, code, select, [contenteditable="true"], .selectable-text {
   user-select: text;
+}
+
+/* 现代化美化原生 select（避免 Linux WebKitGTK 默认灰底凹凸按钮） */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.15em 1.15em;
+  padding-right: 1.75rem !important;
 }
 
 /* 优雅精致的滚动条 */

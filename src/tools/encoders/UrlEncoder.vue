@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import { Link, ArrowRightLeft, Sparkles } from 'lucide-vue-next';
 import ToolContainer from '../../components/common/ToolContainer.vue';
 import TextEditorBox from '../../components/common/TextEditorBox.vue';
+import CustomSelect from '../../components/common/CustomSelect.vue';
 
 const { t } = useI18n();
 
@@ -106,13 +107,13 @@ watch([inputText, mode, encodeType], () => {
         <!-- 编码模式选择 -->
         <div class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
           <span>{{ t('tools.urlEncoder.encodeMode') }}:</span>
-          <select
+          <CustomSelect
             v-model="encodeType"
-            class="px-2 py-1 rounded-md text-xs bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-          >
-            <option value="component">{{ t('tools.urlEncoder.componentMode') }}</option>
-            <option value="uri">{{ t('tools.urlEncoder.fullUriMode') }}</option>
-          </select>
+            :options="[
+              { label: t('tools.urlEncoder.componentMode'), value: 'component' },
+              { label: t('tools.urlEncoder.fullUriMode'), value: 'uri' }
+            ]"
+          />
         </div>
       </div>
 

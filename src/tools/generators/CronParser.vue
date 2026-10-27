@@ -12,8 +12,55 @@ import {
   Lightbulb
 } from 'lucide-vue-next';
 import ToolContainer from '../../components/common/ToolContainer.vue';
+import CustomSelect, { type SelectOption } from '../../components/common/CustomSelect.vue';
 
 const { t, locale } = useI18n();
+
+const minuteOptions: SelectOption[] = [
+  { label: '每一分钟 (*)', value: '*' },
+  { label: '整点 00 分 (0)', value: '0' },
+  { label: '每隔 5 分钟 (*/5)', value: '*/5' },
+  { label: '每隔 10 分钟 (*/10)', value: '*/10' },
+  { label: '每隔 15 分钟 (*/15)', value: '*/15' },
+  { label: '每隔 30 分钟 (*/30)', value: '*/30' },
+  { label: '0 和 30 分 (0,30)', value: '0,30' }
+];
+
+const hourOptions: SelectOption[] = [
+  { label: '每一小时 (*)', value: '*' },
+  { label: '午夜 00:00 (0)', value: '0' },
+  { label: '早上 08:00 (8)', value: '8' },
+  { label: '早晨 09:00 (9)', value: '9' },
+  { label: '中午 12:00 (12)', value: '12' },
+  { label: '下午 18:00 (18)', value: '18' },
+  { label: '晚上 23:00 (23)', value: '23' },
+  { label: '每隔 2 小时 (*/2)', value: '*/2' },
+  { label: '每隔 4 小时 (*/4)', value: '*/4' },
+  { label: '工作时间 (9-18)', value: '9-18' }
+];
+
+const dayOptions: SelectOption[] = [
+  { label: '每天 (*)', value: '*' },
+  { label: '每月 1 号 (1)', value: '1' },
+  { label: '每月 15 号 (15)', value: '15' },
+  { label: '每月 1 和 15 号 (1,15)', value: '1,15' },
+  { label: '每隔 2 天 (*/2)', value: '*/2' }
+];
+
+const monthOptions: SelectOption[] = [
+  { label: '每个月 (*)', value: '*' },
+  { label: '一月 (1)', value: '1' },
+  { label: '每季度首月 (1,4,7,10)', value: '1,4,7,10' },
+  { label: '年中与年末 (6,12)', value: '6,12' }
+];
+
+const weekOptions: SelectOption[] = [
+  { label: '每天 (*)', value: '*' },
+  { label: '工作日 (周一至周五 1-5)', value: '1-5' },
+  { label: '周末 (周六和周日 0,6)', value: '0,6' },
+  { label: '仅周一 (1)', value: '1' },
+  { label: '仅周五 (5)', value: '5' }
+];
 
 // 默认 5 位 Cron 表达式（每周一至周五 09:00）
 const cronExpression = ref('0 9 * * 1-5');
@@ -611,19 +658,12 @@ function updateFromBuilder() {
             <span class="text-xs font-semibold text-amber-600 dark:text-amber-400">
               分钟 (Minute: 0-59)
             </span>
-            <select
+            <CustomSelect
               v-model="bMinute"
+              :options="minuteOptions"
+              :fullWidth="true"
               @change="updateFromBuilder"
-              class="w-full px-2 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-            >
-              <option value="*">每一分钟 (*)</option>
-              <option value="0">整点 00 分 (0)</option>
-              <option value="*/5">每隔 5 分钟 (*/5)</option>
-              <option value="*/10">每隔 10 分钟 (*/10)</option>
-              <option value="*/15">每隔 15 分钟 (*/15)</option>
-              <option value="*/30">每隔 30 分钟 (*/30)</option>
-              <option value="0,30">0 和 30 分 (0,30)</option>
-            </select>
+            />
           </div>
 
           <!-- 小时 -->
@@ -631,22 +671,12 @@ function updateFromBuilder() {
             <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
               小时 (Hour: 0-23)
             </span>
-            <select
+            <CustomSelect
               v-model="bHour"
+              :options="hourOptions"
+              :fullWidth="true"
               @change="updateFromBuilder"
-              class="w-full px-2 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-            >
-              <option value="*">每一小时 (*)</option>
-              <option value="0">午夜 00:00 (0)</option>
-              <option value="8">早上 08:00 (8)</option>
-              <option value="9">早晨 09:00 (9)</option>
-              <option value="12">中午 12:00 (12)</option>
-              <option value="18">下午 18:00 (18)</option>
-              <option value="23">晚上 23:00 (23)</option>
-              <option value="*/2">每隔 2 小时 (*/2)</option>
-              <option value="*/4">每隔 4 小时 (*/4)</option>
-              <option value="9-18">工作时间 (9-18)</option>
-            </select>
+            />
           </div>
 
           <!-- 日期 -->
@@ -654,17 +684,12 @@ function updateFromBuilder() {
             <span class="text-xs font-semibold text-sky-600 dark:text-sky-400">
               日期 (Day: 1-31)
             </span>
-            <select
+            <CustomSelect
               v-model="bDay"
+              :options="dayOptions"
+              :fullWidth="true"
               @change="updateFromBuilder"
-              class="w-full px-2 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-            >
-              <option value="*">每天 (*)</option>
-              <option value="1">每月 1 号 (1)</option>
-              <option value="15">每月 15 号 (15)</option>
-              <option value="1,15">每月 1 号和 15 号 (1,15)</option>
-              <option value="*/2">每隔 2 天 (*/2)</option>
-            </select>
+            />
           </div>
 
           <!-- 月份 -->
@@ -672,16 +697,12 @@ function updateFromBuilder() {
             <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">
               月份 (Month: 1-12)
             </span>
-            <select
+            <CustomSelect
               v-model="bMonth"
+              :options="monthOptions"
+              :fullWidth="true"
               @change="updateFromBuilder"
-              class="w-full px-2 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-            >
-              <option value="*">每个月 (*)</option>
-              <option value="1">一月 (1)</option>
-              <option value="1,4,7,10">每季度首月 (1,4,7,10)</option>
-              <option value="6,12">年中与年末 (6,12)</option>
-            </select>
+            />
           </div>
 
           <!-- 星期 -->
@@ -689,17 +710,12 @@ function updateFromBuilder() {
             <span class="text-xs font-semibold text-purple-600 dark:text-purple-400">
               星期 (Weekday: 0-6)
             </span>
-            <select
+            <CustomSelect
               v-model="bWeek"
+              :options="weekOptions"
+              :fullWidth="true"
               @change="updateFromBuilder"
-              class="w-full px-2 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer"
-            >
-              <option value="*">每天 (*)</option>
-              <option value="1-5">工作日 (周一至周五 1-5)</option>
-              <option value="0,6">周末 (周六和周日 0,6)</option>
-              <option value="1">仅周一 (1)</option>
-              <option value="5">仅周五 (5)</option>
-            </select>
+            />
           </div>
         </div>
 
