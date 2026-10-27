@@ -1,40 +1,66 @@
+# DevCrate
+
 <div align="center">
-  <img src="public/logo.png" width="96" height="96" alt="DevCrate Logo" />
-  <h1>DevCrate</h1>
-  <p>面向开发者的本地离线工具箱，基于 Tauri 2 + Vue 3。</p>
+  <img src="./public/logo.png" alt="DevCrate Logo" width="80" height="80" />
+  <p>现代跨平台本地离线开发者工具箱，基于 Tauri 2 与 Vue 3 构建。</p>
+  <p>所有工具纯本地运行，零网络依赖，保障数据隐私安全。</p>
+  <p>
+    简体中文 | <a href="./README.en-US.md">English</a>
+  </p>
 </div>
 
-## 特性
+## 截图
 
-- 本地离线运行，数据不离机
-- 浅色 / 深色 / 跟随系统主题
-- 中英文多语言
-- 全局快捷搜索 (`Ctrl+K` / `⌘K`) 与常用工具收藏
+| ![](.github/assets/1.png) | ![](.github/assets/2.png) |
+| ------------------------- | ------------------------- |
+| ![](.github/assets/3.png) | ![](.github/assets/4.png) |
 
 ## 内置工具
 
-- **格式化**：JSON 格式化 / 校验 / 压缩
-- **编解码**：Base64 文本编解码（UTF-8、URL-Safe）、URL 编解码
-- **转换器**：Unix 时间戳双向转换（秒 / 毫秒）
-- **生成器**：UUID v4 生成、随机字符/密码生成、Hash 散列计算 (MD5, SHA-1/256/512)
-- **文本处理**：字数/行数统计、大小写与命名风格转换 (camelCase, snake_case 等)
+### 格式化工具
+- **JSON 格式化 / 校验**：缩进美化、单行压缩、转义处理、树形视图与语法智能修复
 
-## 本地开发
+### 编码与解码
+- **JWT 解析器**：Token 结构反解、标准声明过期分析与本地 HMAC 签名校验
+- **Base64 编解码**：支持 UTF-8 字符集与 URL-Safe 模式
+- **URL 编解码**：支持完整 URI 与组件参数模式，Query 参数实时解析
+
+### 转换器
+- **MIME 类型查询**：文件扩展名与 MIME 媒体类型双向检索，支持文件推断与 HTTP 标头复制
+- **Unix 时间戳转换**：实时时钟、秒与毫秒时间戳、本地时间与 UTC/ISO 8601 双向换算
+
+### 生成器
+- **Cron 表达式生成 / 解析**：自然语言解读、未来执行时间预测与可视化参数构建
+- **Hash 计算器**：原生硬件加速计算 MD5、SHA-1、SHA-256、SHA-384、SHA-512
+- **UUID / 密码生成器**：批量生成 UUID v4、自定义规则高强度随机密码与 Token
+
+### 文本处理
+- **文本分析与命名风格转换**：字符/词数/行数/字节统计，支持主流编程命名法互转
+
+## 安装
+
+### Arch Linux (AUR)
 
 ```bash
-# 安装依赖
-pnpm install
-
-# 启动桌面端调试
-pnpm tauri dev
-
-# 打包构建前端
-pnpm build
+yay -S devcrate
+# 或
+paru -S devcrate
 ```
 
-## 添加新工具
+### macOS (Homebrew)
 
-在 `src/tools/` 对应分类目录下创建组件，并在 `src/tools/registry.ts` 中登记即可自动引入。
+```bash
+brew install --cask LongYinStudio/tap/devcrate
+```
+
+也可以从 [Releases](https://github.com/LongYinStudio/DevCrate/releases/latest) 下载 `.dmg` 安装包。
+
+### 其他平台
+
+前往 [Releases](https://github.com/LongYinStudio/DevCrate/releases/latest) 下载对应平台的安装包：
+
+- Windows: `.exe`
+- Linux: `.deb` / `.rpm`
 
 ## License
 
