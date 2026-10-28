@@ -14,7 +14,8 @@ import {
   Fingerprint,
   KeyRound,
   CalendarClock,
-  FileType
+  FileType,
+  ShieldCheck
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -24,6 +25,7 @@ import UrlEncoder from './encoders/UrlEncoder.vue';
 import JwtParser from './encoders/JwtParser.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
 import MimeTypes from './converters/MimeTypes.vue';
+import ChmodCalculator from './converters/ChmodCalculator.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -111,6 +113,31 @@ export const tools: ToolItem[] = [
       '文件类型'
     ],
     component: markRaw(MimeTypes),
+  },
+  {
+    id: 'chmod-calculator',
+    categoryId: 'converters',
+    nameKey: 'tools.chmodCalculator.name',
+    descKey: 'tools.chmodCalculator.desc',
+    icon: markRaw(ShieldCheck),
+    keywords: [
+      'chmod',
+      'permission',
+      'permissions',
+      'octal',
+      'symbolic',
+      'linux',
+      'unix',
+      'suid',
+      'sgid',
+      'sticky',
+      '权限',
+      '八进制',
+      '符号',
+      '文件权限',
+      '计算器'
+    ],
+    component: markRaw(ChmodCalculator),
   },
   {
     id: 'hash-generator',

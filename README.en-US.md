@@ -26,6 +26,7 @@
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing
 
 ### Converters
+- **Chmod Calculator**: Bi-directional conversion between octal (0755), symbolic (-rwxr-xr-x), and interactive checkboxes
 - **MIME Types Lookup**: Bi-directional lookup, file-based detection, and HTTP header generation
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
 
