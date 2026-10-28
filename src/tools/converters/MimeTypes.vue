@@ -345,7 +345,7 @@ function getCategoryBadgeColor(cat: string) {
                   class="px-2 py-0.5 rounded-md text-[10px] font-mono border"
                   :class="detectiveResult.item.isBinary ? 'bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800' : 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'"
                 >
-                  {{ detectiveResult.item.isBinary ? 'Binary (二进制)' : 'Text (文本)' }}
+                  {{ detectiveResult.item.isBinary ? (locale.startsWith('zh') ? 'Binary (二进制)' : 'Binary') : (locale.startsWith('zh') ? 'Text (文本)' : 'Text') }}
                 </span>
                 <span
                   v-if="detectiveResult.item.charsetNeeded"
@@ -358,7 +358,7 @@ function getCategoryBadgeColor(cat: string) {
               <div class="text-zinc-600 dark:text-zinc-300 text-xs flex items-center gap-2">
                 <span>{{ locale.startsWith('zh') ? detectiveResult.item.descriptionZh : detectiveResult.item.descriptionEn }}</span>
                 <span class="text-zinc-400">·</span>
-                <span class="font-mono text-zinc-500">扩展名: {{ detectiveResult.item.extensions.map(e => `.${e}`).join(', ') }}</span>
+                <span class="font-mono text-zinc-500">{{ locale.startsWith('zh') ? '扩展名:' : 'Extensions:' }} {{ detectiveResult.item.extensions.map(e => `.${e}`).join(', ') }}</span>
               </div>
 
               <div class="mt-1 flex items-center gap-2 font-mono text-[11px] bg-white dark:bg-zinc-900 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 select-all">
@@ -382,7 +382,7 @@ function getCategoryBadgeColor(cat: string) {
               >
                 <Check v-if="copiedMap['detective-mime']" class="w-3.5 h-3.5 text-emerald-500" />
                 <Copy v-else class="w-3.5 h-3.5" />
-                <span>{{ copiedMap['detective-mime'] ? '已复制 MIME' : '复制 MIME' }}</span>
+                <span>{{ copiedMap['detective-mime'] ? (locale.startsWith('zh') ? '已复制 MIME' : 'MIME Copied') : (locale.startsWith('zh') ? '复制 MIME' : 'Copy MIME') }}</span>
               </button>
 
               <button
@@ -392,7 +392,7 @@ function getCategoryBadgeColor(cat: string) {
               >
                 <Check v-if="copiedMap['detective-header']" class="w-3.5 h-3.5" />
                 <Copy v-else class="w-3.5 h-3.5" />
-                <span>{{ copiedMap['detective-header'] ? '已复制 Header' : '复制 HTTP Header' }}</span>
+                <span>{{ copiedMap['detective-header'] ? (locale.startsWith('zh') ? '已复制 Header' : 'Header Copied') : (locale.startsWith('zh') ? '复制 HTTP Header' : 'Copy Header') }}</span>
               </button>
             </div>
           </div>

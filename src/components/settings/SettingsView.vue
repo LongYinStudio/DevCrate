@@ -26,7 +26,7 @@ function handleLocaleChange(loc: LocaleType) {
           {{ t('settings.title') }}
         </h1>
         <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-          管理 DevCrate 的外观显示、交互偏好与系统配置
+          {{ locale.startsWith('zh') ? '管理 DevCrate 的外观显示、交互偏好与系统配置' : 'Manage DevCrate appearance, preferences, and system configuration' }}
         </p>
       </div>
 
@@ -56,7 +56,7 @@ function handleLocaleChange(loc: LocaleType) {
             <Sun class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:rotate-12" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeLight') }}</span>
-              <span class="text-[11px] text-zinc-400">明亮清爽</span>
+              <span class="text-[11px] text-zinc-400">{{ locale.startsWith('zh') ? '明亮清爽' : 'Bright and clean' }}</span>
             </div>
           </button>
 
@@ -74,7 +74,7 @@ function handleLocaleChange(loc: LocaleType) {
             <Moon class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:-rotate-12" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeDark') }}</span>
-              <span class="text-[11px] text-zinc-400">深沉护眼</span>
+              <span class="text-[11px] text-zinc-400">{{ locale.startsWith('zh') ? '深沉护眼' : 'Easy on the eyes' }}</span>
             </div>
           </button>
 
@@ -92,7 +92,7 @@ function handleLocaleChange(loc: LocaleType) {
             <Laptop class="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
             <div class="flex flex-col">
               <span class="text-xs font-semibold">{{ t('settings.themeSystem') }}</span>
-              <span class="text-[11px] text-zinc-400">自适应 OS</span>
+              <span class="text-[11px] text-zinc-400">{{ locale.startsWith('zh') ? '自适应 OS' : 'Adaptive to OS' }}</span>
             </div>
           </button>
         </div>
@@ -204,14 +204,14 @@ function handleLocaleChange(loc: LocaleType) {
             @click="openExternalLink(GITHUB_REPO_URL)"
             class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-colors cursor-pointer"
           >
-            <span>访问仓库</span>
+            <span>{{ locale.startsWith('zh') ? '访问仓库' : 'Visit Repo' }}</span>
             <ExternalLink class="w-3.5 h-3.5" />
           </button>
         </div>
 
         <div class="flex items-center gap-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
           <ShieldCheck class="w-4 h-4" />
-          <span>离线安全保障：所有工具均在本地运行，绝不上传任何输入数据。</span>
+          <span>{{ locale.startsWith('zh') ? '离线安全保障：所有工具均在本地运行，绝不上传任何输入数据。' : 'Offline Privacy: All tools run strictly locally and never upload your data.' }}</span>
         </div>
       </section>
     </div>

@@ -16,51 +16,66 @@ import CustomSelect, { type SelectOption } from '../../components/common/CustomS
 
 const { t, locale } = useI18n();
 
-const minuteOptions: SelectOption[] = [
-  { label: '每一分钟 (*)', value: '*' },
-  { label: '整点 00 分 (0)', value: '0' },
-  { label: '每隔 5 分钟 (*/5)', value: '*/5' },
-  { label: '每隔 10 分钟 (*/10)', value: '*/10' },
-  { label: '每隔 15 分钟 (*/15)', value: '*/15' },
-  { label: '每隔 30 分钟 (*/30)', value: '*/30' },
-  { label: '0 和 30 分 (0,30)', value: '0,30' }
-];
+const minuteOptions = computed<SelectOption[]>(() => {
+  const isZh = locale.value.startsWith('zh');
+  return [
+    { label: isZh ? '每一分钟 (*)' : 'Every minute (*)', value: '*' },
+    { label: isZh ? '整点 00 分 (0)' : 'At :00 minutes (0)', value: '0' },
+    { label: isZh ? '每隔 5 分钟 (*/5)' : 'Every 5 minutes (*/5)', value: '*/5' },
+    { label: isZh ? '每隔 10 分钟 (*/10)' : 'Every 10 minutes (*/10)', value: '*/10' },
+    { label: isZh ? '每隔 15 分钟 (*/15)' : 'Every 15 minutes (*/15)', value: '*/15' },
+    { label: isZh ? '每隔 30 分钟 (*/30)' : 'Every 30 minutes (*/30)', value: '*/30' },
+    { label: isZh ? '0 和 30 分 (0,30)' : 'At :00 & :30 (0,30)', value: '0,30' }
+  ];
+});
 
-const hourOptions: SelectOption[] = [
-  { label: '每一小时 (*)', value: '*' },
-  { label: '午夜 00:00 (0)', value: '0' },
-  { label: '早上 08:00 (8)', value: '8' },
-  { label: '早晨 09:00 (9)', value: '9' },
-  { label: '中午 12:00 (12)', value: '12' },
-  { label: '下午 18:00 (18)', value: '18' },
-  { label: '晚上 23:00 (23)', value: '23' },
-  { label: '每隔 2 小时 (*/2)', value: '*/2' },
-  { label: '每隔 4 小时 (*/4)', value: '*/4' },
-  { label: '工作时间 (9-18)', value: '9-18' }
-];
+const hourOptions = computed<SelectOption[]>(() => {
+  const isZh = locale.value.startsWith('zh');
+  return [
+    { label: isZh ? '每一小时 (*)' : 'Every hour (*)', value: '*' },
+    { label: isZh ? '午夜 00:00 (0)' : 'Midnight 00:00 (0)', value: '0' },
+    { label: isZh ? '早上 08:00 (8)' : 'Morning 08:00 (8)', value: '8' },
+    { label: isZh ? '早晨 09:00 (9)' : 'Morning 09:00 (9)', value: '9' },
+    { label: isZh ? '中午 12:00 (12)' : 'Noon 12:00 (12)', value: '12' },
+    { label: isZh ? '下午 18:00 (18)' : 'Evening 18:00 (18)', value: '18' },
+    { label: isZh ? '晚上 23:00 (23)' : 'Night 23:00 (23)', value: '23' },
+    { label: isZh ? '每隔 2 小时 (*/2)' : 'Every 2 hours (*/2)', value: '*/2' },
+    { label: isZh ? '每隔 4 小时 (*/4)' : 'Every 4 hours (*/4)', value: '*/4' },
+    { label: isZh ? '工作时间 (9-18)' : 'Working hours (9-18)', value: '9-18' }
+  ];
+});
 
-const dayOptions: SelectOption[] = [
-  { label: '每天 (*)', value: '*' },
-  { label: '每月 1 号 (1)', value: '1' },
-  { label: '每月 15 号 (15)', value: '15' },
-  { label: '每月 1 和 15 号 (1,15)', value: '1,15' },
-  { label: '每隔 2 天 (*/2)', value: '*/2' }
-];
+const dayOptions = computed<SelectOption[]>(() => {
+  const isZh = locale.value.startsWith('zh');
+  return [
+    { label: isZh ? '每天 (*)' : 'Every day (*)', value: '*' },
+    { label: isZh ? '每月 1 号 (1)' : '1st of month (1)', value: '1' },
+    { label: isZh ? '每月 15 号 (15)' : '15th of month (15)', value: '15' },
+    { label: isZh ? '每月 1 和 15 号 (1,15)' : '1st & 15th of month (1,15)', value: '1,15' },
+    { label: isZh ? '每隔 2 天 (*/2)' : 'Every 2 days (*/2)', value: '*/2' }
+  ];
+});
 
-const monthOptions: SelectOption[] = [
-  { label: '每个月 (*)', value: '*' },
-  { label: '一月 (1)', value: '1' },
-  { label: '每季度首月 (1,4,7,10)', value: '1,4,7,10' },
-  { label: '年中与年末 (6,12)', value: '6,12' }
-];
+const monthOptions = computed<SelectOption[]>(() => {
+  const isZh = locale.value.startsWith('zh');
+  return [
+    { label: isZh ? '每个月 (*)' : 'Every month (*)', value: '*' },
+    { label: isZh ? '一月 (1)' : 'January (1)', value: '1' },
+    { label: isZh ? '每季度首月 (1,4,7,10)' : 'Quarterly (1,4,7,10)', value: '1,4,7,10' },
+    { label: isZh ? '年中与年末 (6,12)' : 'Mid & End of Year (6,12)', value: '6,12' }
+  ];
+});
 
-const weekOptions: SelectOption[] = [
-  { label: '每天 (*)', value: '*' },
-  { label: '工作日 (周一至周五 1-5)', value: '1-5' },
-  { label: '周末 (周六和周日 0,6)', value: '0,6' },
-  { label: '仅周一 (1)', value: '1' },
-  { label: '仅周五 (5)', value: '5' }
-];
+const weekOptions = computed<SelectOption[]>(() => {
+  const isZh = locale.value.startsWith('zh');
+  return [
+    { label: isZh ? '每天 (*)' : 'Every day (*)', value: '*' },
+    { label: isZh ? '工作日 (周一至周五 1-5)' : 'Workdays (Mon-Fri 1-5)', value: '1-5' },
+    { label: isZh ? '周末 (周六和周日 0,6)' : 'Weekends (Sat-Sun 0,6)', value: '0,6' },
+    { label: isZh ? '仅周一 (1)' : 'Monday only (1)', value: '1' },
+    { label: isZh ? '仅周五 (5)' : 'Friday only (5)', value: '5' }
+  ];
+});
 
 // 默认 5 位 Cron 表达式（每周一至周五 09:00）
 const cronExpression = ref('0 9 * * 1-5');
@@ -78,47 +93,63 @@ const DAY_NAMES: Record<string, number> = {
 };
 
 // 预设模板库
-const presetGroups = [
+const presetGroupsData = [
   {
-    category: '高频执行 (Minutes)',
+    categoryZh: '高频执行 (Minutes)',
+    categoryEn: 'High Frequency (Minutes)',
     items: [
-      { name: '每分钟执行一次', expr: '* * * * *', desc: '每分钟的第 00 秒' },
-      { name: '每 5 分钟执行一次', expr: '*/5 * * * *', desc: '0, 5, 10, 15, 20...' },
-      { name: '每 15 分钟执行一次', expr: '*/15 * * * *', desc: '0, 15, 30, 45 分' },
-      { name: '每 30 分钟执行一次', expr: '*/30 * * * *', desc: '0, 30 分' }
+      { nameZh: '每分钟执行一次', nameEn: 'Every minute', expr: '* * * * *', descZh: '每分钟的第 00 秒', descEn: 'At second :00 of every minute' },
+      { nameZh: '每 5 分钟执行一次', nameEn: 'Every 5 minutes', expr: '*/5 * * * *', descZh: '0, 5, 10, 15, 20...', descEn: 'At 0, 5, 10, 15, 20...' },
+      { nameZh: '每 15 分钟执行一次', nameEn: 'Every 15 minutes', expr: '*/15 * * * *', descZh: '0, 15, 30, 45 分', descEn: 'At minute 0, 15, 30, and 45' },
+      { nameZh: '每 30 分钟执行一次', nameEn: 'Every 30 minutes', expr: '*/30 * * * *', descZh: '0, 30 分', descEn: 'At minute 0 and 30' }
     ]
   },
   {
-    category: '整点与周期 (Hourly)',
+    categoryZh: '整点与周期 (Hourly)',
+    categoryEn: 'Hourly & Recurring',
     items: [
-      { name: '每小时整点', expr: '0 * * * *', desc: '每小时 00 分 00 秒' },
-      { name: '每 2 小时整点', expr: '0 */2 * * *', desc: '偶数小时整点' },
-      { name: '每 4 小时整点', expr: '0 */4 * * *', desc: '0, 4, 8, 12, 16, 20 点' },
-      { name: '每 6 小时整点', expr: '0 */6 * * *', desc: '0, 6, 12, 18 点' }
+      { nameZh: '每小时整点', nameEn: 'Every hour on the hour', expr: '0 * * * *', descZh: '每小时 00 分 00 秒', descEn: 'At minute 0 of every hour' },
+      { nameZh: '每 2 小时整点', nameEn: 'Every 2 hours', expr: '0 */2 * * *', descZh: '偶数小时整点', descEn: 'At minute 0 past every 2nd hour' },
+      { nameZh: '每 4 小时整点', nameEn: 'Every 4 hours', expr: '0 */4 * * *', descZh: '0, 4, 8, 12, 16, 20 点', descEn: 'At 0, 4, 8, 12, 16, and 20' },
+      { nameZh: '每 6 小时整点', nameEn: 'Every 6 hours', expr: '0 */6 * * *', descZh: '0, 6, 12, 18 点', descEn: 'At 0, 6, 12, and 18' }
     ]
   },
   {
-    category: '每日与工作日 (Daily & Workdays)',
+    categoryZh: '每日与工作日 (Daily & Workdays)',
+    categoryEn: 'Daily & Workdays',
     items: [
-      { name: '工作日 09:00 (周一至周五)', expr: '0 9 * * 1-5', desc: '工作日早晨上班时' },
-      { name: '工作日 18:00 (周一至周五)', expr: '0 18 * * 1-5', desc: '工作日傍晚下班时' },
-      { name: '每天凌晨 00:00 (午夜)', expr: '0 0 * * *', desc: '跨天批处理任务' },
-      { name: '每天早上 08:00', expr: '0 8 * * *', desc: '早间提醒/报表' },
-      { name: '每天中午 12:00', expr: '0 12 * * *', desc: '午间定时任务' },
-      { name: '每天晚上 23:00', expr: '0 23 * * *', desc: '晚间数据归档' }
+      { nameZh: '工作日 09:00 (周一至周五)', nameEn: 'Workdays at 09:00 (Mon-Fri)', expr: '0 9 * * 1-5', descZh: '工作日早晨上班时', descEn: 'At 09:00 on weekdays' },
+      { nameZh: '工作日 18:00 (周一至周五)', nameEn: 'Workdays at 18:00 (Mon-Fri)', expr: '0 18 * * 1-5', descZh: '工作日傍晚下班时', descEn: 'At 18:00 on weekdays' },
+      { nameZh: '每天凌晨 00:00 (午夜)', nameEn: 'Every day at 00:00 (Midnight)', expr: '0 0 * * *', descZh: '跨天批处理任务', descEn: 'At midnight every day' },
+      { nameZh: '每天早上 08:00', nameEn: 'Every day at 08:00', expr: '0 8 * * *', descZh: '早间提醒/报表', descEn: 'At 08:00 every morning' },
+      { nameZh: '每天中午 12:00', nameEn: 'Every day at 12:00 (Noon)', expr: '0 12 * * *', descZh: '午间定时任务', descEn: 'At 12:00 every noon' },
+      { nameZh: '每天晚上 23:00', nameEn: 'Every day at 23:00', expr: '0 23 * * *', descZh: '晚间数据归档', descEn: 'At 23:00 every night' }
     ]
   },
   {
-    category: '每周、每月与季度 (Weekly & Monthly)',
+    categoryZh: '每周、每月与季度 (Weekly & Monthly)',
+    categoryEn: 'Weekly & Monthly',
     items: [
-      { name: '每周一凌晨 00:00', expr: '0 0 * * 1', desc: '周常重置与汇总' },
-      { name: '每周日晚上 23:00', expr: '0 23 * * 0', desc: '周末数据备份' },
-      { name: '每月 1 号凌晨 00:00', expr: '0 0 1 * *', desc: '月度账单/统计' },
-      { name: '每月 15 号中午 12:00', expr: '0 12 15 * *', desc: '月中任务' },
-      { name: '每季度首日 0 点', expr: '0 0 1 1,4,7,10 *', desc: '季初报表' }
+      { nameZh: '每周一凌晨 00:00', nameEn: 'Every Monday at 00:00', expr: '0 0 * * 1', descZh: '周常重置与汇总', descEn: 'At 00:00 on Monday' },
+      { nameZh: '每周日晚上 23:00', nameEn: 'Every Sunday at 23:00', expr: '0 23 * * 0', descZh: '周末数据备份', descEn: 'At 23:00 on Sunday' },
+      { nameZh: '每月 1 号凌晨 00:00', nameEn: '1st of month at 00:00', expr: '0 0 1 * *', descZh: '月度账单/统计', descEn: 'At 00:00 on day 1 of month' },
+      { nameZh: '每月 15 号中午 12:00', nameEn: '15th of month at 12:00', expr: '0 12 15 * *', descZh: '月中任务', descEn: 'At 12:00 on day 15 of month' },
+      { nameZh: '每季度首日 0 点', nameEn: '1st of quarter at 00:00', expr: '0 0 1 1,4,7,10 *', descZh: '季初报表', descEn: 'Quarterly report job' }
     ]
   }
 ];
+
+const presetGroups = computed(() => {
+  const isZh = locale.value.startsWith('zh');
+  return presetGroupsData.map(group => ({
+    category: isZh ? group.categoryZh : group.categoryEn,
+    items: group.items.map(item => ({
+      name: isZh ? item.nameZh : item.nameEn,
+      desc: isZh ? item.descZh : item.descEn,
+      expr: item.expr
+    }))
+  }));
+});
 
 // 解析单个字段的取值集合
 function parseField(field: string, min: number, max: number, nameMap: Record<string, number> = {}): Set<number> {
@@ -390,7 +421,10 @@ const nextRuns = computed<NextRunItem[]>(() => {
       }
     }
 
-    const DOW_FULL = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    const isZh = locale.value.startsWith('zh');
+    const DOW_FULL = isZh
+      ? ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+      : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const pad = (n: number) => String(n).padStart(2, '0');
 
     return results.map((d, index) => {
@@ -407,17 +441,17 @@ const nextRuns = computed<NextRunItem[]>(() => {
       const diffSec = Math.max(0, Math.floor((d.getTime() - Date.now()) / 1000));
       let rel = '';
       if (diffSec < 60) {
-        rel = `${diffSec} 秒后`;
+        rel = isZh ? `${diffSec} 秒后` : `in ${diffSec}s`;
       } else if (diffSec < 3600) {
-        rel = `${Math.floor(diffSec / 60)} 分钟后`;
+        rel = isZh ? `${Math.floor(diffSec / 60)} 分钟后` : `in ${Math.floor(diffSec / 60)}m`;
       } else if (diffSec < 86400) {
         const hr = Math.floor(diffSec / 3600);
         const mn = Math.floor((diffSec % 3600) / 60);
-        rel = `${hr} 小时 ${mn} 分钟后`;
+        rel = isZh ? `${hr} 小时 ${mn} 分钟后` : `in ${hr}h ${mn}m`;
       } else {
         const dy = Math.floor(diffSec / 86400);
         const hr = Math.floor((diffSec % 86400) / 3600);
-        rel = `${dy} 天 ${hr} 小时后`;
+        rel = isZh ? `${dy} 天 ${hr} 小时后` : `in ${dy}d ${hr}h`;
       }
 
       return {
@@ -520,14 +554,14 @@ function updateFromBuilder() {
           >
             <Check v-if="copiedExpr" class="w-3.5 h-3.5 text-white" />
             <Copy v-else class="w-3.5 h-3.5" />
-            <span>{{ copiedExpr ? '已复制' : t('common.copy') }}</span>
+            <span>{{ copiedExpr ? t('common.copied') : t('common.copy') }}</span>
           </button>
 
           <button
             type="button"
             @click="resetDefault"
             class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-            title="重置为默认值"
+            :title="locale.startsWith('zh') ? '重置为默认值' : 'Reset to default'"
           >
             <RotateCcw class="w-3.5 h-3.5" />
           </button>
@@ -574,10 +608,10 @@ function updateFromBuilder() {
           type="button"
           @click="copyExplanation"
           class="inline-flex items-center gap-1 text-[11px] text-emerald-700 dark:text-emerald-300 hover:underline cursor-pointer shrink-0 ml-2"
-          title="复制自然语言说明"
+          :title="locale.startsWith('zh') ? '复制自然语言说明' : 'Copy explanation'"
         >
           <Copy class="w-3 h-3" />
-          <span>{{ copiedExplain ? '已复制' : '复制解读' }}</span>
+          <span>{{ copiedExplain ? t('common.copied') : (locale.startsWith('zh') ? '复制解读' : 'Copy Explanation') }}</span>
         </button>
       </div>
     </div>
@@ -656,7 +690,7 @@ function updateFromBuilder() {
           <!-- 分钟 -->
           <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col gap-2">
             <span class="text-xs font-semibold text-amber-600 dark:text-amber-400">
-              分钟 (Minute: 0-59)
+              {{ locale.startsWith('zh') ? '分钟 (Minute: 0-59)' : 'Minute (0-59)' }}
             </span>
             <CustomSelect
               v-model="bMinute"
@@ -669,7 +703,7 @@ function updateFromBuilder() {
           <!-- 小时 -->
           <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col gap-2">
             <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-              小时 (Hour: 0-23)
+              {{ locale.startsWith('zh') ? '小时 (Hour: 0-23)' : 'Hour (0-23)' }}
             </span>
             <CustomSelect
               v-model="bHour"
@@ -682,7 +716,7 @@ function updateFromBuilder() {
           <!-- 日期 -->
           <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col gap-2">
             <span class="text-xs font-semibold text-sky-600 dark:text-sky-400">
-              日期 (Day: 1-31)
+              {{ locale.startsWith('zh') ? '日期 (Day: 1-31)' : 'Day of Month (1-31)' }}
             </span>
             <CustomSelect
               v-model="bDay"
@@ -695,7 +729,7 @@ function updateFromBuilder() {
           <!-- 月份 -->
           <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col gap-2">
             <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">
-              月份 (Month: 1-12)
+              {{ locale.startsWith('zh') ? '月份 (Month: 1-12)' : 'Month (1-12)' }}
             </span>
             <CustomSelect
               v-model="bMonth"
@@ -708,7 +742,7 @@ function updateFromBuilder() {
           <!-- 星期 -->
           <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col gap-2">
             <span class="text-xs font-semibold text-purple-600 dark:text-purple-400">
-              星期 (Weekday: 0-6)
+              {{ locale.startsWith('zh') ? '星期 (Weekday: 0-6)' : 'Day of Week (0-6)' }}
             </span>
             <CustomSelect
               v-model="bWeek"
@@ -721,7 +755,7 @@ function updateFromBuilder() {
 
         <div class="flex items-center gap-2 p-2.5 rounded-lg bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-800/40 text-xs text-amber-800 dark:text-amber-300">
           <Lightbulb class="w-4 h-4 text-amber-500 shrink-0" />
-          <span>在上方调整任何字段，主表达式框与下方未来执行时间将实时联动更新。</span>
+          <span>{{ locale.startsWith('zh') ? '在上方调整任何字段，主表达式框与下方未来执行时间将实时联动更新。' : 'Adjust any field above; the cron expression and upcoming run times will sync automatically.' }}</span>
         </div>
 
         <!-- 实时执行计划预测卡片（解决空白并提供即时反馈） -->
@@ -729,9 +763,9 @@ function updateFromBuilder() {
           <div class="flex items-center justify-between text-xs font-semibold text-zinc-700 dark:text-zinc-300">
             <div class="flex items-center gap-1.5">
               <CalendarClock class="w-3.5 h-3.5 text-blue-500" />
-              <span>实时执行计划预测 (Next 5 Runs)</span>
+              <span>{{ locale.startsWith('zh') ? '实时执行计划预测 (Next 5 Runs)' : 'Live Execution Plan Forecast (Next 5 Runs)' }}</span>
             </div>
-            <span class="text-[11px] text-zinc-400 font-normal">基于配置实时推算</span>
+            <span class="text-[11px] text-zinc-400 font-normal">{{ locale.startsWith('zh') ? '基于配置实时推算' : 'Calculated in real-time' }}</span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
@@ -797,27 +831,27 @@ function updateFromBuilder() {
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-[11px]">
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-blue-600 dark:text-blue-400">*</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">匹配任意合法值</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '匹配任意合法值' : 'Match any value' }}</span>
         </div>
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-blue-600 dark:text-blue-400">,</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">枚举分隔 (如 1,3,5)</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '枚举分隔 (如 1,3,5)' : 'Value list (1,3,5)' }}</span>
         </div>
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-blue-600 dark:text-blue-400">-</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">指定范围 (如 1-5)</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '指定范围 (如 1-5)' : 'Range (1-5)' }}</span>
         </div>
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-blue-600 dark:text-blue-400">/</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">步长递增 (如 */15)</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '步长递增 (如 */15)' : 'Step values (*/15)' }}</span>
         </div>
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-blue-600 dark:text-blue-400">?</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">不指定具体值</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '不指定具体值' : 'No specific value' }}</span>
         </div>
         <div class="p-1.5 rounded bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
           <span class="font-mono font-bold text-purple-600 dark:text-purple-400">0-6</span>
-          <span class="text-zinc-500 dark:text-zinc-400 ml-1">0=周日, 1-6=周一至六</span>
+          <span class="text-zinc-500 dark:text-zinc-400 ml-1">{{ locale.startsWith('zh') ? '0=周日, 1-6=周一至六' : '0=Sun, 1-6=Mon-Sat' }}</span>
         </div>
       </div>
     </div>

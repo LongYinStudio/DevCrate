@@ -24,6 +24,8 @@ export default {
     bytes: '字节数',
     expand: '展开',
     collapse: '折叠',
+    wrap: '换行',
+    unwrap: '不换行',
     toggleSidebar: '切换侧边栏',
     openTool: '打开工具',
     backToAll: '全部工具',
@@ -43,6 +45,8 @@ export default {
     jsonFormatter: {
       name: 'JSON 格式化 / 校验',
       desc: '格式化排版、压缩单行、转义及 JSON 语法实时校验',
+      inputPlaceholder: '在此粘贴或输入 JSON 字符串...',
+      outputPlaceholder: '格式化后的 JSON 内容将在此显示...',
       indentation: '缩进模式',
       indent2: '2 个空格',
       indent4: '4 个空格',

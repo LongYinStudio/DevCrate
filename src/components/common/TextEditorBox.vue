@@ -39,7 +39,7 @@ const emit = defineEmits<{
   (e: 'clear'): void;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const isWrap = ref(props.defaultWrap);
 const textareaRef = ref<HTMLTextAreaElement | null>(null);
@@ -107,10 +107,10 @@ defineExpose({
           @click="isWrap = !isWrap"
           class="inline-flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors cursor-pointer"
           :class="isWrap ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'"
-          :title="isWrap ? '换行模式已开启' : '换行模式已关闭 (单行水平滚动)'"
+          :title="isWrap ? (locale.startsWith('zh') ? '换行模式已开启' : 'Word wrap enabled') : (locale.startsWith('zh') ? '换行模式已关闭 (单行水平滚动)' : 'Word wrap disabled (horizontal scroll)')"
         >
           <WrapText class="w-3.5 h-3.5" />
-          <span>{{ isWrap ? '换行' : '不换行' }}</span>
+          <span>{{ isWrap ? t('common.wrap') : t('common.unwrap') }}</span>
         </button>
 
         <button

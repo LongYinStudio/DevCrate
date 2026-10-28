@@ -23,7 +23,7 @@ import TextEditorBox from '../../components/common/TextEditorBox.vue';
 import CustomSelect from '../../components/common/CustomSelect.vue';
 import JsonTreeView from './components/JsonTreeView.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const inputJson = ref('');
 const outputJson = ref('');
@@ -383,7 +383,7 @@ const outputStats = computed(() => {
           @click="clearAll"
           :disabled="!inputJson && !outputJson"
           class="inline-flex items-center justify-center w-8 h-7 rounded-lg text-xs font-medium text-zinc-500 hover:text-rose-600 dark:text-zinc-400 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer disabled:opacity-40"
-          title="清空全部"
+          :title="t('common.clear')"
         >
           <Trash2 class="w-3.5 h-3.5" />
         </button>
@@ -441,12 +441,12 @@ const outputStats = computed(() => {
           <template v-if="isValid">
             {{ repairedNotice || t('tools.jsonFormatter.validJson') }}
             <span class="text-zinc-500 dark:text-zinc-400 font-normal ml-1">
-              · {{ outputStats.lines }} 行 · {{ outputStats.chars }} 字符 ({{ outputStats.kb }} KB)
+              · {{ outputStats.lines }} {{ t('common.lines') }} · {{ outputStats.chars }} {{ t('common.chars') }} ({{ outputStats.kb }} KB)
             </span>
           </template>
           <template v-else-if="errorInfo">
             <span class="font-semibold text-rose-600 dark:text-rose-400">
-              {{ errorInfo.line ? `第 ${errorInfo.line} 行${errorInfo.column ? ` 第 ${errorInfo.column} 列` : ''}: ` : '' }}
+              {{ errorInfo.line ? (locale.startsWith('zh') ? `第 ${errorInfo.line} 行${errorInfo.column ? ` 第 ${errorInfo.column} 列` : ''}: ` : `Line ${errorInfo.line}${errorInfo.column ? ` Col ${errorInfo.column}` : ''}: `) : '' }}
             </span>
             <span>{{ errorInfo.message }}</span>
           </template>
@@ -491,7 +491,7 @@ const outputStats = computed(() => {
         ref="inputEditorRef"
         v-model="inputJson"
         :label="t('common.input')"
-        placeholder="在此粘贴或输入 JSON 字符串..."
+        :placeholder="t('tools.jsonFormatter.inputPlaceholder')"
         :showLineNumbers="true"
         :showWrapToggle="true"
         :defaultWrap="false"
@@ -506,7 +506,7 @@ const outputStats = computed(() => {
           v-model="outputJson"
           :label="t('common.output')"
           :readonly="true"
-          placeholder="格式化后的 JSON 内容将在此显示..."
+          :placeholder="t('tools.jsonFormatter.outputPlaceholder')"
           :showPaste="false"
           :showClear="false"
           :showLineNumbers="true"
@@ -528,7 +528,7 @@ const outputStats = computed(() => {
                 @click="viewMode = 'tree'"
                 :disabled="!isValid || !parsedData"
                 class="px-2 py-0.5 rounded-md text-[11px] font-medium transition-all cursor-pointer text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 disabled:opacity-40 disabled:cursor-not-allowed"
-                title="以交互树形结构预览"
+                :title="locale.startsWith('zh') ? '以交互树形结构预览' : 'Preview as interactive tree'"
               >
                 {{ t('tools.jsonFormatter.treeView') }}
               </button>
@@ -571,7 +571,7 @@ const outputStats = computed(() => {
         <div v-else class="flex-1 flex flex-col min-h-0 h-full">
           <div class="flex items-center justify-between pb-1.5">
             <span class="text-xs font-medium text-zinc-700 dark:text-zinc-300">
-              {{ t('tools.jsonFormatter.treeView') }} 预览
+              {{ t('tools.jsonFormatter.treeView') }} {{ locale.startsWith('zh') ? '预览' : 'Preview' }}
             </span>
             <div class="inline-flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-0.5 border border-zinc-200/80 dark:border-zinc-700/80 select-none">
               <button

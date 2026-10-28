@@ -102,7 +102,7 @@ onUnmounted(() => {
         type="button"
         @click="openExternalLink()"
         class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/60 transition-colors cursor-pointer"
-        title="GitHub 仓库: LongYinStudio/DevCrate"
+        :title="locale.startsWith('zh') ? 'GitHub 仓库: LongYinStudio/DevCrate' : 'GitHub Repository: LongYinStudio/DevCrate'"
       >
         <Github class="w-4 h-4" />
       </button>

@@ -424,6 +424,17 @@ const securityStatus = computed(() => {
     bgClass: 'bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900/50 text-blue-800 dark:text-blue-300'
   };
 });
+
+function formatPermSummary(p: Triplet, isDirectory: boolean): string {
+  const isZh = locale.value.startsWith('zh');
+  const readStr = p.r ? (isZh ? '可读' : 'Read') : (isZh ? '不可读' : 'No Read');
+  const writeStr = p.w ? (isZh ? '可写' : 'Write') : (isZh ? '不可写' : 'No Write');
+  const execStr = p.x
+    ? (isDirectory ? (isZh ? '可进入检索' : 'Enter / Search') : (isZh ? '可执行' : 'Execute'))
+    : (isZh ? '不可执行' : 'No Execute');
+
+  return isZh ? `${readStr}、${writeStr}、${execStr}` : `${readStr}, ${writeStr}, ${execStr}`;
+}
 </script>
 
 <template>
@@ -564,7 +575,7 @@ const securityStatus = computed(() => {
             v-model="targetPath"
             type="text"
             class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 font-mono text-xs text-zinc-800 dark:text-zinc-200 bg-zinc-50 dark:bg-zinc-800/80 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 transition-all"
-            placeholder="filename 或 path/to/dir"
+            :placeholder="locale.startsWith('zh') ? 'filename 或 path/to/dir' : 'filename or path/to/dir'"
           />
         </div>
 
@@ -608,7 +619,7 @@ const securityStatus = computed(() => {
             <label class="flex items-center justify-between p-2 rounded-lg bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-900/40 cursor-pointer select-none transition-colors mt-1">
               <div class="flex flex-col">
                 <span class="text-xs text-purple-700 dark:text-purple-300 font-semibold">{{ t('tools.chmodCalculator.suid') }}</span>
-                <span class="text-[10px] text-zinc-400 font-normal">以所有者身份执行 (s)</span>
+                <span class="text-[10px] text-zinc-400 font-normal">{{ locale.startsWith('zh') ? '以所有者身份执行 (s)' : 'Execute as owner (s)' }}</span>
               </div>
               <input type="checkbox" v-model="specialPerms.suid" class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500 cursor-pointer" />
             </label>
@@ -646,7 +657,7 @@ const securityStatus = computed(() => {
             <label class="flex items-center justify-between p-2 rounded-lg bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-900/40 cursor-pointer select-none transition-colors mt-1">
               <div class="flex flex-col">
                 <span class="text-xs text-purple-700 dark:text-purple-300 font-semibold">{{ t('tools.chmodCalculator.sgid') }}</span>
-                <span class="text-[10px] text-zinc-400 font-normal">继承属组 / 组特权运行 (s)</span>
+                <span class="text-[10px] text-zinc-400 font-normal">{{ locale.startsWith('zh') ? '继承属组 / 组特权运行 (s)' : 'Inherit group / execute as group (s)' }}</span>
               </div>
               <input type="checkbox" v-model="specialPerms.sgid" class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500 cursor-pointer" />
             </label>
@@ -684,7 +695,7 @@ const securityStatus = computed(() => {
             <label class="flex items-center justify-between p-2 rounded-lg bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-900/40 cursor-pointer select-none transition-colors mt-1">
               <div class="flex flex-col">
                 <span class="text-xs text-purple-700 dark:text-purple-300 font-semibold">{{ t('tools.chmodCalculator.sticky') }}</span>
-                <span class="text-[10px] text-zinc-400 font-normal">粘滞位，防非所有者删除 (t)</span>
+                <span class="text-[10px] text-zinc-400 font-normal">{{ locale.startsWith('zh') ? '粘滞位，防非所有者删除 (t)' : 'Prevent non-owner deletion (t)' }}</span>
               </div>
               <input type="checkbox" v-model="specialPerms.sticky" class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500 cursor-pointer" />
             </label>
@@ -810,22 +821,16 @@ const securityStatus = computed(() => {
         <!-- 详细主体访问权限解读 -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-current/10 text-[11px]">
           <div>
-            <span class="font-bold">所有者权限: </span>
-            <span>
-              {{ userPerms.r ? '可读' : '不可读' }}、{{ userPerms.w ? '可写' : '不可写' }}、{{ userPerms.x ? (isDir ? '可进入检索' : '可执行') : '不可执行' }}
-            </span>
+            <span class="font-bold">{{ locale.startsWith('zh') ? '所有者权限: ' : 'Owner (User): ' }}</span>
+            <span>{{ formatPermSummary(userPerms, isDir) }}</span>
           </div>
           <div>
-            <span class="font-bold">所属组成员: </span>
-            <span>
-              {{ groupPerms.r ? '可读' : '不可读' }}、{{ groupPerms.w ? '可写' : '不可写' }}、{{ groupPerms.x ? (isDir ? '可进入检索' : '可执行') : '不可执行' }}
-            </span>
+            <span class="font-bold">{{ locale.startsWith('zh') ? '所属组成员: ' : 'Group Members: ' }}</span>
+            <span>{{ formatPermSummary(groupPerms, isDir) }}</span>
           </div>
           <div>
-            <span class="font-bold">其他所有人: </span>
-            <span>
-              {{ otherPerms.r ? '可读' : '不可读' }}、{{ otherPerms.w ? '可写' : '不可写' }}、{{ otherPerms.x ? (isDir ? '可进入检索' : '可执行') : '不可执行' }}
-            </span>
+            <span class="font-bold">{{ locale.startsWith('zh') ? '其他所有人: ' : 'Others (Public): ' }}</span>
+            <span>{{ formatPermSummary(otherPerms, isDir) }}</span>
           </div>
         </div>
       </div>

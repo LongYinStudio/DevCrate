@@ -5,7 +5,7 @@ import { Clock, Play, Pause, Calendar, RefreshCw } from 'lucide-vue-next';
 import ToolContainer from '../../components/common/ToolContainer.vue';
 import CopyButton from '../../components/common/CopyButton.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 // 实时时钟
 const now = ref(new Date());
@@ -195,7 +195,7 @@ onUnmounted(() => {
               class="px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer"
               :class="tsUnit === 'sec' ? 'bg-white dark:bg-zinc-700 text-blue-600 dark:text-blue-400 shadow-xs' : 'text-zinc-600 dark:text-zinc-400'"
             >
-              秒 (s)
+              {{ locale.startsWith('zh') ? '秒 (s)' : 'Seconds (s)' }}
             </button>
             <button
               type="button"
@@ -203,7 +203,7 @@ onUnmounted(() => {
               class="px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer"
               :class="tsUnit === 'ms' ? 'bg-white dark:bg-zinc-700 text-blue-600 dark:text-blue-400 shadow-xs' : 'text-zinc-600 dark:text-zinc-400'"
             >
-              毫秒 (ms)
+              {{ locale.startsWith('zh') ? '毫秒 (ms)' : 'Milliseconds (ms)' }}
             </button>
           </div>
         </div>

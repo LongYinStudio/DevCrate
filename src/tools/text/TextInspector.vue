@@ -6,7 +6,7 @@ import ToolContainer from '../../components/common/ToolContainer.vue';
 import TextEditorBox from '../../components/common/TextEditorBox.vue';
 import CopyButton from '../../components/common/CopyButton.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const inputText = ref('');
 
@@ -117,7 +117,7 @@ function loadSample() {
       </div>
 
       <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-col">
-        <span class="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">不含空格</span>
+        <span class="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">{{ locale.startsWith('zh') ? '不含空格' : 'No Spaces' }}</span>
         <span class="font-mono text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1">{{ stats.charsNoSpaces }}</span>
       </div>
 
@@ -161,9 +161,9 @@ function loadSample() {
               type="button"
               @click="applyTransform(item.val)"
               class="px-2 py-1 text-xs rounded font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer"
-              title="应用到输入框"
+              :title="locale.startsWith('zh') ? '应用到输入框' : 'Apply to input'"
             >
-              应用
+              {{ locale.startsWith('zh') ? '应用' : 'Apply' }}
             </button>
             <CopyButton :text="item.val" variant="secondary" />
           </div>

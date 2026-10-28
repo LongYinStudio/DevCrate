@@ -17,7 +17,7 @@ import {
 import ToolContainer from '../../components/common/ToolContainer.vue';
 import TextEditorBox from '../../components/common/TextEditorBox.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const rawToken = ref('');
 const secretKey = ref('');
@@ -154,17 +154,18 @@ function formatRelativeTime(targetSeconds: number): { text: string; isPast: bool
   const diff = targetSeconds - Math.floor(Date.now() / 1000);
   const isPast = diff < 0;
   const absDiff = Math.abs(diff);
+  const isZh = locale.value.startsWith('zh');
 
-  if (absDiff < 60) return { text: `${absDiff} 秒`, isPast };
-  if (absDiff < 3600) return { text: `${Math.floor(absDiff / 60)} 分钟`, isPast };
+  if (absDiff < 60) return { text: isZh ? `${absDiff} 秒` : `${absDiff}s`, isPast };
+  if (absDiff < 3600) return { text: isZh ? `${Math.floor(absDiff / 60)} 分钟` : `${Math.floor(absDiff / 60)}m`, isPast };
   if (absDiff < 86400) {
     const hours = Math.floor(absDiff / 3600);
     const mins = Math.floor((absDiff % 3600) / 60);
-    return { text: `${hours} 小时 ${mins} 分钟`, isPast };
+    return { text: isZh ? `${hours} 小时 ${mins} 分钟` : `${hours}h ${mins}m`, isPast };
   }
   const days = Math.floor(absDiff / 86400);
   const hours = Math.floor((absDiff % 86400) / 3600);
-  return { text: `${days} 天 ${hours} 小时`, isPast };
+  return { text: isZh ? `${days} 天 ${hours} 小时` : `${days}d ${hours}h`, isPast };
 }
 
 // 声明过期状态与解析
@@ -173,6 +174,7 @@ const claimsStatus = computed(() => {
   if (!payload || payload.error) return null;
 
   const nowSec = Math.floor(Date.now() / 1000);
+  const isZh = locale.value.startsWith('zh');
 
   let isExpired = false;
   let notBeforeActive = false;
@@ -183,18 +185,27 @@ const claimsStatus = computed(() => {
   if (typeof payload.exp === 'number') {
     const rel = formatRelativeTime(payload.exp);
     isExpired = payload.exp <= nowSec;
-    expText = `${formatTimestamp(payload.exp)} (${rel.isPast ? `已过期 ${rel.text}` : `还剩 ${rel.text}`})`;
+    const desc = isZh
+      ? (rel.isPast ? `已过期 ${rel.text}` : `还剩 ${rel.text}`)
+      : (rel.isPast ? `Expired ${rel.text} ago` : `${rel.text} remaining`);
+    expText = `${formatTimestamp(payload.exp)} (${desc})`;
   }
 
   if (typeof payload.iat === 'number') {
     const rel = formatRelativeTime(payload.iat);
-    iatText = `${formatTimestamp(payload.iat)} (${rel.isPast ? `${rel.text} 前签发` : '未来签发'})`;
+    const desc = isZh
+      ? (rel.isPast ? `${rel.text} 前签发` : '未来签发')
+      : (rel.isPast ? `Issued ${rel.text} ago` : 'Issued in future');
+    iatText = `${formatTimestamp(payload.iat)} (${desc})`;
   }
 
   if (typeof payload.nbf === 'number') {
     notBeforeActive = payload.nbf > nowSec;
     const rel = formatRelativeTime(payload.nbf);
-    nbfText = `${formatTimestamp(payload.nbf)} (${notBeforeActive ? `将于 ${rel.text} 后生效` : '已生效'})`;
+    const desc = isZh
+      ? (notBeforeActive ? `将于 ${rel.text} 后生效` : '已生效')
+      : (notBeforeActive ? `Effective in ${rel.text}` : 'Active now');
+    nbfText = `${formatTimestamp(payload.nbf)} (${desc})`;
   }
 
   return {
@@ -333,11 +344,11 @@ watch([cleanToken, secretKey, secretIsBase64], () => {
           @click="handleCopyRaw"
           :disabled="!cleanToken"
           class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-200 border border-zinc-200/80 dark:border-zinc-700/80 transition-colors cursor-pointer disabled:opacity-40"
-          title="复制原始 Token"
+          :title="locale.startsWith('zh') ? '复制原始 Token' : 'Copy raw Token'"
         >
           <Check v-if="copiedRaw" class="w-3.5 h-3.5 text-emerald-500" />
           <Copy v-else class="w-3.5 h-3.5" />
-          <span>{{ copiedRaw ? '已复制' : t('common.copy') }}</span>
+          <span>{{ copiedRaw ? t('common.copied') : t('common.copy') }}</span>
         </button>
 
         <button

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { Search, ChevronDown, ChevronRight, Copy, Check } from 'lucide-vue-next';
 import JsonTreeNode from './JsonTreeNode.vue';
+
+const { t, locale } = useI18n();
 
 const props = defineProps<{
   data: any;
@@ -47,7 +50,7 @@ const isDataEmpty = computed(() => {
           <input
             v-model="filterText"
             type="text"
-            placeholder="搜索节点或值..."
+            :placeholder="locale.startsWith('zh') ? '搜索节点或值...' : 'Search keys or values...'"
             class="w-full pl-7 pr-2 py-1 text-xs rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 outline-none focus:border-blue-500"
           />
         </div>
@@ -58,31 +61,31 @@ const isDataEmpty = computed(() => {
           type="button"
           @click="expandAll"
           class="inline-flex items-center gap-1 px-2 py-1 rounded text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-xs"
-          title="全部展开"
+          :title="locale.startsWith('zh') ? '全部展开' : 'Expand all'"
         >
           <ChevronDown class="w-3.5 h-3.5" />
-          <span>展开</span>
+          <span>{{ t('common.expand') }}</span>
         </button>
 
         <button
           type="button"
           @click="collapseAll"
           class="inline-flex items-center gap-1 px-2 py-1 rounded text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-xs"
-          title="全部折叠"
+          :title="locale.startsWith('zh') ? '全部折叠' : 'Collapse all'"
         >
           <ChevronRight class="w-3.5 h-3.5" />
-          <span>折叠</span>
+          <span>{{ t('common.collapse') }}</span>
         </button>
 
         <button
           type="button"
           @click="copyAll"
           class="inline-flex items-center gap-1 px-2 py-1 rounded text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-xs"
-          title="复制完整 JSON"
+          :title="locale.startsWith('zh') ? '复制完整 JSON' : 'Copy entire JSON'"
         >
           <Check v-if="copiedAll" class="w-3.5 h-3.5 text-emerald-500" />
           <Copy v-else class="w-3.5 h-3.5" />
-          <span>{{ copiedAll ? '已复制' : '复制' }}</span>
+          <span>{{ copiedAll ? t('common.copied') : t('common.copy') }}</span>
         </button>
       </div>
     </div>
@@ -90,7 +93,7 @@ const isDataEmpty = computed(() => {
     <!-- 树形节点主渲染区 -->
     <div class="flex-1 overflow-auto p-3 select-text bg-white dark:bg-zinc-900">
       <div v-if="isDataEmpty" class="h-full flex items-center justify-center text-xs text-zinc-400">
-        无可用 JSON 数据
+        {{ locale.startsWith('zh') ? '无可用 JSON 数据' : 'No JSON data available' }}
       </div>
       <JsonTreeNode
         v-else

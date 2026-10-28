@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { ChevronRight, Copy, Check } from 'lucide-vue-next';
+
+const { locale } = useI18n();
 
 const props = withDefaults(
   defineProps<{
@@ -181,7 +184,7 @@ const matchesFilter = computed(() => {
         type="button"
         @click="copyValue"
         class="opacity-0 group-hover/row:opacity-100 p-0.5 rounded text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-opacity cursor-pointer ml-auto"
-        :title="copied ? '已复制' : '复制此项内容'"
+        :title="copied ? (locale.startsWith('zh') ? '已复制' : 'Copied') : (locale.startsWith('zh') ? '复制此项内容' : 'Copy item')"
       >
         <Check v-if="copied" class="w-3 h-3 text-emerald-500" />
         <Copy v-else class="w-3 h-3" />

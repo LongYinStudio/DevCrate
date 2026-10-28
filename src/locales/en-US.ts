@@ -24,6 +24,8 @@ export default {
     bytes: 'Bytes',
     expand: 'Expand',
     collapse: 'Collapse',
+    wrap: 'Wrap',
+    unwrap: 'No Wrap',
     toggleSidebar: 'Toggle sidebar',
     openTool: 'Open tool',
     backToAll: 'All Tools',
@@ -43,6 +45,8 @@ export default {
     jsonFormatter: {
       name: 'JSON Formatter / Validator',
       desc: 'Beautify, minify, escape, and validate JSON data in real-time',
+      inputPlaceholder: 'Paste or type JSON string here...',
+      outputPlaceholder: 'Formatted JSON will appear here...',
       indentation: 'Indentation',
       indent2: '2 Spaces',
       indent4: '4 Spaces',

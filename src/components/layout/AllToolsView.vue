@@ -14,12 +14,12 @@ import {
   selectTool,
 } from '../../stores/app';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 // 当前视图标题
 const viewTitle = computed(() => {
   if (searchQuery.value.trim()) {
-    return `搜索: "${searchQuery.value.trim()}"`;
+    return `${locale.value.startsWith('zh') ? '搜索' : 'Search'}: "${searchQuery.value.trim()}"`;
   }
   if (currentView.value === 'favorites') {
     return t('categories.favorites');
@@ -93,7 +93,7 @@ function handleFavoriteClick(e: MouseEvent, toolId: string) {
           {{ t('common.noResults') }}
         </div>
         <div class="text-xs text-zinc-400 dark:text-zinc-500 mt-1">
-          尝试不同的关键词搜索，或清除搜索条件
+          {{ locale.startsWith('zh') ? '尝试不同的关键词搜索，或清除搜索条件' : 'Try different keywords or clear the search query' }}
         </div>
       </div>
 
