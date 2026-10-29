@@ -7,7 +7,8 @@ export type CategoryId =
   | 'encoders'
   | 'formatters'
   | 'generators'
-  | 'text';
+  | 'text'
+  | 'network';
 
 export interface CategoryInfo {
   id: CategoryId;

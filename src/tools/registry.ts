@@ -15,7 +15,8 @@ import {
   KeyRound,
   CalendarClock,
   FileType,
-  ShieldCheck
+  ShieldCheck,
+  Network
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -30,6 +31,7 @@ import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import TextInspector from './text/TextInspector.vue';
+import HarViewer from './network/HarViewer.vue';
 
 // 分类清单
 export const categories: CategoryInfo[] = [
@@ -40,6 +42,7 @@ export const categories: CategoryInfo[] = [
   { id: 'formatters', nameKey: 'categories.formatters', icon: markRaw(FileCode2) },
   { id: 'generators', nameKey: 'categories.generators', icon: markRaw(Cpu) },
   { id: 'text', nameKey: 'categories.text', icon: markRaw(Type) },
+  { id: 'network', nameKey: 'categories.network', icon: markRaw(Network) },
 ];
 
 // 工具注册列表
@@ -174,6 +177,32 @@ export const tools: ToolItem[] = [
     icon: markRaw(Type),
     keywords: ['text', 'count', 'words', 'lines', 'case', 'camelCase', 'snake_case', '统计', '字数', '大小写', '驼峰'],
     component: markRaw(TextInspector),
+  },
+  {
+    id: 'har-viewer',
+    categoryId: 'network',
+    nameKey: 'tools.harViewer.name',
+    descKey: 'tools.harViewer.desc',
+    icon: markRaw(Network),
+    keywords: [
+      'har',
+      'http',
+      'archive',
+      'network',
+      'request',
+      'response',
+      'devtools',
+      'curl',
+      'waterfall',
+      '抓包',
+      '网络',
+      '请求',
+      '响应',
+      '瀑布流',
+      '查看器',
+      '分析'
+    ],
+    component: markRaw(HarViewer),
   },
 ];
 
