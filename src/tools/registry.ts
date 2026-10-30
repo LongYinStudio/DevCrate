@@ -16,7 +16,8 @@ import {
   CalendarClock,
   FileType,
   ShieldCheck,
-  Network
+  Network,
+  Radio
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -32,6 +33,7 @@ import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import TextInspector from './text/TextInspector.vue';
 import HarViewer from './network/HarViewer.vue';
+import PortScanner from './network/PortScanner.vue';
 
 // 分类清单
 export const categories: CategoryInfo[] = [
@@ -203,6 +205,32 @@ export const tools: ToolItem[] = [
       '分析'
     ],
     component: markRaw(HarViewer),
+  },
+  {
+    id: 'port-scanner',
+    categoryId: 'network',
+    nameKey: 'tools.portScanner.name',
+    descKey: 'tools.portScanner.desc',
+    icon: markRaw(Radio),
+    keywords: [
+      'port',
+      'scanner',
+      'network',
+      'tcp',
+      'listen',
+      'pid',
+      'process',
+      'kill',
+      'conflict',
+      '端口',
+      '扫描',
+      '占用',
+      '进程',
+      '排查',
+      '连通性',
+      '释放'
+    ],
+    component: markRaw(PortScanner),
   },
 ];
 

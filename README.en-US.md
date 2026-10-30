@@ -39,6 +39,7 @@
 - **Text Inspector & Case Converter**: Character/word/line/byte statistics and programming casing conversions
 
 ### Network
+- **Port Scanner & Process Inspector**: High-concurrency TCP port scanning, well-known service mapping, active local listening port conflict inspection, and process termination
 - **HAR File Viewer**: Deep visual analysis of HTTP archive logs (.har), featuring waterfall timeline, headers, cookies, payload, response preview, and cURL export
 
 ## Installation
