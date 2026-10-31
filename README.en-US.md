@@ -36,6 +36,7 @@
 - **UUID & Password Generator**: Batch UUID v4, customizable random passwords and tokens
 
 ### Text Utilities
+- **HTML Tag Stripper**: Strip tags and extract readable plain text from HTML, with block-element newlines, HTML entity decoding, link/image extraction, tag whitelisting, and whitespace formatting
 - **Regex Tester & Evaluator**: Real-time syntax highlight matching, capture group inspection, substitution, preset library, and multi-language code generation
 - **Text Inspector & Case Converter**: Character/word/line/byte statistics and programming casing conversions
 

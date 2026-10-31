@@ -18,7 +18,8 @@ import {
   ShieldCheck,
   Network,
   Radio,
-  Regex
+  Regex,
+  RemoveFormatting
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -34,6 +35,7 @@ import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
+import HtmlStripper from './text/HtmlStripper.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 
@@ -206,6 +208,32 @@ export const tools: ToolItem[] = [
       '规则'
     ],
     component: markRaw(RegexTester),
+  },
+  {
+    id: 'html-stripper',
+    categoryId: 'text',
+    nameKey: 'tools.htmlStripper.name',
+    descKey: 'tools.htmlStripper.desc',
+    icon: markRaw(RemoveFormatting),
+    keywords: [
+      'html',
+      'strip',
+      'tags',
+      'clean',
+      'plain text',
+      'entities',
+      'remove',
+      'extract',
+      'filter',
+      '标签',
+      '去除',
+      '剥离',
+      '纯文本',
+      '清洗',
+      '实体解码',
+      '过滤'
+    ],
+    component: markRaw(HtmlStripper),
   },
   {
     id: 'har-viewer',
