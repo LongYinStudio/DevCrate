@@ -19,7 +19,8 @@ import {
   Network,
   Radio,
   Regex,
-  RemoveFormatting
+  RemoveFormatting,
+  Calculator
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -30,6 +31,7 @@ import JwtParser from './encoders/JwtParser.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
 import MimeTypes from './converters/MimeTypes.vue';
 import ChmodCalculator from './converters/ChmodCalculator.vue';
+import BaseConverter from './converters/BaseConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -147,6 +149,41 @@ export const tools: ToolItem[] = [
       '计算器'
     ],
     component: markRaw(ChmodCalculator),
+  },
+  {
+    id: 'base-converter',
+    categoryId: 'converters',
+    nameKey: 'tools.baseConverter.name',
+    descKey: 'tools.baseConverter.desc',
+    icon: markRaw(Calculator),
+    keywords: [
+      'base',
+      'radix',
+      'binary',
+      'octal',
+      'decimal',
+      'hex',
+      'hexadecimal',
+      'base32',
+      'base36',
+      'base62',
+      'base64',
+      'bitwise',
+      'matrix',
+      'endian',
+      'endianness',
+      '进制',
+      '进制转换',
+      '二进制',
+      '八进制',
+      '十进制',
+      '十六进制',
+      '位运算',
+      '端序',
+      '大端',
+      '小端'
+    ],
+    component: markRaw(BaseConverter),
   },
   {
     id: 'hash-generator',

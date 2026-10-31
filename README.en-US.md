@@ -26,6 +26,7 @@
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing
 
 ### Converters
+- **Radix & Base Converter**: Arbitrary-precision BigInt conversion across base 2 ~ 64, interactive bit toggling matrix, signed/unsigned types, and endianness inspector
 - **Chmod Calculator**: Bi-directional conversion between octal (0755), symbolic (-rwxr-xr-x), and interactive checkboxes
 - **MIME Types Lookup**: Bi-directional lookup, file-based detection, and HTTP header generation
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
