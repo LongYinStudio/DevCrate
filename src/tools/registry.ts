@@ -17,7 +17,8 @@ import {
   FileType,
   ShieldCheck,
   Network,
-  Radio
+  Radio,
+  Regex
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -32,6 +33,7 @@ import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import TextInspector from './text/TextInspector.vue';
+import RegexTester from './text/RegexTester.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 
@@ -179,6 +181,31 @@ export const tools: ToolItem[] = [
     icon: markRaw(Type),
     keywords: ['text', 'count', 'words', 'lines', 'case', 'camelCase', 'snake_case', '统计', '字数', '大小写', '驼峰'],
     component: markRaw(TextInspector),
+  },
+  {
+    id: 'regex-tester',
+    categoryId: 'text',
+    nameKey: 'tools.regexTester.name',
+    descKey: 'tools.regexTester.desc',
+    icon: markRaw(Regex),
+    keywords: [
+      'regex',
+      'regexp',
+      'regular',
+      'expression',
+      'match',
+      'replace',
+      'pattern',
+      'test',
+      'cheatsheet',
+      '正则',
+      '正则表达式',
+      '匹配',
+      '替换',
+      '捕获组',
+      '规则'
+    ],
+    component: markRaw(RegexTester),
   },
   {
     id: 'har-viewer',

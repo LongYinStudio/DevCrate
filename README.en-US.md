@@ -36,6 +36,7 @@
 - **UUID & Password Generator**: Batch UUID v4, customizable random passwords and tokens
 
 ### Text Utilities
+- **Regex Tester & Evaluator**: Real-time syntax highlight matching, capture group inspection, substitution, preset library, and multi-language code generation
 - **Text Inspector & Case Converter**: Character/word/line/byte statistics and programming casing conversions
 
 ### Network
