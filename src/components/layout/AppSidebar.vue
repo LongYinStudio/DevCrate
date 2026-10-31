@@ -110,7 +110,7 @@ function toggleCollapse() {
         >
           <Settings class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:rotate-45 text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
           <span class="truncate">{{ t('categories.settings') }}</span>
-          <span class="ml-auto text-[10px] font-mono text-zinc-400 dark:text-zinc-500">v0.2.0</span>
+          <span class="ml-auto text-[10px] font-mono text-zinc-400 dark:text-zinc-500">v0.3.0</span>
         </button>
 
         <button
