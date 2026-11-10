@@ -20,11 +20,13 @@ import {
   Radio,
   Regex,
   RemoveFormatting,
-  Calculator
+  Calculator,
+  Shapes
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
 import JsonFormatter from './formatters/JsonFormatter.vue';
+import SvgEditor from './formatters/SvgEditor.vue';
 import Base64Text from './encoders/Base64Text.vue';
 import UrlEncoder from './encoders/UrlEncoder.vue';
 import JwtParser from './encoders/JwtParser.vue';
@@ -63,6 +65,43 @@ export const tools: ToolItem[] = [
     icon: markRaw(FileJson),
     keywords: ['json', 'format', 'minify', 'beautify', 'validate', '格式化', '压缩', '美化', '校验'],
     component: markRaw(JsonFormatter),
+  },
+  {
+    id: 'svg-editor',
+    categoryId: 'formatters',
+    nameKey: 'tools.svgEditor.name',
+    descKey: 'tools.svgEditor.desc',
+    icon: markRaw(Shapes),
+    keywords: [
+      'svg',
+      'editor',
+      'vector',
+      'icon',
+      'shapes',
+      'xml',
+      'svgo',
+      'optimize',
+      'minify',
+      'beautify',
+      'prettify',
+      'preview',
+      'png',
+      'jpeg',
+      'webp',
+      'canvas',
+      'react',
+      'vue',
+      'data-uri',
+      '矢量图',
+      '编辑器',
+      '格式化',
+      '压缩',
+      '美化',
+      '图标',
+      '画布',
+      '代码生成'
+    ],
+    component: markRaw(SvgEditor),
   },
   {
     id: 'base64-text',

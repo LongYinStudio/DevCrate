@@ -19,6 +19,7 @@
 
 ### Formatters
 - **JSON Formatter & Validator**: Indentation, minification, escaping, tree view, and smart syntax repair
+- **SVG Editor & Formatter**: Real-time vector canvas preview, XML beautifier & minifier, metadata sanitizer, dimension/color/transform tweaks, retina raster export, and React / Vue / Data URI code generation
 
 ### Encoders & Decoders
 - **JWT Parser**: Token breakdown, claims inspection, and local HMAC signature verification
