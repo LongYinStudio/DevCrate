@@ -21,7 +21,8 @@ import {
   Regex,
   RemoveFormatting,
   Calculator,
-  Shapes
+  Shapes,
+  FolderGit2
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -37,6 +38,7 @@ import BaseConverter from './converters/BaseConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
+import GitignoreGenerator from './generators/GitignoreGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -250,6 +252,34 @@ export const tools: ToolItem[] = [
     icon: markRaw(CalendarClock),
     keywords: ['cron', 'crontab', 'schedule', 'task', '定时任务', '调度', '计划任务', '表达式', '时间'],
     component: markRaw(CronParser),
+  },
+  {
+    id: 'gitignore-generator',
+    categoryId: 'generators',
+    nameKey: 'tools.gitignoreGenerator.name',
+    descKey: 'tools.gitignoreGenerator.desc',
+    icon: markRaw(FolderGit2),
+    keywords: [
+      'git',
+      'gitignore',
+      '.gitignore',
+      'ignore',
+      'generator',
+      'template',
+      'rules',
+      'node',
+      'python',
+      'rust',
+      'macos',
+      'windows',
+      'vscode',
+      'jetbrains',
+      '生成器',
+      '忽略文件',
+      '规则',
+      '模板'
+    ],
+    component: markRaw(GitignoreGenerator),
   },
   {
     id: 'text-inspector',

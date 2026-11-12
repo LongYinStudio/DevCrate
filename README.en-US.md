@@ -33,6 +33,7 @@
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
 
 ### Generators
+- **Gitignore Generator**: Rapidly generate, intelligently merge, deduplicate, and export .gitignore rules for major programming languages, frameworks, IDEs, and operating systems
 - **Cron Expression Generator & Parser**: Human-readable schedule translation, next run forecast, and visual builder
 - **Hash Generator**: Hardware-accelerated MD5, SHA-1, SHA-256, SHA-384, and SHA-512
 - **UUID & Password Generator**: Batch UUID v4, customizable random passwords and tokens
