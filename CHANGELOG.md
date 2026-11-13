@@ -2,6 +2,34 @@
 
 这个文件记录项目的主要发布变更。
 
+## [0.4.0] - 2026-11-13
+
+### Added
+
+- **新增 6 款实用开发者工具**：
+  - **SVG 编辑器与格式化工具 (`svg-editor`)**：
+    - 支持实时双栏/单栏预览、代码美化格式化与 SVGO 级精简压缩、ViewBox/尺寸规范化编辑及 SVG 转 PNG / Data URI / JSX / Vue 组件导出。
+  - **Gitignore 规则生成器 (`gitignore-generator`)**：
+    - 内置多语言、主流框架、IDE 及操作系统规则模板，支持多模板检索组合、规则去重合并与一键复制/下载 `.gitignore` 文件。
+  - **文本 / 二进制转换器 (`text-binary-converter`)**：
+    - 支持文本与二进制编码双向实时互转，支持 UTF-8 / ASCII 等编码方式、字节分组分隔符自定义及多种常用展示格式。
+  - **图片与 Base64 双向转换器 (`image-base64-converter`)**：
+    - 支持拖拽/选择图片或粘贴 Data URL / 纯 Base64 字符串即时双向转换与高清预览，支持魔数识别与 HTML `<img>` / CSS `url()` 提取及代码片段复制。
+  - **WebSocket & SSE 测试器 (`ws-sse-tester`)**：
+    - 集成 WebSocket 双向连接调试与 SSE (Server-Sent Events) 实时事件流监听，支持实时消息收发日志、筛选检索、预设 JSON 载荷与连接状态监控。
+  - **CIDR / 子网计算器 (`cidr-calculator`)**：
+    - 支持 IPv4 / IPv6 CIDR 精确子网划分与地址段聚合、掩码/主机数计算、VLSM 拆分规划及两网段重叠/包含关系校验。
+- **新增 GitHub Release 版本更新检查与统一版本管理**：
+  - 支持应用启动静默检查（带冷却周期与开关控制）及设置页手动检查 GitHub Releases 最新版本，支持展示更新日志、自动匹配当前平台安装包直链与忽略指定版本。
+  - 在左下角侧边栏与设置页新增版本更新提醒指示。
+  - 统一以 `package.json` 作为前端、Tauri 配置及打包元信息的单一版本真相源，并新增 `scripts/sync-version.mjs` 与 Rust 构建监听同步能力。
+
+### Fixed & Improved
+
+- **构建与版本一致性优化**：
+  - 在 `src-tauri/build.rs` 中显式声明 `cargo:rerun-if-changed=../package.json`，解决仅修改 `package.json` 版本号时 Tauri 原生构建缓存未刷新的问题。
+  - 完善全部新增工具及更新器模块的中英文双语 (`zh-CN` / `en-US`) 词条与 `vue-i18n` 占位符校验。
+
 ## [0.3.0] - 2026-10-31
 
 ### Added
