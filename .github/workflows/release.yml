@@ -1,0 +1,285 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v0.4.0; leave empty to use v<package.json version>)'
+        required: false
+        default: ''
+        type: string
+      draft:
+        description: 'Keep release as draft instead of publishing immediately'
+        required: false
+        default: false
+        type: boolean
+      prerelease:
+        description: 'Mark release as prerelease'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    name: Build Linux (deb & rpm)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install system dependencies (Linux)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Build Tauri app (Linux)
+        run: pnpm run tauri build --target x86_64-unknown-linux-gnu
+
+      - name: Upload deb package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-linux-deb
+          path: src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/deb/*.deb
+          if-no-files-found: error
+
+      - name: Upload rpm package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-linux-rpm
+          path: src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/rpm/*.rpm
+          if-no-files-found: error
+
+  build-macos:
+    name: Build macOS (universal dmg)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin, x86_64-apple-darwin
+          components: rustfmt, clippy
+
+      - name: Install system dependencies (macOS)
+        run: |
+          brew install pkg-config
+          brew install openssl@3
+
+      - name: Build Tauri app (macOS Universal)
+        run: pnpm run tauri build --target universal-apple-darwin
+
+      - name: Upload dmg package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-macos-dmg
+          path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          if-no-files-found: error
+
+  build-windows:
+    name: Build Windows (x64 setup exe)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+          components: rustfmt, clippy
+
+      - name: Build Tauri app (Windows)
+        run: pnpm run tauri build
+
+      - name: Upload exe package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-windows-exe
+          path: src-tauri/target/release/bundle/nsis/*-setup.exe
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: [build-linux, build-macos, build-windows]
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+
+      - name: Resolve tag and extract release notes
+        id: meta
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          node - <<'EOF'
+          const fs = require('node:fs');
+
+          const inputTag = (process.env.INPUT_TAG || '').trim();
+          const refType = process.env.REF_TYPE || '';
+          const refName = process.env.REF_NAME || '';
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const pkgVersion = String(pkg.version || '').trim().replace(/^v+/i, '');
+
+          let tagName = inputTag;
+          if (!tagName) {
+            if (refType === 'tag' && refName) {
+              tagName = refName;
+            } else {
+              if (!pkgVersion) {
+                console.error('Failed to resolve version from package.json');
+                process.exit(1);
+              }
+              tagName = `v${pkgVersion}`;
+            }
+          }
+          if (!tagName.startsWith('v')) {
+            tagName = `v${tagName}`;
+          }
+
+          const version = tagName.replace(/^v+/i, '');
+          let hasNotes = false;
+          if (fs.existsSync('CHANGELOG.md')) {
+            const lines = fs.readFileSync('CHANGELOG.md', 'utf8').split(/\r?\n/);
+            const headerPrefix = `## [${version}]`;
+            const startIndex = lines.findIndex((line) => line.startsWith(headerPrefix));
+            if (startIndex !== -1) {
+              let endIndex = lines.length;
+              for (let i = startIndex + 1; i < lines.length; i++) {
+                if (/^## \[/.test(lines[i])) {
+                  endIndex = i;
+                  break;
+                }
+              }
+              const body = lines.slice(startIndex, endIndex).join('\n').trim() + '\n';
+              fs.writeFileSync('/tmp/release-notes.md', body, 'utf8');
+              hasNotes = true;
+            }
+          }
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `tag=${tagName}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_notes=${hasNotes}\n`);
+          console.log(`Resolved tag: ${tagName}, has_notes: ${hasNotes}`);
+          EOF
+
+      - name: Create Release and upload assets (deb -> rpm -> dmg -> exe)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ steps.meta.outputs.tag }}
+          HAS_NOTES: ${{ steps.meta.outputs.has_notes }}
+          IS_DRAFT: ${{ inputs.draft }}
+          IS_PRERELEASE: ${{ inputs.prerelease }}
+        run: |
+          set -euo pipefail
+
+          DEB_FILE=$(find release-artifacts/release-linux-deb -maxdepth 2 -type f -name '*.deb' | head -n 1)
+          RPM_FILE=$(find release-artifacts/release-linux-rpm -maxdepth 2 -type f -name '*.rpm' | head -n 1)
+          DMG_FILE=$(find release-artifacts/release-macos-dmg -maxdepth 2 -type f -name '*.dmg' | head -n 1)
+          EXE_FILE=$(find release-artifacts/release-windows-exe -maxdepth 2 -type f -name '*.exe' | head -n 1)
+
+          for file in "$DEB_FILE" "$RPM_FILE" "$DMG_FILE" "$EXE_FILE"; do
+            if [ -z "$file" ] || [ ! -f "$file" ]; then
+              echo "Missing expected installer artifact: $file"
+              exit 1
+            fi
+            echo "Found artifact: $file"
+          done
+
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Release $TAG_NAME already exists. Please delete it on GitHub before re-running."
+            exit 1
+          fi
+
+          ARGS=(
+            "$TAG_NAME"
+            --draft
+            --target "${GITHUB_SHA}"
+            --title "$TAG_NAME"
+          )
+
+          if [ "$HAS_NOTES" = "true" ]; then
+            ARGS+=(-F /tmp/release-notes.md)
+          else
+            ARGS+=(--generate-notes)
+          fi
+
+          if [ "$IS_PRERELEASE" = "true" ]; then
+            ARGS+=(--prerelease)
+          fi
+
+          gh release create "${ARGS[@]}"
+
+          # 按 deb -> rpm -> dmg -> exe 顺序逐个上传
+          gh release upload "$TAG_NAME" "$DEB_FILE"
+          gh release upload "$TAG_NAME" "$RPM_FILE"
+          gh release upload "$TAG_NAME" "$DMG_FILE"
+          gh release upload "$TAG_NAME" "$EXE_FILE"
+
+          if [ "$IS_DRAFT" != "true" ]; then
+            gh release edit "$TAG_NAME" --draft=false
+          fi
