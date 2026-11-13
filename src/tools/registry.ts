@@ -22,7 +22,8 @@ import {
   RemoveFormatting,
   Calculator,
   Shapes,
-  FolderGit2
+  FolderGit2,
+  FileDigit
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -35,6 +36,7 @@ import TimestampConverter from './converters/TimestampConverter.vue';
 import MimeTypes from './converters/MimeTypes.vue';
 import ChmodCalculator from './converters/ChmodCalculator.vue';
 import BaseConverter from './converters/BaseConverter.vue';
+import TextBinaryConverter from './converters/TextBinaryConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -225,6 +227,35 @@ export const tools: ToolItem[] = [
       '小端'
     ],
     component: markRaw(BaseConverter),
+  },
+  {
+    id: 'text-binary-converter',
+    categoryId: 'converters',
+    nameKey: 'tools.textBinaryConverter.name',
+    descKey: 'tools.textBinaryConverter.desc',
+    icon: markRaw(FileDigit),
+    keywords: [
+      'text',
+      'binary',
+      'ascii',
+      'utf8',
+      'utf-8',
+      'utf16',
+      'utf-16',
+      'bits',
+      'bytes',
+      '01',
+      'encode',
+      'decode',
+      '文本',
+      '二进制',
+      '比特',
+      '字节',
+      '编码',
+      '解码',
+      '转换'
+    ],
+    component: markRaw(TextBinaryConverter),
   },
   {
     id: 'hash-generator',

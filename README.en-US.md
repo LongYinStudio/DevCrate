@@ -27,6 +27,7 @@
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing
 
 ### Converters
+- **Text / Binary Converter**: Bidirectional real-time conversion between text and binary streams across UTF-8, ASCII, and UTF-16, with customizable delimiters, 0b prefixes, 8-bit padding, and per-character byte breakdown
 - **Radix & Base Converter**: Arbitrary-precision BigInt conversion across base 2 ~ 64, interactive bit toggling matrix, signed/unsigned types, and endianness inspector
 - **Chmod Calculator**: Bi-directional conversion between octal (0755), symbolic (-rwxr-xr-x), and interactive checkboxes
 - **MIME Types Lookup**: Bi-directional lookup, file-based detection, and HTTP header generation
