@@ -23,7 +23,8 @@ import {
   Calculator,
   Shapes,
   FolderGit2,
-  FileDigit
+  FileDigit,
+  FileImage
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -37,6 +38,7 @@ import MimeTypes from './converters/MimeTypes.vue';
 import ChmodCalculator from './converters/ChmodCalculator.vue';
 import BaseConverter from './converters/BaseConverter.vue';
 import TextBinaryConverter from './converters/TextBinaryConverter.vue';
+import ImageBase64Converter from './converters/ImageBase64Converter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -256,6 +258,37 @@ export const tools: ToolItem[] = [
       '转换'
     ],
     component: markRaw(TextBinaryConverter),
+  },
+  {
+    id: 'image-base64-converter',
+    categoryId: 'converters',
+    nameKey: 'tools.imageBase64Converter.name',
+    descKey: 'tools.imageBase64Converter.desc',
+    icon: markRaw(FileImage),
+    keywords: [
+      'image',
+      'base64',
+      'data uri',
+      'dataurl',
+      'png',
+      'jpg',
+      'jpeg',
+      'webp',
+      'gif',
+      'svg',
+      'ico',
+      'picture',
+      'photo',
+      'encode',
+      'decode',
+      '图片',
+      '图像',
+      '转换',
+      '编码',
+      '解码',
+      '压缩'
+    ],
+    component: markRaw(ImageBase64Converter),
   },
   {
     id: 'hash-generator',

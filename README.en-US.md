@@ -27,6 +27,7 @@
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing
 
 ### Converters
+- **Image ↔ Base64 Converter**: Bidirectional image and Base64 / Data URI conversion with drag-and-drop, clipboard paste, WebP/JPEG re-encoding, HTML/CSS/Markdown snippets, and magic-byte auto-detection
 - **Text / Binary Converter**: Bidirectional real-time conversion between text and binary streams across UTF-8, ASCII, and UTF-16, with customizable delimiters, 0b prefixes, 8-bit padding, and per-character byte breakdown
 - **Radix & Base Converter**: Arbitrary-precision BigInt conversion across base 2 ~ 64, interactive bit toggling matrix, signed/unsigned types, and endianness inspector
 - **Chmod Calculator**: Bi-directional conversion between octal (0755), symbolic (-rwxr-xr-x), and interactive checkboxes
