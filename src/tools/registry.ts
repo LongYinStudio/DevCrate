@@ -24,7 +24,8 @@ import {
   Shapes,
   FolderGit2,
   FileDigit,
-  FileImage
+  FileImage,
+  Cable
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -48,6 +49,7 @@ import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
+import WsSseTester from './network/WsSseTester.vue';
 
 // 分类清单
 export const categories: CategoryInfo[] = [
@@ -456,6 +458,37 @@ export const tools: ToolItem[] = [
       '释放'
     ],
     component: markRaw(PortScanner),
+  },
+  {
+    id: 'ws-sse-tester',
+    categoryId: 'network',
+    nameKey: 'tools.wsSseTester.name',
+    descKey: 'tools.wsSseTester.desc',
+    icon: markRaw(Cable),
+    keywords: [
+      'websocket',
+      'ws',
+      'wss',
+      'sse',
+      'server-sent events',
+      'eventsource',
+      'stream',
+      'streaming',
+      'llm',
+      'ai',
+      'openai',
+      'heartbeat',
+      'ping',
+      'socket',
+      'tester',
+      '调试',
+      '测试',
+      '长连接',
+      '事件流',
+      '流式',
+      '网络'
+    ],
+    component: markRaw(WsSseTester),
   },
 ];
 
