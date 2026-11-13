@@ -14,7 +14,9 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "sync-version": "node scripts/sync-version.mjs",
+    "postversion": "node scripts/sync-version.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

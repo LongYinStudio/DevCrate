@@ -12,6 +12,7 @@ import {
   selectCategory,
   openSettings,
 } from '../../stores/app';
+import { currentDisplayVersion, hasAvailableUpdate } from '../../stores/updater';
 
 const { t } = useI18n();
 
@@ -110,7 +111,14 @@ function toggleCollapse() {
         >
           <Settings class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:rotate-45 text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
           <span class="truncate">{{ t('categories.settings') }}</span>
-          <span class="ml-auto text-[10px] font-mono text-zinc-400 dark:text-zinc-500">v0.3.0</span>
+          <span class="ml-auto flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+            <span
+              v-if="hasAvailableUpdate"
+              class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"
+              :title="t('settings.updateAvailable')"
+            />
+            <span>{{ currentDisplayVersion }}</span>
+          </span>
         </button>
 
         <button
@@ -128,15 +136,19 @@ function toggleCollapse() {
         <button
           type="button"
           @click="openSettings"
-          class="flex items-center justify-center w-10 h-10 rounded-xl transition-colors cursor-pointer group"
+          class="relative flex items-center justify-center w-10 h-10 rounded-xl transition-colors cursor-pointer group"
           :class="[
             currentView === 'settings'
               ? 'bg-blue-600/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 font-semibold'
               : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 hover:text-zinc-900 dark:hover:text-zinc-100'
           ]"
-          :title="t('categories.settings')"
+          :title="hasAvailableUpdate ? `${t('categories.settings')} · ${t('settings.updateAvailable')}` : t('categories.settings')"
         >
           <Settings class="w-[18px] h-[18px] transition-transform duration-300 group-hover:rotate-45" />
+          <span
+            v-if="hasAvailableUpdate"
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-500 ring-2 ring-zinc-100 dark:ring-zinc-900 animate-pulse"
+          />
         </button>
 
         <button

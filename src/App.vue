@@ -7,6 +7,7 @@ import AllToolsView from './components/layout/AllToolsView.vue';
 import SettingsView from './components/settings/SettingsView.vue';
 import { currentView, activeToolId, selectCategory } from './stores/app';
 import { initTheme } from './stores/theme';
+import { initUpdater } from './stores/updater';
 import { getToolById } from './tools/registry';
 
 const toolError = ref<string | null>(null);
@@ -28,6 +29,7 @@ onErrorCaptured((err, _instance, info) => {
 
 onMounted(() => {
   initTheme();
+  void initUpdater();
 });
 </script>
 

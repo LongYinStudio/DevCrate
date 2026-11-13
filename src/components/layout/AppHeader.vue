@@ -6,6 +6,7 @@ import { searchQuery, currentView, isSidebarCollapsed } from '../../stores/app';
 import { themeMode, toggleTheme } from '../../stores/theme';
 import { setLocale } from '../../locales';
 import { openExternalLink } from '../../utils/openUrl';
+import { GITHUB_REPO_SLUG } from '../../utils/appInfo';
 
 const { t, locale } = useI18n();
 
@@ -102,7 +103,7 @@ onUnmounted(() => {
         type="button"
         @click="openExternalLink()"
         class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/60 transition-colors cursor-pointer"
-        :title="locale.startsWith('zh') ? 'GitHub 仓库: LongYinStudio/DevCrate' : 'GitHub Repository: LongYinStudio/DevCrate'"
+        :title="locale.startsWith('zh') ? `GitHub 仓库: ${GITHUB_REPO_SLUG}` : `GitHub Repository: ${GITHUB_REPO_SLUG}`"
       >
         <Github class="w-4 h-4" />
       </button>

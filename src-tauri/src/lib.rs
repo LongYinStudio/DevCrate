@@ -21,3 +21,17 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn tauri_context_version_matches_package_json() {
+        let context: tauri::Context<tauri::Wry> = tauri::generate_context!();
+        let pkg_json: serde_json::Value =
+            serde_json::from_str(include_str!("../../package.json")).unwrap();
+        assert_eq!(
+            context.package_info().version.to_string(),
+            pkg_json["version"].as_str().unwrap()
+        );
+    }
+}

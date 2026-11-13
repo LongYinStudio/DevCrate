@@ -1,6 +1,7 @@
 import { openUrl as tauriOpenUrl } from '@tauri-apps/plugin-opener';
+import { GITHUB_REPO_URL } from './appInfo';
 
-export const GITHUB_REPO_URL = 'https://github.com/LongYinStudio/DevCrate';
+export { GITHUB_REPO_URL };
 
 export async function openExternalLink(url: string = GITHUB_REPO_URL) {
   try {
