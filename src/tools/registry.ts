@@ -25,7 +25,8 @@ import {
   FolderGit2,
   FileDigit,
   FileImage,
-  Cable
+  Cable,
+  Router
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -50,6 +51,7 @@ import HtmlStripper from './text/HtmlStripper.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 import WsSseTester from './network/WsSseTester.vue';
+import CidrCalculator from './network/CidrCalculator.vue';
 
 // 分类清单
 export const categories: CategoryInfo[] = [
@@ -489,6 +491,37 @@ export const tools: ToolItem[] = [
       '网络'
     ],
     component: markRaw(WsSseTester),
+  },
+  {
+    id: 'cidr-calculator',
+    categoryId: 'network',
+    nameKey: 'tools.cidrCalculator.name',
+    descKey: 'tools.cidrCalculator.desc',
+    icon: markRaw(Router),
+    keywords: [
+      'cidr',
+      'subnet',
+      'ip',
+      'ipv4',
+      'ipv6',
+      'mask',
+      'netmask',
+      'wildcard',
+      'network',
+      'broadcast',
+      'vpc',
+      'overlap',
+      'range',
+      'split',
+      '子网',
+      '掩码',
+      '反掩码',
+      '网段',
+      '计算器',
+      '子网划分',
+      '重叠'
+    ],
+    component: markRaw(CidrCalculator),
   },
 ];
 

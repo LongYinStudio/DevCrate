@@ -46,6 +46,7 @@
 - **Text Inspector & Case Converter**: Character/word/line/byte statistics and programming casing conversions
 
 ### Network
+- **CIDR / Subnet Calculator**: IPv4 & IPv6 CIDR subnet breakdown, netmask/wildcard conversion, 32-bit binary bit map, subnet splitting, and IP membership & CIDR overlap checking
 - **WebSocket & SSE Tester**: Full-duplex WebSocket debugging with heartbeat keepalive and binary Hex frames, plus GET/POST SSE streaming with custom headers and real-time AI/text stream aggregation
 - **Port Scanner & Process Inspector**: High-concurrency TCP port scanning, well-known service mapping, active local listening port conflict inspection, and process termination
 - **HAR File Viewer**: Deep visual analysis of HTTP archive logs (.har), featuring waterfall timeline, headers, cookies, payload, response preview, and cURL export
