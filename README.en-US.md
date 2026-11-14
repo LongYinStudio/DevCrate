@@ -35,6 +35,7 @@
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
 
 ### Generators
+- **Nginx Config Generator**: Includes all 1,009 official nginx.org directives across 101 modules with presets (Reverse Proxy, HTTPS, SPA, Load Balancer, API Gateway, Stream), visual block tree, custom directives, `nginx.conf` import/linting, and export
 - **Gitignore Generator**: Rapidly generate, intelligently merge, deduplicate, and export .gitignore rules for major programming languages, frameworks, IDEs, and operating systems
 - **Cron Expression Generator & Parser**: Human-readable schedule translation, next run forecast, and visual builder
 - **Hash Generator**: Hardware-accelerated MD5, SHA-1, SHA-256, SHA-384, and SHA-512

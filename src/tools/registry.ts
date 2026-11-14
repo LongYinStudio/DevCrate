@@ -26,7 +26,8 @@ import {
   FileDigit,
   FileImage,
   Cable,
-  Router
+  Router,
+  ServerCog
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -45,6 +46,7 @@ import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import GitignoreGenerator from './generators/GitignoreGenerator.vue';
+import NginxConfigGenerator from './generators/NginxConfigGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -348,6 +350,35 @@ export const tools: ToolItem[] = [
       '模板'
     ],
     component: markRaw(GitignoreGenerator),
+  },
+  {
+    id: 'nginx-config',
+    categoryId: 'generators',
+    nameKey: 'tools.nginxConfig.name',
+    descKey: 'tools.nginxConfig.desc',
+    icon: markRaw(ServerCog),
+    keywords: [
+      'nginx',
+      'nginx.conf',
+      'reverse proxy',
+      'proxy_pass',
+      'upstream',
+      'load balancer',
+      'ssl',
+      'https',
+      'http2',
+      'stream',
+      'server',
+      'location',
+      'cors',
+      'gzip',
+      '反向代理',
+      '负载均衡',
+      '网关',
+      '配置文件',
+      '指令'
+    ],
+    component: markRaw(NginxConfigGenerator),
   },
   {
     id: 'text-inspector',
