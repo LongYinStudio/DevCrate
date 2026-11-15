@@ -25,6 +25,7 @@ import {
   FolderGit2,
   FileDigit,
   FileImage,
+  FileSliders,
   Cable,
   Router,
   ServerCog
@@ -42,6 +43,7 @@ import ChmodCalculator from './converters/ChmodCalculator.vue';
 import BaseConverter from './converters/BaseConverter.vue';
 import TextBinaryConverter from './converters/TextBinaryConverter.vue';
 import ImageBase64Converter from './converters/ImageBase64Converter.vue';
+import ConfigFormatConverter from './converters/ConfigFormatConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -295,6 +297,34 @@ export const tools: ToolItem[] = [
       '压缩'
     ],
     component: markRaw(ImageBase64Converter),
+  },
+  {
+    id: 'config-format-converter',
+    categoryId: 'converters',
+    nameKey: 'tools.configFormatConverter.name',
+    descKey: 'tools.configFormatConverter.desc',
+    icon: markRaw(FileSliders),
+    keywords: [
+      'config',
+      'configuration',
+      'format',
+      'converter',
+      'json',
+      'jsonc',
+      'yaml',
+      'yml',
+      'toml',
+      'xml',
+      'ini',
+      'env',
+      'dotenv',
+      'properties',
+      '配置',
+      '配置文件',
+      '格式转换',
+      '环境变量'
+    ],
+    component: markRaw(ConfigFormatConverter),
   },
   {
     id: 'hash-generator',
