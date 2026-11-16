@@ -49,6 +49,7 @@
 - **Text Inspector & Case Converter**: Character/word/line/byte statistics and programming casing conversions
 
 ### Network
+- **HTTP Status Codes Reference**: Complete RFC 9110 & Nginx / Cloudflare HTTP status code guide with instant search, REST API status advisor, root causes, troubleshooting checklists, cache/retry semantics, and header filtering
 - **CIDR / Subnet Calculator**: IPv4 & IPv6 CIDR subnet breakdown, netmask/wildcard conversion, 32-bit binary bit map, subnet splitting, and IP membership & CIDR overlap checking
 - **WebSocket & SSE Tester**: Full-duplex WebSocket debugging with heartbeat keepalive and binary Hex frames, plus GET/POST SSE streaming with custom headers and real-time AI/text stream aggregation
 - **Port Scanner & Process Inspector**: High-concurrency TCP port scanning, well-known service mapping, active local listening port conflict inspection, and process termination

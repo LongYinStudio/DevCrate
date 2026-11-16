@@ -29,7 +29,8 @@ import {
   Cable,
   Router,
   ServerCog,
-  Workflow
+  Workflow,
+  BookOpenCheck
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -58,6 +59,7 @@ import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 import WsSseTester from './network/WsSseTester.vue';
 import CidrCalculator from './network/CidrCalculator.vue';
+import HttpStatusCodes from './network/HttpStatusCodes.vue';
 
 // 分类清单
 export const categories: CategoryInfo[] = [
@@ -615,6 +617,40 @@ export const tools: ToolItem[] = [
       '重叠'
     ],
     component: markRaw(CidrCalculator),
+  },
+  {
+    id: 'http-status-codes',
+    categoryId: 'network',
+    nameKey: 'tools.httpStatusCodes.name',
+    descKey: 'tools.httpStatusCodes.desc',
+    icon: markRaw(BookOpenCheck),
+    keywords: [
+      'http',
+      'https',
+      'status',
+      'code',
+      'codes',
+      'rest',
+      'api',
+      'rfc',
+      '1xx',
+      '2xx',
+      '3xx',
+      '4xx',
+      '5xx',
+      '404',
+      '502',
+      '504',
+      '429',
+      'nginx',
+      'cloudflare',
+      '状态码',
+      '响应码',
+      '报错',
+      '参考',
+      '网关'
+    ],
+    component: markRaw(HttpStatusCodes),
   },
 ];
 

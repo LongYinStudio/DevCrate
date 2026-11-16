@@ -1063,6 +1063,39 @@ export default {
       startIp: 'Start IP',
       endIp: 'End IP',
       aggregatedResult: 'Aggregated CIDRs ({count})'
+    },
+    httpStatusCodes: {
+      name: 'HTTP Status Codes',
+      desc: 'Complete RFC 9110 & Nginx / Cloudflare HTTP status code reference with instant search, API advisor, root causes, and troubleshooting guides',
+      advisorToggle: 'Status Advisor',
+      advisorTitle: 'Quick REST API & Gateway Status Code Advisor',
+      searchPlaceholder: 'Search by code (429, 502), phrase, RFC, header (Retry-After), or symptom (rate limit, timeout)...',
+      quickJump: 'Quick Jump',
+      filters: {
+        all: 'All',
+        common: 'Popular',
+        '1xx': '1xx Info',
+        '2xx': '2xx Success',
+        '3xx': '3xx Redirect',
+        '4xx': '4xx Client Error',
+        '5xx': '5xx Server Error',
+        unofficial: 'Nginx / CF Ext'
+      },
+      listCount: '{count} status codes',
+      noResults: 'No matching HTTP status codes found. Try adjusting your search or filter.',
+      unofficialBadge: 'Unofficial / Extension',
+      cacheableYes: 'Cacheable by default',
+      cacheableNo: 'Not cacheable by default',
+      retryable: {
+        yes: 'Safe to retry',
+        conditional: 'Retry with backoff/condition',
+        no: 'Do not blindly retry'
+      },
+      causesTitle: 'Common Causes',
+      solutionsTitle: 'Troubleshooting & Best Practices',
+      relatedHeaders: 'Related HTTP Headers (click to filter)',
+      filterByHeader: 'Click to filter status codes using this header',
+      jsonSampleTitle: 'Sample JSON Payload'
     }
   },
   settings: {

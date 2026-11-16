@@ -1063,6 +1063,39 @@ export default {
       startIp: '起始 IP',
       endIp: '结束 IP',
       aggregatedResult: '等效 CIDR 块 ({count} 条)'
+    },
+    httpStatusCodes: {
+      name: 'HTTP 状态码参考',
+      desc: '全面收录 RFC 标准及 Nginx / Cloudflare 扩展 HTTP 状态码，支持搜索检索、API 选码向导、常见成因与排查方案',
+      advisorToggle: 'API 选码向导',
+      advisorTitle: '常见 REST API / 网关场景状态码推荐',
+      searchPlaceholder: '搜索状态码（如 429 / 502）、英文短语、Header（Retry-After）或中文症状（限流/跨域/超时）...',
+      quickJump: '高频速查',
+      filters: {
+        all: '全部',
+        common: '常用精选',
+        '1xx': '1xx 信息',
+        '2xx': '2xx 成功',
+        '3xx': '3xx 重定向',
+        '4xx': '4xx 客户端错误',
+        '5xx': '5xx 服务端错误',
+        unofficial: 'Nginx / CF 扩展'
+      },
+      listCount: '共 {count} 条状态码',
+      noResults: '未找到匹配的 HTTP 状态码，请尝试更换关键词或清除筛选条件',
+      unofficialBadge: '非标 / 扩展状态码',
+      cacheableYes: '默认可缓存',
+      cacheableNo: '默认不可缓存',
+      retryable: {
+        yes: '适合安全重试',
+        conditional: '需退避/条件重试',
+        no: '不建议直接重试'
+      },
+      causesTitle: '常见触发原因',
+      solutionsTitle: '排查与最佳实践',
+      relatedHeaders: '关联 HTTP 标头（点击筛选）',
+      filterByHeader: '点击筛选包含此标头的状态码',
+      jsonSampleTitle: '标准 JSON 错误/响应示例'
     }
   },
   settings: {
