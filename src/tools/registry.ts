@@ -28,7 +28,8 @@ import {
   FileSliders,
   Cable,
   Router,
-  ServerCog
+  ServerCog,
+  Workflow
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -49,6 +50,7 @@ import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
 import GitignoreGenerator from './generators/GitignoreGenerator.vue';
 import NginxConfigGenerator from './generators/NginxConfigGenerator.vue';
+import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -409,6 +411,36 @@ export const tools: ToolItem[] = [
       '指令'
     ],
     component: markRaw(NginxConfigGenerator),
+  },
+  {
+    id: 'github-actions',
+    categoryId: 'generators',
+    nameKey: 'tools.githubActions.name',
+    descKey: 'tools.githubActions.desc',
+    icon: markRaw(Workflow),
+    keywords: [
+      'github',
+      'actions',
+      'workflow',
+      'ci',
+      'cd',
+      'ci/cd',
+      'yaml',
+      'yml',
+      'pipeline',
+      'runner',
+      'matrix',
+      'docker',
+      'pages',
+      'tauri',
+      'release',
+      '工作流',
+      '流水线',
+      '持续集成',
+      '持续部署',
+      '自动化'
+    ],
+    component: markRaw(GitHubActionsGenerator),
   },
   {
     id: 'text-inspector',
