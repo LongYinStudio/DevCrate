@@ -30,7 +30,8 @@ import {
   Router,
   ServerCog,
   Workflow,
-  BookOpenCheck
+  BookOpenCheck,
+  FileDiff
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -55,6 +56,7 @@ import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
+import CodeDiff from './text/CodeDiff.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 import WsSseTester from './network/WsSseTester.vue';
@@ -503,6 +505,32 @@ export const tools: ToolItem[] = [
       '过滤'
     ],
     component: markRaw(HtmlStripper),
+  },
+  {
+    id: 'code-diff',
+    categoryId: 'text',
+    nameKey: 'tools.codeDiff.name',
+    descKey: 'tools.codeDiff.desc',
+    icon: markRaw(FileDiff),
+    keywords: [
+      'diff',
+      'compare',
+      'code',
+      'text',
+      'patch',
+      'git',
+      'merge',
+      'split',
+      'unified',
+      'myers',
+      '对比',
+      '代码对比',
+      '文本对比',
+      '差异',
+      '比较',
+      '补丁'
+    ],
+    component: markRaw(CodeDiff),
   },
   {
     id: 'har-viewer',
