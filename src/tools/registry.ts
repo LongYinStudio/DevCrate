@@ -31,7 +31,8 @@ import {
   ServerCog,
   Workflow,
   BookOpenCheck,
-  FileDiff
+  FileDiff,
+  Scissors
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -47,6 +48,7 @@ import BaseConverter from './converters/BaseConverter.vue';
 import TextBinaryConverter from './converters/TextBinaryConverter.vue';
 import ImageBase64Converter from './converters/ImageBase64Converter.vue';
 import ConfigFormatConverter from './converters/ConfigFormatConverter.vue';
+import FontSubsetter from './converters/FontSubsetter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -331,6 +333,38 @@ export const tools: ToolItem[] = [
       '环境变量'
     ],
     component: markRaw(ConfigFormatConverter),
+  },
+  {
+    id: 'font-subsetter',
+    categoryId: 'converters',
+    nameKey: 'tools.fontSubsetter.name',
+    descKey: 'tools.fontSubsetter.desc',
+    icon: markRaw(Scissors),
+    keywords: [
+      'font',
+      'subset',
+      'subsetter',
+      'trim',
+      'woff',
+      'woff2',
+      'ttf',
+      'otf',
+      'ttc',
+      'harfbuzz',
+      'unicode-range',
+      '@font-face',
+      'variable font',
+      'hinting',
+      'glyph',
+      '字体',
+      '字体子集',
+      '字体子集化',
+      '字体裁剪',
+      '字体压缩',
+      '字形',
+      '裁剪'
+    ],
+    component: markRaw(FontSubsetter),
   },
   {
     id: 'hash-generator',
