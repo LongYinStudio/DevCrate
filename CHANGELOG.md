@@ -2,6 +2,31 @@
 
 这个文件记录项目的主要发布变更。
 
+## [0.5.0] - 2026-11-18
+
+### Added
+
+- **新增 6 款实用开发者工具**：
+  - **字体子集化 / 字体裁剪 (`font-subsetter`)**：
+    - 基于 HarfBuzz WASM (`harfbuzz-subset.wasm`) 与 `woff2-encoder` / `fflate` 纯本地裁剪 TTF / OTF / WOFF / WOFF2 / TTC 字体，支持 Web Worker 异步处理。
+    - 支持文本与源码文件字符提取、Unicode 范围解析、预设字符集、缺失字形检测与交互式字形表点选。
+    - 支持 OpenType 排版特性 (`GSUB`/`GPOS`) 裁剪、Hinting 剥离、可变字体轴固化/缩窄、裁剪前后实时渲染对比及 `@font-face` / `unicode-range` / Base64 导出。
+  - **代码 / 文本对比工具 (`code-diff`)**：
+    - 基于 Myers Diff 算法提供左右并排、行内统一与标准 Git `.patch` 视图，支持行内词元级差异高亮、未变更代码折叠、空白/大小写/空行忽略、JSON 键排序归一化、变更块跳转及双侧文件拖拽导入。
+  - **HTTP 状态码参考 (`http-status-codes`)**：
+    - 全面收录 RFC 标准及 Nginx / Cloudflare 扩展 HTTP 状态码，提供高频速查、REST API 选码向导、常见成因、排查方案、可缓存/可重试标识与关联 Header 筛选。
+  - **GitHub Actions 生成器 (`github-actions`)**：
+    - 可视化编排 CI/CD 工作流，内置 Node.js / Rust / Python / Go / Docker / GitHub Pages / Tauri 等 8 套场景预设，支持触发器、Matrix 矩阵、权限矩阵、Actions 动作库、现有 `.yml` 导入反解及静态环路/权限检查。
+  - **配置文件格式转换器 (`config-format-converter`)**：
+    - 支持 JSON / JSONC、YAML、TOML、XML、INI、.env 与 .properties 之间的双向互转，具备输入格式自动识别、嵌套键展开/扁平化、类型推断、键名排序、语法错误行定位、文件导入导出及交互式树形结构预览。
+  - **Nginx 配置生成器 (`nginx-config`)**：
+    - 收录 nginx.org 官方全部 1009 条指令与 101 个模块，支持反向代理 / HTTPS / 负载均衡 / SPA / API 网关 / Stream 预设、可视化配置树、任意指令搜索添加与上下文校验、现有 `nginx.conf` 导入解析及格式化导出。
+
+### Fixed & Improved
+
+- **构建与发布流水线优化**：
+  - 整合 Linux / macOS / Windows 三平台构建任务至统一的 `.github/workflows/release.yml` 流水线并自动按序发布 GitHub Release。
+
 ## [0.4.0] - 2026-11-13
 
 ### Added
