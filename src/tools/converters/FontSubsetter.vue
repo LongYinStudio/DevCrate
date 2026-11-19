@@ -661,13 +661,14 @@ function downloadCssFile() {
     name-key="tools.fontSubsetter.name"
     desc-key="tools.fontSubsetter.desc"
     :icon="Scissors"
+    :full-height="!metadata"
     wide
   >
     <template #header-actions>
       <button
         type="button"
         @click="loadSampleFont"
-        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-750 transition-colors cursor-pointer"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-750 transition-colors cursor-pointer whitespace-nowrap shrink-0"
       >
         <Sparkles class="w-3.5 h-3.5 text-blue-500" />
         <span>{{ t('common.loadSample') }}</span>
@@ -676,7 +677,7 @@ function downloadCssFile() {
       <button
         type="button"
         @click="fontInputRef?.click()"
-        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-colors cursor-pointer"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-colors cursor-pointer whitespace-nowrap shrink-0"
       >
         <Upload class="w-3.5 h-3.5" />
         <span>{{ t('tools.fontSubsetter.importFont') }}</span>
@@ -686,7 +687,7 @@ function downloadCssFile() {
         v-if="metadata"
         type="button"
         @click="resetAll"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors cursor-pointer"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors cursor-pointer shrink-0"
         :title="t('common.clear')"
       >
         <Trash2 class="w-3.5 h-3.5" />

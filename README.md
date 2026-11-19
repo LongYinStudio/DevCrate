@@ -37,6 +37,7 @@
 - **Unix 时间戳转换**：实时时钟、秒与毫秒时间戳、本地时间与 UTC/ISO 8601 双向换算
 
 ### 生成器
+- **Docker Compose 生成器 & `docker run` 互转**：可视化编排 `compose.yml` 多容器栈，支持 `docker run` CLI 与 Compose 双向互转、常见数据库/中间件服务库、现有 `compose.yml` 导入解析、端口冲突/循环依赖检查及 `.env` 模板导出
 - **GitHub Actions 生成器**：可视化编排 CI/CD 工作流，内置 Node.js/Rust/Python/Go/Docker/GitHub Pages/Tauri 等 8 套场景预设，支持触发器、Matrix 矩阵、权限矩阵、Actions 动作库、现有 `.yml` 导入反解及静态环路/权限检查
 - **Nginx 配置生成器**：收录 nginx.org 官方全部 1009 条指令与 101 个模块，支持反向代理/HTTPS/负载均衡/SPA/API 网关/Stream 预设、可视化配置树、任意指令搜索添加与上下文校验、现有 `nginx.conf` 导入解析及格式化导出
 - **Gitignore 生成器**：涵盖主流编程语言、前端/后端框架、开发工具与操作系统的多技术栈 .gitignore 忽略规则快速生成、智能合并、规则去重与定制导出

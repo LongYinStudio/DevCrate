@@ -32,7 +32,8 @@ import {
   Workflow,
   BookOpenCheck,
   FileDiff,
-  Scissors
+  Scissors,
+  Container
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -55,6 +56,7 @@ import CronParser from './generators/CronParser.vue';
 import GitignoreGenerator from './generators/GitignoreGenerator.vue';
 import NginxConfigGenerator from './generators/NginxConfigGenerator.vue';
 import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
+import DockerComposeGenerator from './generators/DockerComposeGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -479,6 +481,37 @@ export const tools: ToolItem[] = [
       '自动化'
     ],
     component: markRaw(GitHubActionsGenerator),
+  },
+  {
+    id: 'docker-compose',
+    categoryId: 'generators',
+    nameKey: 'tools.dockerCompose.name',
+    descKey: 'tools.dockerCompose.desc',
+    icon: markRaw(Container),
+    keywords: [
+      'docker',
+      'compose',
+      'docker-compose',
+      'compose.yml',
+      'docker run',
+      'container',
+      'service',
+      'volume',
+      'network',
+      'healthcheck',
+      'postgres',
+      'mysql',
+      'redis',
+      'nginx',
+      'minio',
+      'yaml',
+      '容器',
+      '编排',
+      '镜像',
+      '互转',
+      '转换'
+    ],
+    component: markRaw(DockerComposeGenerator),
   },
   {
     id: 'text-inspector',
