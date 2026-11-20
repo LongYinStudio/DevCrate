@@ -33,7 +33,8 @@ import {
   BookOpenCheck,
   FileDiff,
   Scissors,
-  Container
+  Container,
+  SquareTerminal
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -57,6 +58,7 @@ import GitignoreGenerator from './generators/GitignoreGenerator.vue';
 import NginxConfigGenerator from './generators/NginxConfigGenerator.vue';
 import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import DockerComposeGenerator from './generators/DockerComposeGenerator.vue';
+import SshConfigGenerator from './generators/SshConfigGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -512,6 +514,36 @@ export const tools: ToolItem[] = [
       '转换'
     ],
     component: markRaw(DockerComposeGenerator),
+  },
+  {
+    id: 'ssh-config',
+    categoryId: 'generators',
+    nameKey: 'tools.sshConfig.name',
+    descKey: 'tools.sshConfig.desc',
+    icon: markRaw(SquareTerminal),
+    keywords: [
+      'ssh',
+      'ssh config',
+      '~/.ssh/config',
+      'proxyjump',
+      'bastion',
+      'jump host',
+      'port forward',
+      'localforward',
+      'remoteforward',
+      'dynamicforward',
+      'socks5',
+      'tunnel',
+      'scp',
+      'rsync',
+      'ed25519',
+      '跳板机',
+      '端口转发',
+      '内网穿透',
+      '隧道',
+      '密钥'
+    ],
+    component: markRaw(SshConfigGenerator),
   },
   {
     id: 'text-inspector',

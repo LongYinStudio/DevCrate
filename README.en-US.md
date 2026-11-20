@@ -37,6 +37,7 @@
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
 
 ### Generators
+- **SSH Config & Port Forwarding Generator**: Visual `~/.ssh/config` builder with multi-account Git key routing, `ProxyJump` bastion chains, `-L/-R/-D` port forwarding & SOCKS5 tunnels, connection multiplexing, `Host *` precedence linting, and matching `ssh` / `scp` / `rsync` / `ssh-copy-id` CLI generation
 - **Docker Compose & `docker run` Converter**: Visual `compose.yml` multi-container builder with bidirectional `docker run` conversion, curated service catalog, `compose.yml` import, port/dependency linting, and `.env` template export
 - **GitHub Actions Generator**: Visual CI/CD workflow builder with 8 presets (Node.js, Rust, Python, Go, Docker GHCR, GitHub Pages, Tauri Release, Scheduled/Dispatch), triggers, matrix strategy, permissions matrix, curated Actions catalog, `.yml` import, and static linter
 - **Nginx Config Generator**: Includes all 1,009 official nginx.org directives across 101 modules with presets (Reverse Proxy, HTTPS, SPA, Load Balancer, API Gateway, Stream), visual block tree, custom directives, `nginx.conf` import/linting, and export
