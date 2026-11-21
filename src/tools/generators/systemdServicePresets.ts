@@ -1,0 +1,215 @@
+import {
+  createEmptySystemdUnit,
+  type SystemdUnitConfig,
+} from './systemdServiceUtils';
+
+export interface SystemdPreset {
+  id: string;
+  nameZh: string;
+  nameEn: string;
+  descZh: string;
+  descEn: string;
+  build: () => SystemdUnitConfig;
+}
+
+export const COMMON_UNIT_TARGETS = [
+  'network.target',
+  'network-online.target',
+  'postgresql.service',
+  'mysql.service',
+  'redis.service',
+  'docker.service',
+  'nginx.service',
+];
+
+export const COMMON_CAPABILITIES = [
+  'CAP_NET_BIND_SERVICE',
+  'CAP_NET_ADMIN',
+  'CAP_SYS_PTRACE',
+];
+
+export const SYSTEMD_PRESETS: SystemdPreset[] = [
+  {
+    id: 'node-api',
+    nameZh: 'Node.js / Bun Web API',
+    nameEn: 'Node.js / Bun Web API',
+    descZh: '生产级 Node.js 后端服务，配置失败自动重启、.env 文件加载、高并发 FD 上限与基础沙箱加固',
+    descEn: 'Production Node.js service with on-failure restart, .env file, raised NOFILE limit & hardening',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'node-api.service',
+        scope: 'system',
+        description: 'Node.js Production Web API',
+        after: ['network-online.target'],
+        wants: ['network-online.target'],
+        type: 'simple',
+        execStart: '/usr/bin/node /opt/app/dist/server.js',
+        workingDirectory: '/opt/app',
+        user: 'www-data',
+        group: 'www-data',
+        restart: 'on-failure',
+        restartSec: '5s',
+        timeoutStopSec: '30s',
+        environments: [
+          { key: 'NODE_ENV', value: 'production' },
+          { key: 'PORT', value: '3000' },
+        ],
+        environmentFiles: ['-/opt/app/.env'],
+        limitNOFILE: '65535',
+        noNewPrivileges: true,
+        privateTmp: true,
+        protectSystem: 'full',
+        wantedBy: ['multi-user.target'],
+      }),
+  },
+  {
+    id: 'go-rust-binary',
+    nameZh: 'Go / Rust 二进制守护进程',
+    nameEn: 'Go / Rust Native Binary',
+    descZh: '高安全性原生编译服务：启用 ProtectSystem=strict、内存/CPU 配额限制及非 root 绑定 80/443 能力',
+    descEn: 'Hardened native binary service with ProtectSystem=strict, cgroup limits & CAP_NET_BIND_SERVICE',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'edge-gateway.service',
+        scope: 'system',
+        description: 'Go / Rust High-Performance Gateway Service',
+        after: ['network-online.target'],
+        wants: ['network-online.target'],
+        type: 'simple',
+        execStart: '/usr/local/bin/edge-gateway --config /etc/edge-gateway/config.toml',
+        execReload: '/bin/kill -HUP $MAINPID',
+        workingDirectory: '/var/lib/edge-gateway',
+        user: 'edge',
+        group: 'edge',
+        restart: 'always',
+        restartSec: '3s',
+        timeoutStopSec: '15s',
+        limitNOFILE: '1048576',
+        memoryHigh: '384M',
+        memoryMax: '512M',
+        cpuQuota: '100%',
+        noNewPrivileges: true,
+        privateTmp: true,
+        protectSystem: 'strict',
+        protectHome: 'true',
+        readWritePaths: ['/var/lib/edge-gateway'],
+        ambientCapabilities: 'CAP_NET_BIND_SERVICE',
+        wantedBy: ['multi-user.target'],
+      }),
+  },
+  {
+    id: 'python-uvicorn',
+    nameZh: 'Python FastAPI / Gunicorn',
+    nameEn: 'Python FastAPI / Uvicorn',
+    descZh: '基于虚拟环境 .venv 启动 Uvicorn/Gunicorn，支持平滑重载 (HUP) 与环境变量注入',
+    descEn: 'Virtualenv-based Python ASGI service with graceful SIGHUP reload & journal logging',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'fastapi-app.service',
+        scope: 'system',
+        description: 'FastAPI ASGI Application',
+        after: ['network-online.target', 'postgresql.service'],
+        wants: ['network-online.target'],
+        type: 'simple',
+        execStart:
+          '/opt/fastapi/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 4',
+        execReload: '/bin/kill -s HUP $MAINPID',
+        workingDirectory: '/opt/fastapi',
+        user: 'appuser',
+        group: 'appuser',
+        restart: 'on-failure',
+        restartSec: '5s',
+        environments: [
+          { key: 'PYTHONUNBUFFERED', value: '1' },
+          { key: 'APP_ENV', value: 'prod' },
+        ],
+        environmentFiles: ['-/opt/fastapi/.env'],
+        syslogIdentifier: 'fastapi-app',
+        privateTmp: true,
+        noNewPrivileges: true,
+        wantedBy: ['multi-user.target'],
+      }),
+  },
+  {
+    id: 'java-spring',
+    nameZh: 'Java / Spring Boot JAR',
+    nameEn: 'Java / Spring Boot JAR',
+    descZh: '配置 JVM 堆内存参数、SIGTERM 退出码 143 正常识别、较长停止超时及限流保护',
+    descEn: 'Spring Boot fat JAR with JVM heap sizing, SuccessExitStatus=143 & graceful shutdown timeout',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'spring-service.service',
+        scope: 'system',
+        description: 'Spring Boot Microservice',
+        after: ['network-online.target', 'mysql.service'],
+        wants: ['network-online.target'],
+        type: 'simple',
+        execStart: '/usr/bin/java -Xms512m -Xmx1024m -jar /opt/spring/app.jar',
+        workingDirectory: '/opt/spring',
+        user: 'spring',
+        group: 'spring',
+        restart: 'on-failure',
+        restartSec: '10s',
+        timeoutStopSec: '45s',
+        successExitStatus: '143',
+        environments: [
+          { key: 'SPRING_PROFILES_ACTIVE', value: 'prod' },
+          { key: 'JAVA_TOOL_OPTIONS', value: '-XX:+UseG1GC' },
+        ],
+        memoryMax: '1536M',
+        noNewPrivileges: true,
+        privateTmp: true,
+        wantedBy: ['multi-user.target'],
+      }),
+  },
+  {
+    id: 'user-daemon',
+    nameZh: '用户级守护进程 (--user)',
+    nameEn: 'User-Level Daemon (--user)',
+    descZh: '安装于 ~/.config/systemd/user/ 无需 root 权限，适合桌面自启脚本、个人代理或开发常驻工具',
+    descEn: 'Rootless user service under ~/.config/systemd/user/ targeting default.target',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'my-user-agent.service',
+        scope: 'user',
+        description: 'Personal Background Agent',
+        after: ['network-online.target'],
+        wants: ['network-online.target'],
+        type: 'simple',
+        execStart: '%h/.local/bin/my-agent --daemon',
+        workingDirectory: '%h/workspace',
+        user: '',
+        group: '',
+        restart: 'on-failure',
+        restartSec: '5s',
+        wantedBy: ['default.target'],
+      }),
+  },
+  {
+    id: 'oneshot-task',
+    nameZh: 'Oneshot 初始化 / 定时任务单元',
+    nameEn: 'Oneshot Job / Timer Target',
+    descZh: '执行一次即退出的任务服务，适合配合 systemd .timer 定时触发数据备份或缓存预热',
+    descEn: 'Single-shot task unit designed for boot hooks or pairing with systemd .timer',
+    build: () =>
+      createEmptySystemdUnit({
+        unitName: 'db-backup.service',
+        scope: 'system',
+        description: 'Scheduled Database Backup Job',
+        after: ['network-online.target'],
+        wants: [],
+        type: 'oneshot',
+        remainAfterExit: false,
+        execStart: '/usr/local/bin/backup-db.sh',
+        workingDirectory: '/var/backups',
+        user: 'backup',
+        group: 'backup',
+        restart: 'no',
+        restartSec: '',
+        timeoutStartSec: '15m',
+        noNewPrivileges: true,
+        privateTmp: true,
+        wantedBy: [],
+      }),
+  },
+];

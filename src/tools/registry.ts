@@ -34,7 +34,8 @@ import {
   FileDiff,
   Scissors,
   Container,
-  SquareTerminal
+  SquareTerminal,
+  Cog
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -59,6 +60,7 @@ import NginxConfigGenerator from './generators/NginxConfigGenerator.vue';
 import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import DockerComposeGenerator from './generators/DockerComposeGenerator.vue';
 import SshConfigGenerator from './generators/SshConfigGenerator.vue';
+import SystemdServiceGenerator from './generators/SystemdServiceGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -544,6 +546,32 @@ export const tools: ToolItem[] = [
       '密钥'
     ],
     component: markRaw(SshConfigGenerator),
+  },
+  {
+    id: 'systemd-service',
+    categoryId: 'generators',
+    nameKey: 'tools.systemdService.name',
+    descKey: 'tools.systemdService.desc',
+    icon: markRaw(Cog),
+    keywords: [
+      'systemd',
+      'service',
+      '.service',
+      'unit',
+      'systemctl',
+      'journalctl',
+      'daemon',
+      'linux',
+      'execstart',
+      'restart',
+      'after',
+      'wantedby',
+      '守护进程',
+      '后台服务',
+      '系统服务',
+      '开机自启'
+    ],
+    component: markRaw(SystemdServiceGenerator),
   },
   {
     id: 'text-inspector',
