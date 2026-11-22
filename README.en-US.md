@@ -48,6 +48,7 @@
 - **UUID & Password Generator**: Batch UUID v4, customizable random passwords and tokens
 
 ### Text Utilities
+- **SemVer Range & Version Tester**: Evaluate npm / Cargo semantic version ranges (`^`, `~`, `-`, `||`), batch match & sort candidate versions, verify prerelease tuple rules, diff versions, and calculate bumps
 - **Code & Text Diff**: Myers-based diff viewer with Side-by-Side, Unified, and Git `.patch` modes, intra-line token highlighting, unchanged context folding, whitespace/case/blank-line filters, JSON key normalization, hunk navigation, and drag-and-drop file import
 - **HTML Tag Stripper**: Strip tags and extract readable plain text from HTML, with block-element newlines, HTML entity decoding, link/image extraction, tag whitelisting, and whitespace formatting
 - **Regex Tester & Evaluator**: Real-time syntax highlight matching, capture group inspection, substitution, preset library, and multi-language code generation

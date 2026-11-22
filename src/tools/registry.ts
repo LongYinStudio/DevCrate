@@ -35,7 +35,8 @@ import {
   Scissors,
   Container,
   SquareTerminal,
-  Cog
+  Cog,
+  Tags
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -65,6 +66,7 @@ import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
 import CodeDiff from './text/CodeDiff.vue';
+import SemverTester from './text/SemverTester.vue';
 import HarViewer from './network/HarViewer.vue';
 import PortScanner from './network/PortScanner.vue';
 import WsSseTester from './network/WsSseTester.vue';
@@ -658,6 +660,34 @@ export const tools: ToolItem[] = [
       '补丁'
     ],
     component: markRaw(CodeDiff),
+  },
+  {
+    id: 'semver-tester',
+    categoryId: 'text',
+    nameKey: 'tools.semverTester.name',
+    descKey: 'tools.semverTester.desc',
+    icon: markRaw(Tags),
+    keywords: [
+      'semver',
+      'version',
+      'range',
+      'npm',
+      'cargo',
+      'caret',
+      'tilde',
+      'prerelease',
+      'bump',
+      'compare',
+      'package.json',
+      '语义化版本',
+      '版本号',
+      '版本范围',
+      '依赖版本',
+      '测试',
+      '对比',
+      '排序'
+    ],
+    component: markRaw(SemverTester),
   },
   {
     id: 'har-viewer',
