@@ -496,12 +496,12 @@ function formatPermSummary(p: Triplet, isDirectory: boolean): string {
       </div>
 
       <!-- 2. 八进制与符号双向输入控制卡片 -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 p-4 rounded-xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
         <!-- 八进制值输入框 -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
-            <span>{{ t('tools.chmodCalculator.octalInput') }}</span>
-            <span class="text-[10px] text-zinc-400 font-normal font-mono">0-7777</span>
+        <div class="flex flex-col gap-1.5 min-w-0">
+          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between gap-2">
+            <span class="truncate">{{ t('tools.chmodCalculator.octalInput') }}</span>
+            <span class="text-[10px] text-zinc-400 font-normal font-mono shrink-0 whitespace-nowrap">0-7777</span>
           </label>
           <div class="relative">
             <input
@@ -516,10 +516,10 @@ function formatPermSummary(p: Triplet, isDirectory: boolean): string {
         </div>
 
         <!-- 符号表示输入框 -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
-            <span>{{ t('tools.chmodCalculator.symbolicInput') }}</span>
-            <span class="text-[10px] text-zinc-400 font-normal font-mono">rwxrwxrwx</span>
+        <div class="flex flex-col gap-1.5 min-w-0">
+          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between gap-2">
+            <span class="truncate">{{ t('tools.chmodCalculator.symbolicInput') }}</span>
+            <span class="text-[10px] text-zinc-400 font-normal font-mono shrink-0 whitespace-nowrap">rwxrwxrwx</span>
           </label>
           <input
             v-model="symbolicInput"
@@ -532,7 +532,7 @@ function formatPermSummary(p: Triplet, isDirectory: boolean): string {
         </div>
 
         <!-- 文件类型 (常规文件 vs 目录) -->
-        <div class="flex flex-col gap-1.5">
+        <div class="flex flex-col gap-1.5 min-w-0">
           <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
             {{ t('tools.chmodCalculator.fileType') }}
           </label>
@@ -540,29 +540,29 @@ function formatPermSummary(p: Triplet, isDirectory: boolean): string {
             <button
               type="button"
               @click="isDir = false"
-              class="flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer"
+              class="flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer whitespace-nowrap"
               :class="!isDir ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 font-semibold' : 'bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400'"
             >
-              <File class="w-3.5 h-3.5" />
+              <File class="w-3.5 h-3.5 shrink-0" />
               <span>{{ t('tools.chmodCalculator.regularFile') }}</span>
             </button>
             <button
               type="button"
               @click="isDir = true"
-              class="flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer"
+              class="flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer whitespace-nowrap"
               :class="isDir ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 font-semibold' : 'bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400'"
             >
-              <Folder class="w-3.5 h-3.5" />
+              <Folder class="w-3.5 h-3.5 shrink-0" />
               <span>{{ t('tools.chmodCalculator.directory') }}</span>
             </button>
           </div>
         </div>
 
         <!-- 目标路径与 -R 递归 -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between">
-            <span>{{ t('tools.chmodCalculator.targetPath') }}</span>
-            <label class="inline-flex items-center gap-1 text-[11px] font-normal cursor-pointer select-none">
+        <div class="flex flex-col gap-1.5 min-w-0">
+          <label class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 flex items-center justify-between gap-2">
+            <span class="truncate">{{ t('tools.chmodCalculator.targetPath') }}</span>
+            <label class="inline-flex items-center gap-1 text-[11px] font-normal cursor-pointer select-none shrink-0 whitespace-nowrap">
               <input
                 type="checkbox"
                 v-model="isRecursive"

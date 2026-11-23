@@ -87,17 +87,17 @@ defineExpose({
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 h-full min-h-[260px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
+  <div class="flex flex-col flex-1 h-full min-h-[260px] min-w-0 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
     <!-- 头部工具条 -->
-    <div class="flex items-center justify-between px-3.5 py-2 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 text-xs shrink-0 select-none">
-      <div class="flex items-center gap-2 font-medium text-zinc-700 dark:text-zinc-200">
-        <span>{{ label }}</span>
-        <span v-if="showStats" class="text-zinc-400 dark:text-zinc-500 font-mono text-[11px]">
+    <div class="flex flex-wrap items-center justify-between gap-2 px-3.5 py-2 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 text-xs shrink-0 select-none">
+      <div class="flex items-center gap-2 font-medium text-zinc-700 dark:text-zinc-200 min-w-0">
+        <span class="truncate">{{ label }}</span>
+        <span v-if="showStats" class="text-zinc-400 dark:text-zinc-500 font-mono text-[11px] shrink-0">
           ({{ stats.lines }} {{ t('common.lines') }}, {{ stats.chars }} {{ t('common.chars') }})
         </span>
       </div>
 
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 shrink-0 ml-auto">
         <slot name="actions" />
 
         <!-- 换行切换按钮 -->

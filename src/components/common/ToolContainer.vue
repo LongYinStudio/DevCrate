@@ -95,7 +95,7 @@ function backToAll() {
         class="mx-auto flex flex-col gap-3.5 w-full"
         :class="[
           wide ? 'max-w-[1750px]' : 'max-w-6xl',
-          fullHeight ? 'flex-1 min-h-0' : ''
+          fullHeight ? 'lg:flex-1 lg:min-h-0' : ''
         ]"
       >
         <slot />

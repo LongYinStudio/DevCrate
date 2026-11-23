@@ -263,10 +263,10 @@ function getCategoryBadgeColor(cat: string) {
         @dragleave.prevent="isDragging = false"
         @drop.prevent="handleDrop"
       >
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-2">
-            <Sparkles class="w-4 h-4 text-amber-500" />
-            <h2 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
+        <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 min-w-0">
+            <Sparkles class="w-4 h-4 text-amber-500 shrink-0" />
+            <h2 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider whitespace-nowrap">
               {{ t('tools.mimeTypes.detectiveTitle') }}
             </h2>
             <span class="text-[11px] text-zinc-400 font-normal">
@@ -274,16 +274,16 @@ function getCategoryBadgeColor(cat: string) {
             </span>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex flex-wrap items-center gap-2">
             <!-- 示例快捷点击 -->
-            <div class="hidden sm:flex items-center gap-1.5 text-xs text-zinc-400">
-              <span>{{ t('tools.mimeTypes.samples') }}:</span>
+            <div class="hidden sm:flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
+              <span class="whitespace-nowrap">{{ t('tools.mimeTypes.samples') }}:</span>
               <button
                 v-for="sample in ['app.wasm', 'banner.webp', 'data.json', 'video.m3u8', 'report.docx']"
                 :key="sample"
                 type="button"
                 @click="selectSample(sample)"
-                class="px-1.5 py-0.5 rounded bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 font-mono text-[11px] transition-colors cursor-pointer"
+                class="px-1.5 py-0.5 rounded bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 font-mono text-[11px] whitespace-nowrap transition-colors cursor-pointer"
               >
                 {{ sample }}
               </button>
@@ -292,9 +292,9 @@ function getCategoryBadgeColor(cat: string) {
             <button
               type="button"
               @click="triggerFileSelect"
-              class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer"
+              class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <Upload class="w-3.5 h-3.5" />
+              <Upload class="w-3.5 h-3.5 shrink-0" />
               <span>{{ t('tools.mimeTypes.selectFile') }}</span>
             </button>
           </div>
@@ -422,7 +422,7 @@ function getCategoryBadgeColor(cat: string) {
           </div>
 
           <!-- 搜索命中计数 -->
-          <div class="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+          <div class="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 shrink-0 whitespace-nowrap">
             <span>{{ locale.startsWith('zh') ? `共收录 ${mimeItems.length} 个条目` : `${mimeItems.length} MIME items` }}</span>
             <span class="text-zinc-300 dark:text-zinc-700">|</span>
             <span class="font-medium text-blue-600 dark:text-blue-400">
@@ -432,7 +432,7 @@ function getCategoryBadgeColor(cat: string) {
         </div>
 
         <!-- 分类切换 Pills -->
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+        <div class="flex items-center flex-wrap gap-1.5 pb-1">
           <button
             v-for="cat in categoryTabs"
             :key="cat.id"

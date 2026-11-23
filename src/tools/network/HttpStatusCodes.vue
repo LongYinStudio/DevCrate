@@ -308,9 +308,9 @@ const httpLineSnippet = computed(() => {
       </div>
 
       <!-- 主双栏内容区：左侧列表 + 右侧详情透视 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 flex-1 min-h-0">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 lg:flex-1 lg:min-h-0">
         <!-- 左侧状态码列表 -->
-        <div class="lg:col-span-5 flex flex-col min-h-[260px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
+        <div class="lg:col-span-5 flex flex-col min-h-[260px] max-h-[340px] lg:max-h-none rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
           <div class="px-3.5 py-2 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/70 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 shrink-0 select-none">
             <span>{{ t('tools.httpStatusCodes.listCount', { count: filteredList.length }) }}</span>
             <span v-if="searchQuery" class="text-[11px] font-mono text-blue-600 dark:text-blue-400 truncate max-w-[180px]">

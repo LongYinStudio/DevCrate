@@ -439,10 +439,10 @@ onUnmounted(() => {
       <!-- ==================== 模式一：图片 → Base64 ==================== -->
       <div
         v-if="mode === 'to-base64'"
-        class="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0"
+        class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:flex-1 lg:min-h-0"
       >
         <!-- 左侧：上传区 / 预览与元信息 / 压缩重编码 -->
-        <div class="lg:col-span-5 flex flex-col gap-3.5 min-h-0 overflow-y-auto pr-0.5">
+        <div class="lg:col-span-5 flex flex-col gap-3.5 lg:min-h-0 lg:overflow-y-auto pr-0.5">
           <!-- 上传错误提示 -->
           <div
             v-if="uploadError"
@@ -625,7 +625,7 @@ onUnmounted(() => {
         </div>
 
         <!-- 右侧：Base64 / 代码片段输出框 -->
-        <div class="lg:col-span-7 flex flex-col gap-3 min-h-[260px] h-full">
+        <div class="lg:col-span-7 flex flex-col gap-3 min-h-[260px] lg:h-full">
           <!-- 输出格式选择栏 -->
           <div class="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="flex items-center gap-1.5 flex-wrap">
@@ -682,10 +682,10 @@ onUnmounted(() => {
       <!-- ==================== 模式二：Base64 → 图片 ==================== -->
       <div
         v-else
-        class="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0"
+        class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:flex-1 lg:min-h-0"
       >
         <!-- 左侧：Base64 / Data URI 输入框 -->
-        <div class="lg:col-span-6 flex flex-col gap-3 min-h-[260px] h-full">
+        <div class="lg:col-span-6 flex flex-col gap-3 min-h-[260px] lg:h-full">
           <div class="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="flex items-center gap-2">
               <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">
@@ -720,7 +720,7 @@ onUnmounted(() => {
         </div>
 
         <!-- 右侧：图像还原预览与下载 -->
-        <div class="lg:col-span-6 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden min-h-[260px] h-full">
+        <div class="lg:col-span-6 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden min-h-[260px] lg:h-full">
           <!-- 预览头部栏 -->
           <div class="px-3.5 py-2 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 flex flex-wrap items-center justify-between gap-2 text-xs shrink-0">
             <span class="font-medium text-zinc-700 dark:text-zinc-200">

@@ -478,7 +478,7 @@ const outputStats = computed(() => {
 
     <!-- 主编辑区分栏（填满剩余纵向空间） -->
     <div
-      class="flex-1 min-h-0 w-full"
+      class="lg:flex-1 lg:min-h-0 w-full"
       :class="[
         layoutMode === 'split' ? 'grid grid-cols-1 lg:grid-cols-2 gap-3.5' : '',
         layoutMode === 'stack' ? 'flex flex-col gap-3.5' : '',
@@ -499,7 +499,7 @@ const outputStats = computed(() => {
       />
 
       <!-- 右侧：格式化结果与视图模式切换 -->
-      <div class="flex-1 flex flex-col min-h-0 h-full">
+      <div class="lg:flex-1 flex flex-col lg:min-h-0 lg:h-full">
         <!-- 代码模式视图 -->
         <TextEditorBox
           v-if="viewMode === 'code'"

@@ -1012,9 +1012,9 @@ onUnmounted(() => {
       </div>
 
       <!-- 主左右工作区 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:flex-1 lg:min-h-0">
         <!-- 左侧：协议配置与消息发送器 -->
-        <div class="lg:col-span-5 flex flex-col gap-3.5 min-h-0">
+        <div class="lg:col-span-5 flex flex-col gap-3.5 lg:min-h-0">
           <!-- WebSocket 模式左侧 -->
           <template v-if="protocol === 'ws'">
             <!-- 子协议与心跳保活面板 -->
@@ -1256,7 +1256,7 @@ onUnmounted(() => {
         </div>
 
         <!-- 右侧：通信日志与流合并预览 -->
-        <div class="lg:col-span-7 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden min-h-[280px] h-full">
+        <div class="lg:col-span-7 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden min-h-[280px] lg:h-full">
           <!-- 日志头部栏 -->
           <div class="px-3.5 py-2 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="flex items-center gap-2">

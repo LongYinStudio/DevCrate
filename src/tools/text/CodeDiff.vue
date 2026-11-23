@@ -429,7 +429,7 @@ watch([originalText, modifiedText, collapseUnchanged], () => {
       </div>
 
       <!-- 双栏源码输入区（可收起专注看 Diff） -->
-      <div v-if="paneLayout === 'both'" class="grid grid-cols-1 lg:grid-cols-2 gap-3 h-[220px] shrink-0">
+      <div v-if="paneLayout === 'both'" class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:h-[260px] shrink-0">
         <!-- 原始代码 -->
         <div
           class="relative flex flex-col h-full min-h-0"

@@ -211,9 +211,9 @@ function getCategoryLabel(category: GitignoreCategory): string {
     :wide="true"
     :fullHeight="true"
   >
-    <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 h-full overflow-hidden">
+    <div class="lg:flex-1 lg:min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:h-full lg:overflow-hidden">
       <!-- 左侧：选择模板与配置区域 -->
-      <div class="lg:col-span-5 xl:col-span-5 flex flex-col min-h-0 gap-3.5 overflow-hidden">
+      <div class="lg:col-span-5 xl:col-span-5 flex flex-col lg:min-h-0 gap-3.5 lg:overflow-hidden">
         <!-- 1. 快捷技术栈组合 -->
         <div class="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs shrink-0">
           <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-800 dark:text-zinc-200 mb-2.5">
@@ -331,7 +331,7 @@ function getCategoryLabel(category: GitignoreCategory): string {
         </div>
 
         <!-- 4. 模板库列表（可滚动卡片区） -->
-        <div class="flex-1 min-h-0 overflow-y-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs p-2.5 space-y-2">
+        <div class="flex-1 min-h-[220px] max-h-[320px] lg:max-h-none lg:min-h-0 overflow-y-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs p-2.5 space-y-2">
           <div
             v-if="filteredTemplates.length === 0"
             class="h-full flex flex-col items-center justify-center p-6 text-center text-zinc-400 dark:text-zinc-500"
@@ -442,7 +442,7 @@ function getCategoryLabel(category: GitignoreCategory): string {
       </div>
 
       <!-- 右侧：输出与编辑区域 -->
-      <div class="lg:col-span-7 xl:col-span-7 flex flex-col min-h-0 h-full">
+      <div class="lg:col-span-7 xl:col-span-7 flex flex-col lg:min-h-0 lg:h-full">
         <TextEditorBox
           v-model="outputContent"
           :label="t('tools.gitignoreGenerator.editorTitle')"

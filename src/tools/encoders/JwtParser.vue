@@ -478,8 +478,8 @@ watch([cleanToken, secretKey, secretIsBase64], () => {
       </div>
     </div>
 
-    <!-- 解码结果主编辑区（撑满纵向空间） -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5 flex-1 min-h-[300px]">
+    <!-- 解码结果主编辑区（桌面端撑满纵向空间，窄屏自然堆叠避免重叠） -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5 shrink-0 lg:shrink lg:flex-1 lg:min-h-[300px]">
       <!-- Header -->
       <TextEditorBox
         :modelValue="headerFormatted"

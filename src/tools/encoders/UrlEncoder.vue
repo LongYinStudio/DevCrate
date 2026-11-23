@@ -138,7 +138,7 @@ watch([inputText, mode, encodeType], () => {
     </div>
 
     <!-- 左右分栏 -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 shrink-0 lg:shrink lg:flex-1 lg:min-h-0">
       <TextEditorBox
         v-model="inputText"
         :label="t('common.input')"

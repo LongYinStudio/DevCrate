@@ -462,7 +462,7 @@ const currentCodeSnippet = computed(() => {
       </div>
 
       <!-- 中部主工作区：Tab 切换与核心内容 -->
-      <div class="flex-1 flex flex-col min-h-0 overflow-hidden">
+      <div class="lg:flex-1 flex flex-col lg:min-h-0 lg:overflow-hidden">
         <!-- Tab 栏 -->
         <div class="px-5 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex items-center justify-between shrink-0">
           <div class="flex items-center gap-2 -mb-px text-xs font-semibold">
@@ -522,9 +522,9 @@ const currentCodeSnippet = computed(() => {
         <!-- ============================================== -->
         <!-- TAB 1: 实时匹配视图 (Matches View)               -->
         <!-- ============================================== -->
-        <div v-if="activeTab === 'matches'" class="flex-1 flex flex-col md:flex-row min-h-0 overflow-hidden divide-y md:divide-y-0 md:divide-x divide-zinc-200 dark:divide-zinc-800">
+        <div v-if="activeTab === 'matches'" class="lg:flex-1 flex flex-col lg:flex-row lg:min-h-0 lg:overflow-hidden divide-y lg:divide-y-0 lg:divide-x divide-zinc-200 dark:divide-zinc-800">
           <!-- 左栏：测试文本输入与高亮可视化预览 -->
-          <div class="flex-1 flex flex-col min-h-0 overflow-hidden p-4 gap-3 bg-zinc-50/30 dark:bg-zinc-950/20">
+          <div class="lg:flex-1 flex flex-col lg:min-h-0 lg:overflow-hidden p-4 gap-3 bg-zinc-50/30 dark:bg-zinc-950/20">
             <TextEditorBox
               v-model="testText"
               :label="isZh ? '测试字符串 (Test String)' : 'Test String'"
@@ -557,7 +557,7 @@ const currentCodeSnippet = computed(() => {
           </div>
 
           <!-- 右栏：匹配详细列表与捕获组拆解 (Matches Breakdown) -->
-          <div class="w-full md:w-[380px] lg:w-[440px] flex flex-col min-h-0 bg-white dark:bg-zinc-900 overflow-hidden shrink-0">
+          <div class="w-full lg:w-[400px] xl:w-[440px] flex flex-col lg:min-h-0 bg-white dark:bg-zinc-900 lg:overflow-hidden shrink-0">
             <div class="p-3.5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs shrink-0 bg-zinc-50/50 dark:bg-zinc-900/50">
               <span class="font-bold text-zinc-900 dark:text-zinc-100">
                 {{ t('tools.regexTester.matchesCount', { count: matchResults.count }) }}
@@ -652,7 +652,7 @@ const currentCodeSnippet = computed(() => {
           </div>
 
           <!-- 替换前与替换后双栏对比 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-[300px]">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 shrink-0 lg:shrink lg:flex-1 lg:min-h-[300px]">
             <!-- 左：源文本 -->
             <div class="flex flex-col gap-1.5">
               <span class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{{ isZh ? '原始测试文本' : 'Original Text' }}</span>

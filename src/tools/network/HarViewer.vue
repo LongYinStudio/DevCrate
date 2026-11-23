@@ -449,7 +449,7 @@ const imagePreviewSrc = computed(() => {
     </div>
 
     <!-- 已加载 HAR 查看器主工作区 -->
-    <div v-else class="flex-1 flex flex-col min-h-0 h-full overflow-hidden">
+    <div v-else class="xl:flex-1 flex flex-col xl:min-h-0 xl:h-full xl:overflow-hidden">
       <!-- 顶部信息栏与 KPI 指标卡片 -->
       <div class="p-3.5 sm:p-4 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/90 shrink-0 flex flex-col gap-3">
         <!-- 文件信息 & 重置操作 -->
@@ -587,20 +587,20 @@ const imagePreviewSrc = computed(() => {
         </div>
       </div>
 
-      <!-- 主分栏工作区：左侧请求列表 + 右侧详情抽屉 -->
-      <div class="flex-1 flex min-h-0 overflow-hidden">
+      <!-- 主分栏工作区：窄屏上下堆叠避免表格挤压，宽屏左右分栏 -->
+      <div class="flex-1 flex flex-col xl:flex-row min-h-0 xl:overflow-hidden">
         <!-- 左侧表格列表 -->
         <div
-          class="flex-1 flex flex-col min-w-0 h-full border-r border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden"
-          :class="{ 'hidden md:flex': selectedEntry }"
+          class="flex-1 flex flex-col min-w-0 border-b xl:border-b-0 xl:border-r border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden"
+          :class="selectedEntry ? 'h-[260px] shrink-0 xl:shrink xl:h-full' : 'min-h-[320px] xl:h-full'"
         >
           <!-- 表头 -->
-          <div class="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-100/70 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800 text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 select-none shrink-0">
-            <span class="col-span-5 sm:col-span-4">{{ t('tools.harViewer.table.name') }}</span>
+          <div class="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-100/70 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800 text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 select-none shrink-0 whitespace-nowrap">
+            <span class="col-span-5 sm:col-span-4 truncate">{{ t('tools.harViewer.table.name') }}</span>
             <span class="col-span-2 sm:col-span-2 text-center">{{ t('tools.harViewer.table.status') }}</span>
             <span class="col-span-2 sm:col-span-1 text-center hidden sm:block">{{ t('tools.harViewer.table.type') }}</span>
             <span class="col-span-2 sm:col-span-2 text-right">{{ t('tools.harViewer.table.size') }}</span>
-            <span class="col-span-3 sm:col-span-3 text-right pr-2">{{ t('tools.harViewer.table.time') }} / {{ t('tools.harViewer.table.waterfall') }}</span>
+            <span class="col-span-3 sm:col-span-3 text-right pr-2 truncate">{{ t('tools.harViewer.table.time') }} / {{ t('tools.harViewer.table.waterfall') }}</span>
           </div>
 
           <!-- 列表内容区 -->
@@ -642,7 +642,7 @@ const imagePreviewSrc = computed(() => {
               </div>
 
               <!-- 状态码 -->
-              <div class="col-span-2 sm:col-span-2 flex items-center justify-center">
+              <div class="col-span-2 sm:col-span-2 flex items-center justify-center whitespace-nowrap">
                 <span
                   class="px-1.5 py-0.5 rounded text-[11px] font-mono border"
                   :class="[getStatusStyle(entry.response.status).badgeBg, getStatusStyle(entry.response.status).badgeText]"
@@ -652,20 +652,20 @@ const imagePreviewSrc = computed(() => {
               </div>
 
               <!-- 资源类型 -->
-              <div class="col-span-2 sm:col-span-1 hidden sm:flex items-center justify-center">
+              <div class="col-span-2 sm:col-span-1 hidden sm:flex items-center justify-center whitespace-nowrap">
                 <span class="text-[11px] uppercase font-mono text-zinc-500 dark:text-zinc-400">
                   {{ entry._resourceType }}
                 </span>
               </div>
 
               <!-- 体积 -->
-              <div class="col-span-2 sm:col-span-2 text-right font-mono text-[11px] text-zinc-600 dark:text-zinc-400">
+              <div class="col-span-2 sm:col-span-2 text-right font-mono text-[11px] text-zinc-600 dark:text-zinc-400 whitespace-nowrap">
                 {{ formatBytes(entry.response.bodySize > 0 ? entry.response.bodySize : entry.response.content.size) }}
               </div>
 
               <!-- 耗时与迷你瀑布流条 -->
               <div class="col-span-3 sm:col-span-3 flex flex-col items-end pr-2 gap-1">
-                <span class="font-mono text-[11px] text-zinc-600 dark:text-zinc-400">
+                <span class="font-mono text-[11px] text-zinc-600 dark:text-zinc-400 whitespace-nowrap">
                   {{ formatDuration(entry.time) }}
                 </span>
                 <!-- 迷你瀑布条 (横条) -->
@@ -683,7 +683,7 @@ const imagePreviewSrc = computed(() => {
         <!-- 右侧详情抽屉 (Master-Detail Pane) -->
         <div
           v-if="selectedEntry"
-          class="flex-1 md:w-[500px] lg:w-[620px] md:flex-none flex flex-col min-w-0 h-full bg-white dark:bg-zinc-900 overflow-hidden"
+          class="flex-1 xl:w-[540px] 2xl:w-[620px] xl:flex-none flex flex-col min-w-0 min-h-[380px] xl:min-h-0 xl:h-full bg-white dark:bg-zinc-900 xl:overflow-hidden"
         >
           <!-- 详情顶栏 -->
           <div class="p-3.5 border-b border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-between gap-2 shrink-0 bg-zinc-50/50 dark:bg-zinc-900/60">
@@ -742,7 +742,7 @@ const imagePreviewSrc = computed(() => {
           </div>
 
           <!-- 详情 Tab 切换条 -->
-          <div class="flex items-center px-3.5 border-b border-zinc-200/80 dark:border-zinc-800/80 text-xs shrink-0 gap-1 bg-white dark:bg-zinc-900">
+          <div class="flex items-center px-3.5 border-b border-zinc-200/80 dark:border-zinc-800/80 text-xs shrink-0 gap-1 bg-white dark:bg-zinc-900 overflow-x-auto scrollbar-none whitespace-nowrap">
             <button
               v-for="tab in [
                 { id: 'headers', label: t('tools.harViewer.details.headers') },

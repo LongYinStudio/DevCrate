@@ -340,7 +340,7 @@ watch(encoding, () => {
       </div>
 
       <!-- 双向编辑主工作区 -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5 flex-1 min-h-[240px]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5 shrink-0 lg:shrink lg:flex-1 lg:min-h-[240px]">
         <!-- 文本输入框 -->
         <TextEditorBox
           :modelValue="textValue"

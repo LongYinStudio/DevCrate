@@ -507,12 +507,12 @@ watch(
 
     <!-- 主双栏工作区 -->
     <div
-      class="flex-1 min-h-0 w-full"
+      class="lg:flex-1 lg:min-h-0 w-full"
       :class="layoutMode === 'split' ? 'grid grid-cols-1 lg:grid-cols-2 gap-3.5' : 'flex flex-col gap-3.5'"
     >
       <!-- 左侧：输入区（支持文件拖拽导入） -->
       <div
-        class="relative flex-1 flex flex-col min-h-[240px]"
+        class="relative lg:flex-1 flex flex-col min-h-[240px]"
         @dragover.prevent="isDragging = true"
         @dragleave.prevent="isDragging = false"
         @drop.prevent="onDropFile"
@@ -561,7 +561,7 @@ watch(
       </div>
 
       <!-- 右侧：输出区（支持代码与树形视图切换） -->
-      <div class="flex-1 flex flex-col min-h-[240px]">
+      <div class="lg:flex-1 flex flex-col min-h-[240px]">
         <TextEditorBox
           v-if="viewMode === 'code'"
           :modelValue="convertResult.output"

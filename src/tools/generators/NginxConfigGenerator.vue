@@ -337,7 +337,7 @@ function handleResetPreset() {
       </div>
     </template>
 
-    <div class="flex-1 flex flex-col min-h-0 gap-3 overflow-hidden">
+    <div class="lg:flex-1 flex flex-col lg:min-h-0 gap-3 lg:overflow-hidden">
       <!-- 场景预设栏 -->
       <div class="flex flex-wrap items-center gap-1.5 shrink-0">
         <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mr-1">
@@ -369,9 +369,9 @@ function handleResetPreset() {
       </div>
 
       <!-- 主工作区：左侧可视化树/全量指令库 + 右侧实时配置输出与诊断 -->
-      <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 overflow-hidden">
+      <div class="lg:flex-1 lg:min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:overflow-hidden">
         <!-- 左侧面板（7 列） -->
-        <div class="lg:col-span-7 flex flex-col min-h-0 gap-3 overflow-hidden">
+        <div class="lg:col-span-7 flex flex-col lg:min-h-0 gap-3 lg:overflow-hidden">
           <!-- 视图标签切换 + 目标块提示 -->
           <div class="flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="inline-flex p-1 rounded-xl bg-zinc-200/70 dark:bg-zinc-800/80">

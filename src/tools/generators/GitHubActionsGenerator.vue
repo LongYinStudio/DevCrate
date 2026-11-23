@@ -429,9 +429,9 @@ function confirmImportYaml() {
       </div>
 
       <!-- 主工作区：左侧可视化编排 + 右侧实时 YAML 与检查 -->
-      <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 flex-1 min-h-0">
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 xl:flex-1 xl:min-h-0">
         <!-- 左侧可视化构建器 -->
-        <div class="xl:col-span-7 flex flex-col min-h-0 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
+        <div class="xl:col-span-7 flex flex-col xl:min-h-0 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs overflow-hidden">
           <!-- 顶部 Tabs -->
           <div class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/70 shrink-0 select-none gap-2 flex-wrap">
             <div class="inline-flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-0.5 border border-zinc-200/80 dark:border-zinc-700/80">

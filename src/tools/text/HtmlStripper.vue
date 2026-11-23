@@ -336,7 +336,7 @@ function loadSample() {
     :wide="true"
     :fullHeight="true"
   >
-    <div class="flex-1 flex flex-col min-h-0 h-full overflow-hidden bg-white dark:bg-zinc-900">
+    <div class="lg:flex-1 flex flex-col lg:min-h-0 lg:h-full lg:overflow-hidden bg-white dark:bg-zinc-900">
       <!-- 顶部控制条：预设切换与快捷操作 -->
       <div class="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 shrink-0 flex flex-wrap items-center justify-between gap-3">
         <!-- 预设模式 Pills -->
@@ -470,7 +470,7 @@ function loadSample() {
         </div>
 
         <!-- 第二行：链接、图片、空白模式分段选择 & 白名单输入 -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs">
           <!-- 超链接处理 -->
           <div class="flex flex-col gap-1.5">
             <span class="font-semibold text-zinc-600 dark:text-zinc-400">{{ t('tools.htmlStripper.linkHandling') }}</span>
@@ -562,7 +562,7 @@ function loadSample() {
       </div>
 
       <!-- 核心编辑区：左右分栏对齐 -->
-      <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-3 p-4 min-h-0 overflow-hidden bg-zinc-50/20 dark:bg-zinc-950/20">
+      <div class="lg:flex-1 grid grid-cols-1 lg:grid-cols-2 gap-3 p-4 lg:min-h-0 lg:overflow-hidden bg-zinc-50/20 dark:bg-zinc-950/20">
         <!-- 左侧：HTML 原文输入框 -->
         <TextEditorBox
           v-model="inputHtml"
