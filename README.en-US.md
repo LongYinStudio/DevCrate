@@ -27,6 +27,7 @@
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing
 
 ### Converters
+- **Dev Unit & Bandwidth ETA Calculator**: Convert IEC (`GiB`) vs SI (`GB`) storage sizes, estimate file transfer ETA with protocol overhead across link speeds, convert CSS `px`/`rem`/`em`/`vw`/`vh` & batch `px → rem`, and compute sub-millisecond time & `Hz`/`FPS` frame budgets
 - **Font Subsetter & Trimmer**: Locally subset TTF / OTF / WOFF / WOFF2 / TTC fonts via HarfBuzz WASM with text & source file character extraction, Unicode range presets, missing glyph diagnostics, interactive glyph picker, variable font axis instancing, OpenType layout/hinting optimization, live before/after rendering comparison, and `@font-face` / `unicode-range` / Base64 export
 - **Config Format Converter**: Bidirectional conversion across JSON / JSONC, YAML, TOML, XML, INI, .env, and .properties with auto-detection, key flattening/unflattening, type inference, key sorting, error line locator, file import/export, and interactive tree preview
 - **Image ↔ Base64 Converter**: Bidirectional image and Base64 / Data URI conversion with drag-and-drop, clipboard paste, WebP/JPEG re-encoding, HTML/CSS/Markdown snippets, and magic-byte auto-detection

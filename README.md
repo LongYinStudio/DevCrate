@@ -27,6 +27,7 @@
 - **URL 编解码**：支持完整 URI 与组件参数模式，Query 参数实时解析
 
 ### 转换器
+- **程序员单位与带宽耗时计算器**：支持 IEC (`GiB`)/SI (`GB`) 存储换算与差额对照、网络带宽矩阵与含协议损耗的文件传输耗时预估、CSS `px`/`rem`/`em`/`vw`/`vh` 互转及批量 `px → rem`、纳秒至周时间精度与 `Hz`/`FPS` 帧预算换算
 - **字体子集化 / 字体裁剪**：基于 HarfBuzz WASM 本地裁剪 TTF / OTF / WOFF / WOFF2 / TTC 字体，支持文本与源码字符提取、Unicode 范围与高频预设、缺失字形检测、字形表点选、可变字体轴固化/缩窄、OpenType 特性与 Hinting 优化、裁剪前后实时渲染对比及 `@font-face` / `unicode-range` / Base64 导出
 - **配置文件格式转换器**：支持 JSON / JSONC、YAML、TOML、XML、INI、.env 与 .properties 之间的双向互转，具备输入格式自动识别、嵌套键展开/扁平化、类型推断、键名排序、语法错误行定位、文件导入导出及交互式树形结构预览
 - **图片 ↔ Base64 转换器**：图片与 Base64 / Data URI 双向无损互转，支持拖拽上传、剪贴板直接贴图、WebP/JPEG 重编码压缩、HTML/CSS/Markdown 片段生成及魔数自动识别还原下载

@@ -36,7 +36,8 @@ import {
   Container,
   SquareTerminal,
   Cog,
-  Tags
+  Tags,
+  Gauge
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -53,6 +54,7 @@ import TextBinaryConverter from './converters/TextBinaryConverter.vue';
 import ImageBase64Converter from './converters/ImageBase64Converter.vue';
 import ConfigFormatConverter from './converters/ConfigFormatConverter.vue';
 import FontSubsetter from './converters/FontSubsetter.vue';
+import DevUnitConverter from './converters/DevUnitConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -373,6 +375,53 @@ export const tools: ToolItem[] = [
       '裁剪'
     ],
     component: markRaw(FontSubsetter),
+  },
+  {
+    id: 'dev-unit-converter',
+    categoryId: 'converters',
+    nameKey: 'tools.devUnitConverter.name',
+    descKey: 'tools.devUnitConverter.desc',
+    icon: markRaw(Gauge),
+    keywords: [
+      'unit',
+      'byte',
+      'bytes',
+      'bit',
+      'kb',
+      'kib',
+      'mb',
+      'mib',
+      'gb',
+      'gib',
+      'tb',
+      'tib',
+      'bandwidth',
+      'mbps',
+      'gbps',
+      'eta',
+      'transfer',
+      'css',
+      'px',
+      'rem',
+      'em',
+      'vw',
+      'vh',
+      'pt',
+      'ns',
+      'ms',
+      'fps',
+      'hz',
+      '单位',
+      '换算',
+      '存储',
+      '带宽',
+      '网速',
+      '耗时',
+      '传输时间',
+      '像素',
+      '时间'
+    ],
+    component: markRaw(DevUnitConverter),
   },
   {
     id: 'hash-generator',
