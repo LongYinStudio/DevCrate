@@ -38,6 +38,7 @@
 - **Unix 时间戳转换**：实时时钟、秒与毫秒时间戳、本地时间与 UTC/ISO 8601 双向换算
 
 ### 生成器
+- **Linux 防火墙规则生成器（`ufw` / `firewalld` / `iptables`）**：可视化配置端口放行/拦截、来源 IP/CIDR 白名单与黑名单、防爆破限速及 NAT 端口转发规则，支持三引擎命令一键切换生成、`.sh` 脚本导出、常见运维/应急回滚命令及实时 SSH 端口防断连校验与一键补全
 - **Systemd `.service` 守护进程单元生成器**：可视化生成 Linux `.service` 文件，配置 `ExecStart`、工作目录、运行用户、`Restart` 策略、环境变量、`After/Requires` 依赖、资源限制与沙箱加固，支持 System / `--user` 作用域、现有 `.service` 导入反解及配套 `systemctl` / `journalctl` 命令生成
 - **SSH Config & 端口转发生成器**：可视化编排 `~/.ssh/config` 主机配置、多账号 Git 密钥分流、`ProxyJump` 跳板机链路、`-L/-R/-D` 端口转发与 SOCKS5 隧道、连接多路复用、`Host *` 优先级校验，并同步生成配套 `ssh` / `scp` / `rsync` / `ssh-copy-id` 命令
 - **Docker Compose 生成器 & `docker run` 互转**：可视化编排 `compose.yml` 多容器栈，支持 `docker run` CLI 与 Compose 双向互转、常见数据库/中间件服务库、现有 `compose.yml` 导入解析、端口冲突/循环依赖检查及 `.env` 模板导出

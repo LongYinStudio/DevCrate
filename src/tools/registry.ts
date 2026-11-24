@@ -37,7 +37,8 @@ import {
   SquareTerminal,
   Cog,
   Tags,
-  Gauge
+  Gauge,
+  Flame
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -64,6 +65,7 @@ import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import DockerComposeGenerator from './generators/DockerComposeGenerator.vue';
 import SshConfigGenerator from './generators/SshConfigGenerator.vue';
 import SystemdServiceGenerator from './generators/SystemdServiceGenerator.vue';
+import FirewallRuleGenerator from './generators/FirewallRuleGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -623,6 +625,37 @@ export const tools: ToolItem[] = [
       '开机自启'
     ],
     component: markRaw(SystemdServiceGenerator),
+  },
+  {
+    id: 'firewall-rule-generator',
+    categoryId: 'generators',
+    nameKey: 'tools.firewallRuleGenerator.name',
+    descKey: 'tools.firewallRuleGenerator.desc',
+    icon: markRaw(Flame),
+    keywords: [
+      'firewall',
+      'ufw',
+      'firewalld',
+      'firewall-cmd',
+      'iptables',
+      'ip6tables',
+      'netfilter',
+      'port',
+      'cidr',
+      'whitelist',
+      'ratelimit',
+      'limit',
+      'nat',
+      'forward',
+      'ssh',
+      '防火墙',
+      '端口放行',
+      '白名单',
+      '限速',
+      '端口转发',
+      '安全组',
+    ],
+    component: markRaw(FirewallRuleGenerator),
   },
   {
     id: 'text-inspector',
