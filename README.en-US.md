@@ -22,6 +22,7 @@
 - **SVG Editor & Formatter**: Real-time vector canvas preview, XML beautifier & minifier, metadata sanitizer, dimension/color/transform tweaks, retina raster export, and React / Vue / Data URI code generation
 
 ### Encoders & Decoders
+- **Unicode / HTML Entity / Zero-Width Inspector**: Bidirectional conversion for JS/JSON (`\uXXXX` / `\u{XXXXX}`), Python/C (`\xHH` / `\U`), named & numeric HTML entities, CSS escapes, `U+XXXX` code points, and RFC 3492 Punycode domains, paired with inline zero-width/bidi/homoglyph detection and one-click sanitization
 - **JWT Parser**: Token breakdown, claims inspection, and local HMAC signature verification
 - **Base64 Encoder**: Full UTF-8 support and URL-Safe mode
 - **URL Encoder**: Full URI and component mode with real-time query parameter parsing

@@ -38,7 +38,8 @@ import {
   Cog,
   Tags,
   Gauge,
-  Flame
+  Flame,
+  Languages
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -47,6 +48,7 @@ import SvgEditor from './formatters/SvgEditor.vue';
 import Base64Text from './encoders/Base64Text.vue';
 import UrlEncoder from './encoders/UrlEncoder.vue';
 import JwtParser from './encoders/JwtParser.vue';
+import UnicodeEscapeEncoder from './encoders/UnicodeEscapeEncoder.vue';
 import TimestampConverter from './converters/TimestampConverter.vue';
 import MimeTypes from './converters/MimeTypes.vue';
 import ChmodCalculator from './converters/ChmodCalculator.vue';
@@ -163,6 +165,33 @@ export const tools: ToolItem[] = [
     icon: markRaw(KeyRound),
     keywords: ['jwt', 'token', 'decode', 'bearer', 'auth', 'claim', 'json web token', '解析', '令牌', '鉴权'],
     component: markRaw(JwtParser),
+  },
+  {
+    id: 'unicode-escape',
+    categoryId: 'encoders',
+    nameKey: 'tools.unicodeEscape.name',
+    descKey: 'tools.unicodeEscape.desc',
+    icon: markRaw(Languages),
+    keywords: [
+      'unicode',
+      'escape',
+      'html entity',
+      'punycode',
+      'zero width',
+      'zwsp',
+      'bom',
+      'bidi',
+      'trojan source',
+      'homoglyph',
+      'codepoint',
+      '转义',
+      '实体',
+      '零宽字符',
+      '隐形字符',
+      '码点',
+      '中文域名',
+    ],
+    component: markRaw(UnicodeEscapeEncoder),
   },
   {
     id: 'timestamp',

@@ -22,6 +22,7 @@
 - **SVG 编辑器与格式化**：实时矢量画布预览、XML 代码美化与极速压缩、设计软件垃圾元数据清理、尺寸/色彩/几何微调、位图高倍导出及 React / Vue / Data URI 多端代码生成
 
 ### 编码与解码
+- **Unicode / HTML 实体 / 转义字符与零宽字符检测**：支持 JS/JSON (`\uXXXX` / `\u{XXXXX}`)、Python/C (`\xHH` / `\U`)、HTML 命名与数字实体、CSS 转义、`U+XXXX` 码点及 RFC 3492 Punycode 域名双向互转，并内置零宽字符/双向覆写/同形字符高亮检测与一键清洗
 - **JWT 解析器**：Token 结构反解、标准声明过期分析与本地 HMAC 签名校验
 - **Base64 编解码**：支持 UTF-8 字符集与 URL-Safe 模式
 - **URL 编解码**：支持完整 URI 与组件参数模式，Query 参数实时解析
