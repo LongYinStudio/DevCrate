@@ -2,6 +2,36 @@
 
 这个文件记录项目的主要发布变更。
 
+## [0.6.0] - 2026-11-26
+
+### Added
+
+- **新增 9 款开发者与运维实用工具**：
+  - **Docker Compose 生成器 & `docker run` 互转 (`docker-compose`)**：
+    - 可视化编排 `compose.yml` 多容器栈，支持 `docker run` CLI 与 Compose 双向互转、常见数据库/中间件服务模板、现有 `compose.yml` 导入反解、端口冲突与循环依赖校验及 `.env` 模板导出。
+  - **SSH Config & 端口转发生成器 (`ssh-config`)**：
+    - 可视化配置 `~/.ssh/config` 主机块、多账号 Git 密钥分流、`ProxyJump` 跳板机链路、`-L/-R/-D` 端口转发与 SOCKS5 隧道、连接多路复用、`Host *` 优先级校验，并同步生成 `ssh` / `scp` / `rsync` / `ssh-copy-id` 配套命令。
+  - **Systemd `.service` 守护进程单元生成器 (`systemd-service`)**：
+    - 可视化生成 Linux Systemd `.service` 文件，支持 `ExecStart`、`Restart` 策略、环境变量、`After/Requires` 依赖、Cgroup 资源限制与沙箱加固、System / `--user` 作用域切换、`.service` 导入反解及 `systemctl` / `journalctl` 命令生成。
+  - **Systemd `.timer` 定时任务与 `OnCalendar` 预测器 (`systemd-timer`)**：
+    - 配套可视化编排 `.timer` 与 `Type=oneshot` `.service` 存根，支持 `OnCalendar` 语法解析、Crontab 一键转译、未来 10 次触发时间线预测、`AccuracySec` / `RandomizedDelaySec` 防雪崩抖动及 `Persistent=true` 停机补跑策略。
+  - **Linux 防火墙规则生成器 (`firewall-rule-generator`)**：
+    - 统一配置端口放行/拦截、IPv4/IPv6 CIDR 白黑名单、防爆破限速与 NAT 端口转发规则，支持 UFW / firewalld / iptables 三引擎命令实时切换、`.sh` 脚本导出及高危 SSH 断连风险实时校验与一键补全。
+  - **`.editorconfig` + Prettier 代码风格协同生成器 (`editorconfig-prettier`)**：
+    - 全局同步生成 `.editorconfig`、`.prettierrc` (JSON/YAML/MJS) 与 `.prettierignore`，支持分文件/多语言例外规则、TypeScript 格式化实时效果预览、冲突检测、现有配置导入及 `.zip` 打包导出。
+  - **Unicode / HTML 实体 / 转义字符与零宽字符检测 (`unicode-escape`)**：
+    - 支持 JS/JSON (`\uXXXX` / `\u{XXXXX}`)、Python/C (`\xHH` / `\U`)、HTML 命名与数字实体、CSS 转义、`U+XXXX` 码点及 RFC 3492 Punycode 域名双向转换，内置零宽/方向控制/同形混淆字符高亮检测与一键清洗。
+  - **程序员单位与带宽耗时计算器 (`dev-unit-converter`)**：
+    - 支持 IEC (`GiB`) 与 SI (`GB`) 存储换算及差额对比、多链路速率下含协议损耗的传输耗时 (ETA) 预估、CSS `px`/`rem`/`em`/`vw`/`vh` 互转与批量转换，以及纳秒至周的时间/帧率预算换算。
+  - **SemVer 版本范围测试器 (`semver-tester`)**：
+    - 支持测试 npm / Cargo 语义化版本范围表达式（`^` / `~` / `-` / `||`），提供批量匹配排序、预发布规则验证、双版本变更等级与升级风险分析及 Bump 递增计算。
+
+### Fixed & Improved
+
+- **最小窗口 (`800×560`) 响应式布局全面修复**：
+  - 优化 `ToolContainer` 与 `TextEditorBox` 窄屏滚动与工具栏换行策略，修复 `JwtParser`、`CodeDiff`、`HtmlStripper` 等双栏工具在窄屏纵向堆叠时向下溢出遮挡或裁切的问题。
+  - 优化 `MimeTypes`、`ChmodCalculator`、`HarViewer` 与 `RegexTester` 在小窗口下的分栏断点、卡片排列与防竖排折行表现。
+
 ## [0.5.0] - 2026-11-18
 
 ### Added
