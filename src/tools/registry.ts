@@ -39,7 +39,8 @@ import {
   Tags,
   Gauge,
   Flame,
-  Languages
+  Languages,
+  Timer
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -67,6 +68,7 @@ import GitHubActionsGenerator from './generators/GitHubActionsGenerator.vue';
 import DockerComposeGenerator from './generators/DockerComposeGenerator.vue';
 import SshConfigGenerator from './generators/SshConfigGenerator.vue';
 import SystemdServiceGenerator from './generators/SystemdServiceGenerator.vue';
+import SystemdTimerGenerator from './generators/SystemdTimerGenerator.vue';
 import FirewallRuleGenerator from './generators/FirewallRuleGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
@@ -654,6 +656,31 @@ export const tools: ToolItem[] = [
       '开机自启'
     ],
     component: markRaw(SystemdServiceGenerator),
+  },
+  {
+    id: 'systemd-timer',
+    categoryId: 'generators',
+    nameKey: 'tools.systemdTimer.name',
+    descKey: 'tools.systemdTimer.desc',
+    icon: markRaw(Timer),
+    keywords: [
+      'systemd',
+      'timer',
+      '.timer',
+      'oncalendar',
+      'cron',
+      'schedule',
+      'onbootsec',
+      'persistent',
+      'randomizeddelaysec',
+      'list-timers',
+      'systemd-analyze',
+      '定时器',
+      '定时任务',
+      '日历表达式',
+      '触发预测',
+    ],
+    component: markRaw(SystemdTimerGenerator),
   },
   {
     id: 'firewall-rule-generator',
