@@ -39,6 +39,7 @@
 - **Unix Timestamp**: Real-time clock, seconds/milliseconds to Local/UTC/ISO 8601 conversion
 
 ### Generators
+- **`.editorconfig` + Prettier Style Co-Generator**: Co-generate synced `.editorconfig`, `.prettierrc` (JSON/YAML/MJS), and `.prettierignore` with shared indent/EOL sync, per-file glob overrides, live formatted TypeScript preview, Markdown/Makefile conflict diagnostics, config import, and `.zip` bundle export
 - **Linux Firewall Rule Generator (`ufw` / `firewalld` / `iptables`)**: Visual builder for port allow/deny rules, IPv4/IPv6 CIDR allowlists/blocklists, rate-limiting protection, and NAT port forwarding with unified multi-engine command generation, `.sh` export, ops/rollback snippets, and live SSH lockout prevention guard
 - **Systemd `.timer` & `OnCalendar` Predictor**: Visual Linux `.timer` & companion `.service` builder featuring `OnCalendar` syntax parsing, Crontab conversion, next-10-runs trigger forecast timeline, `AccuracySec`/`RandomizedDelaySec` jitter options, `.timer` import, and `systemctl list-timers` / `systemd-analyze calendar` commands
 - **Systemd `.service` Unit Generator**: Visual Linux systemd `.service` builder for `ExecStart`, working directory, run user, `Restart` policies, environment variables, `After/Requires` dependencies, cgroup resource limits & sandboxing, supporting System / `--user` scopes, `.service` import, and `systemctl` / `journalctl` command generation

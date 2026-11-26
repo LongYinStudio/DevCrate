@@ -40,7 +40,8 @@ import {
   Gauge,
   Flame,
   Languages,
-  Timer
+  Timer,
+  SlidersHorizontal
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -70,6 +71,7 @@ import SshConfigGenerator from './generators/SshConfigGenerator.vue';
 import SystemdServiceGenerator from './generators/SystemdServiceGenerator.vue';
 import SystemdTimerGenerator from './generators/SystemdTimerGenerator.vue';
 import FirewallRuleGenerator from './generators/FirewallRuleGenerator.vue';
+import EditorConfigPrettierGenerator from './generators/EditorConfigPrettierGenerator.vue';
 import TextInspector from './text/TextInspector.vue';
 import RegexTester from './text/RegexTester.vue';
 import HtmlStripper from './text/HtmlStripper.vue';
@@ -712,6 +714,31 @@ export const tools: ToolItem[] = [
       '安全组',
     ],
     component: markRaw(FirewallRuleGenerator),
+  },
+  {
+    id: 'editorconfig-prettier',
+    categoryId: 'generators',
+    nameKey: 'tools.editorConfigPrettier.name',
+    descKey: 'tools.editorConfigPrettier.desc',
+    icon: markRaw(SlidersHorizontal),
+    keywords: [
+      'editorconfig',
+      'prettier',
+      '.editorconfig',
+      '.prettierrc',
+      '.prettierignore',
+      'code style',
+      'format',
+      'indent',
+      'tabwidth',
+      'lf',
+      'crlf',
+      '代码风格',
+      '格式化',
+      '缩进',
+      '换行符',
+    ],
+    component: markRaw(EditorConfigPrettierGenerator),
   },
   {
     id: 'text-inspector',

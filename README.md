@@ -39,6 +39,7 @@
 - **Unix 时间戳转换**：实时时钟、秒与毫秒时间戳、本地时间与 UTC/ISO 8601 双向换算
 
 ### 生成器
+- **`.editorconfig` + Prettier 代码风格协同生成器**：同步生成规范的 `.editorconfig`、`.prettierrc`（JSON/YAML/MJS）与 `.prettierignore`，支持缩进与换行符全局协同、分语言/文件例外规则、Live 格式化效果预览、Markdown/Makefile 冲突检测及一键打包 `.zip` 导出
 - **Linux 防火墙规则生成器（`ufw` / `firewalld` / `iptables`）**：可视化配置端口放行/拦截、来源 IP/CIDR 白名单与黑名单、防爆破限速及 NAT 端口转发规则，支持三引擎命令一键切换生成、`.sh` 脚本导出、常见运维/应急回滚命令及实时 SSH 端口防断连校验与一键补全
 - **Systemd `.timer` 定时任务与 `OnCalendar` 预测器**：可视化生成 Linux `.timer` 与配套 `.service` 存根，支持 `OnCalendar` 语法校验、Crontab 一键转译、未来 10 次触发时间线预测、`AccuracySec` / `RandomizedDelaySec` 防雪崩抖动及 `systemd-analyze calendar` 命令生成
 - **Systemd `.service` 守护进程单元生成器**：可视化生成 Linux `.service` 文件，配置 `ExecStart`、工作目录、运行用户、`Restart` 策略、环境变量、`After/Requires` 依赖、资源限制与沙箱加固，支持 System / `--user` 作用域、现有 `.service` 导入反解及配套 `systemctl` / `journalctl` 命令生成
