@@ -41,7 +41,8 @@ import {
   Flame,
   Languages,
   Timer,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Braces
 } from 'lucide-vue-next';
 import type { CategoryInfo, ToolItem, CategoryId } from './types';
 
@@ -60,6 +61,7 @@ import ImageBase64Converter from './converters/ImageBase64Converter.vue';
 import ConfigFormatConverter from './converters/ConfigFormatConverter.vue';
 import FontSubsetter from './converters/FontSubsetter.vue';
 import DevUnitConverter from './converters/DevUnitConverter.vue';
+import JsonToTypesConverter from './converters/JsonToTypesConverter.vue';
 import UuidGenerator from './generators/UuidGenerator.vue';
 import HashGenerator from './generators/HashGenerator.vue';
 import CronParser from './generators/CronParser.vue';
@@ -457,6 +459,34 @@ export const tools: ToolItem[] = [
       '时间'
     ],
     component: markRaw(DevUnitConverter),
+  },
+  {
+    id: 'json-to-types',
+    categoryId: 'converters',
+    nameKey: 'tools.jsonToTypes.name',
+    descKey: 'tools.jsonToTypes.desc',
+    icon: markRaw(Braces),
+    keywords: [
+      'json',
+      'typescript',
+      'interface',
+      'zod',
+      'go',
+      'golang',
+      'struct',
+      'rust',
+      'serde',
+      'python',
+      'pydantic',
+      'types',
+      'schema',
+      'model',
+      'codegen',
+      '类型生成',
+      '结构体',
+      '接口生成',
+    ],
+    component: markRaw(JsonToTypesConverter),
   },
   {
     id: 'hash-generator',
